@@ -1,0 +1,23 @@
+#base-input {
+    
+}
+
+#base-input #input-container {
+    position: relative;
+}
+
+#base-input #input-container input {
+    height: 40px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    width: 100%;
+    outline: none;
+    color: rgb(43, 52, 69);
+    border: 1px solid rgb(218, 225, 231);
+}
+
+#base-input #input-container div i {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+}

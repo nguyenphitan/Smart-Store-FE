@@ -1,0 +1,27 @@
+#base-category-card {
+    width: 278px;
+    /* border: 1px solid #ccc; */
+}
+
+#base-category-card #category-card-container {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 16px;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+#base-category-card #category-card-container:hover {
+    background-color: #ffe1e6;
+    color: rgb(233, 69, 96);
+}
+
+#base-category-card .category-summary {
+    display: flex;
+    align-items: center;
+}
+
+#base-category-card .category-card-name {
+    margin-left: 16px;
+}

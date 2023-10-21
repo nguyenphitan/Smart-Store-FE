@@ -1,0 +1,21 @@
+#base-list-overlay {
+    position: absolute;
+    height: 40px;
+    width: 230px;
+    border-radius: 8px;
+    display: none;
+    background-color: #fff;
+    z-index: 2;
+    padding: 8px 0;
+}
+
+#base-list-overlay .overlay-item {
+    padding: 8px 16px;
+    background-color: #fff;
+}
+
+#base-list-overlay .overlay-item:hover {
+    background: rgb(246, 249, 252);
+    cursor: pointer;
+    color: #e94560;
+}

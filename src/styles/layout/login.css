@@ -1,0 +1,115 @@
+#the-login {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 15;
+    display: none;
+}
+
+#the-login .wrapper {
+    opacity: 1 !important;
+    border: 1px solid #ccc;
+    width: 30%;
+    min-width: 500px;
+    margin: 0 auto;
+    border-radius: 8px;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 50px;
+    background-color: #fff;
+}
+
+#the-login #login-container {
+    width: 76%;
+    margin: 0 auto;
+}
+
+#the-login a {
+    color: rgb(43, 52, 69);
+    margin-left: 16px;
+    text-decoration: underline;
+}
+
+/* Header */
+#the-login #login-header {
+    text-align: center;
+    margin-bottom: 36px;
+    padding-top: 48px;
+}
+
+#login-header h3 {
+    margin-bottom: 8px;
+    font-size: 20px;
+}
+
+#the-login #login-header .login-description {
+    font-weight: 500;
+    font-size: 12px;
+}
+
+/* Body */
+#the-login .enter-email {
+    margin-bottom: 12px;
+}
+
+#the-login .enter-password {
+    margin-bottom: 12px;
+}
+
+#login-body input {
+    opacity: 0.8;
+    font-size: 14px;
+}
+
+#the-login label {
+    margin-bottom: 6px;
+    font-size: 14px;
+    display: block;
+}
+
+#login-body .btn-login {
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+#login-body .login-on {
+    margin-bottom: 16px;
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+#login-body .login-on-facebook {
+    background-color: rgb(59, 89, 152);
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+#login-body .login-on-google {
+    background-color: rgb(66, 133, 244);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+#login-body .sign-up {
+    text-align: center;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+/* Footer */
+#login-footer .forgot-password {
+    opacity: 0.8;
+    text-align: center;
+    background-color: rgb(243, 245, 249);
+    padding: 19px;
+}
+
+
+

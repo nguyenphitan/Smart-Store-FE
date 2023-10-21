@@ -1,0 +1,36 @@
+#base-carousel-card .container {
+    position: relative;
+    max-width: 84%;
+}
+
+#base-carousel-card .carousel-indicators {
+    display: none;
+}
+
+.controls-top {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    position: absolute;
+    top: calc(50% - 10.5px);
+    z-index: 2;
+}
+
+.t-floating-prev,
+.t-floating-next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background-color: rgb(218, 225, 231);
+    border-radius: 500px;
+    text-decoration: none !important;
+    color: rgb(125, 135, 156);
+}
+
+.t-floating-prev:hover,
+.t-floating-next:hover {
+    background-color: rgb(15, 52, 96);
+    color: #fff;
+}

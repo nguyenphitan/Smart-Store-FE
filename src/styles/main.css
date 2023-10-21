@@ -1,0 +1,40 @@
+@import url('../assets/icons/fontawesome-free-6.1.2-web/css/all.min.css');
+
+#app {
+    --primary-color: rgb(233, 69, 96);
+    --primary-color-text: rgb(43, 52, 69);
+    position: relative;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(43, 52, 69);
+    font-size: 14px;
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+    height: 0px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}

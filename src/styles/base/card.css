@@ -1,0 +1,74 @@
+#base-card {
+    /* cursor: pointer; */
+    max-width: 282px !important;
+}
+
+#base-card:hover {
+    box-shadow: rgb(3 0 71 / 9%) 0px 8px 45px;
+    cursor: pointer;
+}
+
+#base-card .card {
+    border-radius: 5px;
+    /* border: none; */
+}
+
+#base-card .t-top-12 {
+    margin-top: 12px;
+}
+
+#base-card .sale-off {
+    background-color: #e94560 !important;
+    border-radius: 300px;
+    padding: 5px 10px;
+    
+}
+
+#base-card .card-body .top-info {
+    height: 24px;
+}
+
+#base-card .product-name {
+    margin-bottom: 10px;
+}
+
+#base-card .product-name h3 {
+    color: rgb(55, 63, 80);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#base-card .product-price {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    color: #e94560;
+}
+
+#base-card .add-to-cart {
+    border: 1px solid #ffb1be;
+    border-radius: 5px;
+    color: #e94560;
+    cursor: pointer;
+}
+
+#base-card .add-to-cart:hover {
+    color: #fff;
+    background-color: #e94560;
+}
+
+#base-card .add-to-cart i {
+    font-size: 16px;
+    padding: 4px 5px;
+}
+
+#base-card .inventory,
+#base-card .category-name {
+    font-size: 12px;
+}
+
+#base-card .unit-price {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}

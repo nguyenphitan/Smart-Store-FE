@@ -1,0 +1,13 @@
+#list-header .list-header {
+    width: 168px;
+}
+
+#list-header .list-header-item {
+    padding: 8px 16px;
+}
+
+#list-header .list-header-item:hover {
+    color: rgb(233, 69, 96);
+    background-color: rgb(246, 249, 252);
+    cursor: pointer;
+}

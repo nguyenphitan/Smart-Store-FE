@@ -1,0 +1,51 @@
+#base-carousel #carousel-container {
+    /* border: 1px solid #ccc; */
+    padding: 10px 0 0 32px;
+    overflow: hidden;
+}
+
+#base-carousel .carousel-btn {
+    width: 156px;
+}
+
+#base-carousel .t-max-256 {
+    max-width: 256px !important;
+    padding: 0 !important;
+}
+
+#base-carousel #myCarousel {
+    border: none !important;
+}
+
+#base-carousel #myCarousel li {
+    border: 1px solid #ccc;
+}
+
+/* #base-carousel .sale-info {
+    margin-bottom: 20px;
+} */
+
+#base-carousel .carousel-title {
+    font-weight: 700;
+    font-size: 50px;
+    padding-bottom: 20px;
+}
+
+#base-carousel .carousel-description {
+    padding-bottom: 10px;
+}
+
+#base-carousel #myCarousel .carousel-control-prev,
+#base-carousel #myCarousel .carousel-control-next {
+    top: none;
+    bottom: 0;
+}
+
+#base-carousel #myCarousel .carousel-control-prev span,
+#base-carousel #myCarousel .carousel-control-next span {
+    border: 1px solid black;
+}
+
+#base-carousel #myCarousel .carousel-indicators {
+    
+}

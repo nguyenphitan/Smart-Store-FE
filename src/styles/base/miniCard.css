@@ -1,0 +1,59 @@
+#base-mini-card {
+    cursor: pointer;
+    width: 156px;
+}
+
+#base-mini-card:hover {
+    box-shadow: rgb(3 0 71 / 9%) 0px 8px 45px;
+}
+
+#base-mini-card .card {
+    border-radius: 8px;
+    border: none;
+    /* border: none; */
+}
+
+#base-mini-card .card-body {
+    padding: 8px 16px 16px 16px;
+}
+
+#base-mini-card .product-img {
+    border-radius: 8px;
+    padding: 16px;
+}
+
+#base-mini-card .t-top-4 {
+    margin-top: 4px;
+}
+
+#base-mini-card .t-left-8 {
+    margin-left: 8px;
+}
+
+#base-mini-card .t-display-none {
+    display: none !important;
+}
+
+#base-mini-card .t-text-center {
+    text-align: center !important;
+    justify-content: center !important;
+}
+
+#base-mini-card .product-name {
+    color: rgb(55, 63, 80);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#base-mini-card .product-price {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    color: #e94560;
+}
+
+#base-mini-card .unit-price {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
