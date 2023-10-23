@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import BaseCategoryCard from '../base/BaseCategoryCard.vue'
+import BaseCategoryCard from '../../base/BaseCategoryCard.vue'
 
 export default {
     name: 'the-navbar',
@@ -31,5 +31,5 @@ export default {
 </script>
 
 <style scoped>
-@import url('../../styles/layout/navbar.css');
+@import url('../../../styles/layout/navbar.css');
 </style>

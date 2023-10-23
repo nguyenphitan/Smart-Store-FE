@@ -4,7 +4,9 @@
         <div id="the-header-container">
             <!-- Begin top header -->
             <div id="top-header">
-                <div class="logo">T.A.N</div>
+                <div class="logo">
+                    <router-link to="/">T.A.N</router-link>
+                </div>
                 <base-search></base-search>
                 <div class="d-flex">
                     <div @click="openLoginForm" class="user-info">
@@ -46,6 +48,9 @@
                         <div class="track-order">
                             <div class="t-title t-hover-red">Track My Orders</div>
                         </div>
+                        <div class="add-new-product">
+                            <router-link to="/add-new-product" >Add New Product</router-link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,9 +60,9 @@
 </template>
 
 <script>
-import BaseSearch from '../base/BaseSearch.vue'
-import BaseCategoryCard from '../base/BaseCategoryCard.vue'
-import BaseListOverlay from '../base/BaseListOverlay.vue'
+import BaseSearch from '../../base/BaseSearch.vue'
+import BaseCategoryCard from '../../base/BaseCategoryCard.vue'
+import BaseListOverlay from '../../base/BaseListOverlay.vue'
 
 export default {
     name: 'the-header',
@@ -108,5 +113,5 @@ export default {
 </script>
 
 <style scoped>
-@import url('../../styles/layout/header.css');
+@import url('../../../styles/layout/header.css');
 </style>

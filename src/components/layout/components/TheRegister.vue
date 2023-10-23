@@ -80,8 +80,8 @@
 </template>
 
 <script>
-import BaseInput from '../base/BaseInput.vue'
-import BaseButton from '../base/BaseButton.vue'
+import BaseInput from '../../base/BaseInput.vue'
+import BaseButton from '../../base/BaseButton.vue'
 import axios from 'axios';
 
 export default {
@@ -168,5 +168,5 @@ export default {
 </script>
 
 <style scoped>
-@import url('../../styles/layout/register.css');
+@import url('../../../styles/layout/register.css');
 </style>
