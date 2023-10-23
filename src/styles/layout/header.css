@@ -20,11 +20,12 @@
     margin: 0 auto;
 }
 
-#the-header .logo {
+#the-header .logo a {
     font-size: 40px;
     font-family: 'Alkalami', serif;
     font-style: italic;
     color: #e94560;
+    text-decoration: none;
 }
 
 #the-header #base-search {

@@ -158,11 +158,11 @@
 </template>
 
 <script>
-import TheNavbar from './TheNavbar.vue'
-import BaseCarousel from '../base/BaseCarousel.vue'
-import BaseCarouselCard from '../base/BaseCarouselCard.vue'
-import BaseMiniCard from '../base/BaseMiniCard.vue'
-import BaseCategoryCard from '../base/BaseCategoryCard.vue'
+import TheNavbar from '../../layout/components/TheNavbar.vue'
+import BaseCarousel from '../../base/BaseCarousel.vue'
+import BaseCarouselCard from '../../base/BaseCarouselCard.vue'
+import BaseMiniCard from '../../base/BaseMiniCard.vue'
+import BaseCategoryCard from '../../base/BaseCategoryCard.vue'
 
 export default {
     name: 'the-body',
@@ -290,5 +290,5 @@ export default {
 </script>
 
 <style scoped>
-@import url('../../styles/layout/body.css');
+@import url('../../../styles/layout/body.css');
 </style>
