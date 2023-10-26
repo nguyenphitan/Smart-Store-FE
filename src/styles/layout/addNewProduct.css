@@ -1,5 +1,5 @@
 #the-add-new-product {
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 #the-add-new-product form {
@@ -28,10 +28,20 @@
 }
 
 #the-add-new-product .show-img {
+    margin-top: 20px;
     border: 1px solid #ccc;
-    width: 500px;
-    height: 500px;
-    padding: 20px;
+    width: 350px;
+    height: 350px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#the-add-new-product .show-img img {
+    max-width: 100%;
+    height: auto;
 }
 
 
