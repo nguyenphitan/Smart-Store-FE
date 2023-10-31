@@ -126,29 +126,67 @@
                     <!-- End new arrivals content -->
                 </div>
                 <!-- End New Arrivals -->
-            </div>
-            <!-- End body center -->
 
-            <!-- Begin mobile phone stall -->
-            <div id="mobile-phone-stall">
-                <div class="phone-stall-container">
-                    <!-- Begin mobile phone nav -->
-                    <div class="col-3 phone-nav">
-                        <base-category-card
-                            v-for="(item, key) in phoneNavData"
-                            :key="key"
-                            :cardName="item.name"
-                            :iconClassLeft="item.iconClassLeft"
-                        ></base-category-card>
+                <!-- Begin casousel discout -->
+                <!-- <div id="discount-product">
+                    <div class="t-w-80 flash-deal">
+                        <h2 class="center-title flash-deal-title"> 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="injected-svg" data-src="/assets/images/icons/light.svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <path d="M19.0765 9.48063H12.1242L15.5905 0L5 14.5194H11.9522L8.48592 24L19.0765 9.48063Z" fill="#D23F57"></path>
+                            </svg>
+                            Flash Deals
+                        </h2>
+                        <base-carousel-card 
+                            :datas="flashDealData" 
+                            :status="productCard"
+                            :settings="productSetting"
+                        ></base-carousel-card>
                     </div>
-                    <!-- End mobile phone nav -->
+                </div> -->
+                <!-- End casousel discout -->
 
 
+                <!-- Begin show all product -->
+                <div id="show-products">
+                    <!-- Left -->
+                    <div id="product-category">
+                        <div class="category-container">
+                            <div class="col-3 phone-nav">
+                                <base-category-card
+                                    v-for="(item, key) in phoneNavData"
+                                    :key="key"
+                                    :cardName="item.name"
+                                    :iconClassLeft="item.iconClassLeft"
+                                ></base-category-card>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Right -->
+                    <div id="list-product">
+                        <h3 style="font-weight: bold;">Products</h3>
+                        <!-- Begin render list product -->
+                        <div class="render-product">
+                            <base-card
+                                v-for="(data, index) in listProducts" 
+                                :key="index"
+                                :categoryName="data.category.name"
+                                :imgURL="require('@/assets/imgs/' + data.photos)"
+                                :price="data.price"
+                                :inventory="data.quantity"
+                                :productName="data.name"
+                            >
+                            </base-card>
+                        </div>
+                        <!-- End render list product -->
+                    </div>
 
                 </div>
-            </div>
-            <!-- End mobile phone stall -->
+                <!-- End show all product -->
 
+            </div>
+            <!-- End body center -->
         </div>
         <!-- End the body -->
 
@@ -162,7 +200,9 @@ import TheNavbar from '../../layout/components/TheNavbar.vue'
 import BaseCarousel from '../../base/BaseCarousel.vue'
 import BaseCarouselCard from '../../base/BaseCarouselCard.vue'
 import BaseMiniCard from '../../base/BaseMiniCard.vue'
-import BaseCategoryCard from '../../base/BaseCategoryCard.vue'
+import BaseCategoryCard from '@/components/base/BaseCategoryCard.vue'
+import BaseCard from '@/components/base/BaseCard.vue'
+import axios from 'axios'
 
 export default {
     name: 'the-body',
@@ -172,9 +212,15 @@ export default {
         BaseCarouselCard,
         BaseMiniCard,
         BaseCategoryCard,
+        BaseCard,
     },
+
     data() {
         return {
+            // List all product
+            listProducts: [],
+
+
             // List category for navbar
             listCategory: [
                 {iconClassLeft: 'fa-brands fa-facebook', name: 'Electronics', extendIcon: true},
@@ -284,6 +330,24 @@ export default {
             ],
 
         }
+    },
+
+    beforeCreate() {
+        // Get all product
+        axios
+            .get("http://localhost:8080/api/v1/products")
+            .then((response) => {
+                console.log('Get all product success!');
+                console.log(response.data);
+                this.listProducts = response.data;
+            })
+            .catch((reject) => {
+                console.log(reject);
+            });
+    },
+
+    methods: {
+
     },
 
 }

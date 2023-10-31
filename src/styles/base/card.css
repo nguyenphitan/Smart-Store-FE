@@ -1,16 +1,20 @@
 #base-card {
     /* cursor: pointer; */
     max-width: 282px !important;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 3px 5px -1px, rgba(0, 0, 0, 0.043) 0px 5px 8px 0px, rgba(0, 0, 0, 0.035) 0px 1px 14px 0px;
 }
 
 #base-card:hover {
     box-shadow: rgb(3 0 71 / 9%) 0px 8px 45px;
     cursor: pointer;
+    transition: all 250ms ease-in-out 0s;
 }
 
 #base-card .card {
     border-radius: 5px;
-    /* border: none; */
+    border: none;
+    -webkit-box-pack: justify;
 }
 
 #base-card .t-top-12 {
