@@ -4,6 +4,7 @@
 
 #the-add-new-product form {
     width: 80%;
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
