@@ -1,6 +1,7 @@
 #base-carousel-card .container {
     position: relative;
     max-width: 84%;
+    max-width: 1200px;
 }
 
 #base-carousel-card .carousel-indicators {

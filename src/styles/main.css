@@ -4,6 +4,7 @@
     --primary-color: rgb(233, 69, 96);
     --primary-color-text: rgb(43, 52, 69);
     position: relative;
+    background-color: rgb(246, 249, 252);
 }
 
 * {

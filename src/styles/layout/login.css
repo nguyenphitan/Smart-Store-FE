@@ -27,6 +27,7 @@
 
 #the-login #login-container {
     width: 76%;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
