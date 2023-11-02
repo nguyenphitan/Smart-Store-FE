@@ -176,6 +176,7 @@
                                 :price="data.price"
                                 :inventory="data.quantity"
                                 :productName="data.name"
+                                :productId="data.id"
                             >
                             </base-card>
                         </div>
