@@ -1,42 +1,45 @@
 <template>
     <div id="base-card">
         <!-- Base card -->
-        <div id="base-card-container">
-            <div class="card">
-                <div class="d-flex justify-content-between p-3 position-absolute">
-                    <!-- <p class="lead mb-0">Today's Combo Offer</p> -->
-                    <div class="bg-info d-flex align-items-center justify-content-center shadow-1-strong sale-off">
-                        <p class="text-white mb-0 small">50% off</p>
+        <router-link :to="{ name: 'details', params: { id: productId}}">
+            <div id="base-card-container">
+                <div class="card">
+                    <span id="product-id" style="display: block;">{{ productId }}</span>
+                    <div class="d-flex justify-content-between p-3 position-absolute">
+                        <!-- <p class="lead mb-0">Today's Combo Offer</p> -->
+                        <div class="bg-info d-flex align-items-center justify-content-center shadow-1-strong sale-off">
+                            <p class="text-white mb-0 small">50% off</p>
+                        </div>
                     </div>
-                </div>
-                <img v-bind:src="imgURL"
-                    class="card-img-top" alt="Laptop" />
-                <div class="card-body">
-                    <div class="d-flex justify-content-between top-info">
-                        <p class="small"><a href="#!" class="text-muted category-name">{{categoryName}}</a></p>
-                        <p class="text-muted mb-0 inventory">Available: <span class="fw-bold">{{inventory}}</span></p>
-                    </div>
+                    <img v-bind:src="imgURL"
+                        class="card-img-top" alt="Laptop" />
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between top-info">
+                            <p class="small"><a href="#!" class="text-muted category-name">{{categoryName}}</a></p>
+                            <p class="text-muted mb-0 inventory">Available: <span class="fw-bold">{{inventory}}</span></p>
+                        </div>
 
-                    <div class="d-flex justify-content-between product-name">
-                        <h3 class="mb-0">{{productName}}</h3>
-                    </div>
-                    <div class="ms-auto text-warning">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
+                        <div class="d-flex justify-content-between product-name">
+                            <h3 class="mb-0">{{productName}}</h3>
+                        </div>
+                        <div class="ms-auto text-warning">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
 
-                    <div class="d-flex justify-content-between align-items-center t-top-12">
-                        <h5 class="mb-0 product-price"> <div class="unit-price">₫</div> {{formatPrice(price)}}</h5>
-                        <div class="add-to-cart">
-                            <i class="fa-solid fa-plus"></i>
+                        <div class="d-flex justify-content-between align-items-center t-top-12">
+                            <h5 class="mb-0 product-price"> <div class="unit-price">₫</div> {{formatPrice(price)}}</h5>
+                            <div class="add-to-cart">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </router-link>
     </div>
 </template>
 
@@ -73,7 +76,11 @@ export default {
         imgURL: {
             type: String,
             default: require('@/assets/imgs/flash-2.webp')
-        }
+        },
+        productId: {
+            type: Number,
+            default: 1
+        },
 
     },
     methods: {
@@ -82,7 +89,8 @@ export default {
         formatPrice(value) {
             let val = (value/1).toFixed(0).replace('.', ',')
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-        }
+        },
+
     }
 
 }
