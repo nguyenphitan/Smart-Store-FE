@@ -52,6 +52,25 @@
     cursor: pointer;
 }
 
+/* Cart */
+.cart-info {
+    position: relative;
+}
+
+.cart-size {
+    background-color: #e94560;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    top: -5px;
+    right: -5px;
+}
+
 /* Bottom header*/
 #the-header #bot-header {
     /* box-shadow: rgb(43 52 69 / 10%) 0px 4px 16px; */

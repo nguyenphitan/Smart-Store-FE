@@ -3,14 +3,16 @@
         <!-- The body -->
         <div id="the-body-container">
             <!-- Begin top body -->
-            <div id="body-top" class="t-w-80">
-                <!-- Begin navbar -->
-                <the-navbar :data="listCategory"></the-navbar>
-                <!-- End navbar -->
+            <div id="body-top">
+                <div class="body-top-wrapper t-w-80">
+                    <!-- Begin navbar -->
+                    <the-navbar :data="listCategory"></the-navbar>
+                    <!-- End navbar -->
 
-                <!-- Begin carousel -->
-                <base-carousel :data="carouselData"></base-carousel>
-                <!-- End carousel -->
+                    <!-- Begin carousel -->
+                    <base-carousel :data="carouselData"></base-carousel>
+                    <!-- End carousel -->
+                </div>
             </div>
             <!-- End top body -->
 

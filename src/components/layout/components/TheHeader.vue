@@ -13,6 +13,7 @@
                         <i class="fa-solid fa-user"></i>
                     </div>
                     <div class="cart-info">
+                        <div class="cart-size">{{ cartSize }}</div>
                         <i class="fa-solid fa-cart-shopping"></i>
                     </div>
                 </div>
@@ -63,6 +64,7 @@
 import BaseSearch from '../../base/BaseSearch.vue'
 import BaseCategoryCard from '../../base/BaseCategoryCard.vue'
 import BaseListOverlay from '../../base/BaseListOverlay.vue'
+import axios from 'axios'
 
 export default {
     name: 'the-header',
@@ -71,8 +73,28 @@ export default {
         BaseCategoryCard,
         BaseListOverlay,
     },
+    created() {
+        const token = localStorage.getItem('token');
+        // header
+        const headers = {
+            Authorization: `Bearer ${token}`,
+        };
+
+        axios
+            .get("http://localhost:8080/api/v1/cart/size", {headers})
+            .then((response) => {
+                console.log(response.data);
+                this.cartSize = response.data;
+            })
+            .catch((reject) => {
+                console.log(reject);
+            });
+    },
     data() {
         return {
+            // Cart size
+            cartSize: 0,
+
             categoryIcon: 'fa-solid fa-list',
             downIcon: 'fa-solid fa-chevron-down',
             cardName: 'Categories',
