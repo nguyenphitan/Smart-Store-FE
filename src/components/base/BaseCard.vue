@@ -4,7 +4,6 @@
         <router-link :to="{ name: 'details', params: { id: productId}}">
             <div id="base-card-container">
                 <div class="card">
-                    <span id="product-id" style="display: block;">{{ productId }}</span>
                     <div class="d-flex justify-content-between p-3 position-absolute">
                         <!-- <p class="lead mb-0">Today's Combo Offer</p> -->
                         <div class="bg-info d-flex align-items-center justify-content-center shadow-1-strong sale-off">
@@ -32,9 +31,10 @@
 
                         <div class="d-flex justify-content-between align-items-center t-top-12">
                             <h5 class="mb-0 product-price"> <div class="unit-price">₫</div> {{formatPrice(price)}}</h5>
-                            <div class="add-to-cart">
+                            <div @click="addToCard" class="add-to-cart">
                                 <i class="fa-solid fa-plus"></i>
                             </div>
+                            <span id="product-id" style="display: none;">{{ productId }}</span>
                         </div>
                     </div>
                 </div>
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+
 export default {
     name: 'base-card',
     props: {
@@ -83,12 +84,26 @@ export default {
         },
 
     },
+    created() {
+        console.log(this.productId);
+    },
+    data() {
+        return {
+
+        }
+    },
     methods: {
 
         // Format price:
         formatPrice(value) {
             let val = (value/1).toFixed(0).replace('.', ',')
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+        },
+
+        // Add product to cart:
+        addToCard(e) {
+            this.$emit('addToCart', e);
+            e.preventDefault();
         },
 
     }

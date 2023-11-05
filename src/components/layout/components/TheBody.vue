@@ -3,14 +3,16 @@
         <!-- The body -->
         <div id="the-body-container">
             <!-- Begin top body -->
-            <div id="body-top" class="t-w-80">
-                <!-- Begin navbar -->
-                <the-navbar :data="listCategory"></the-navbar>
-                <!-- End navbar -->
+            <div id="body-top">
+                <div class="body-top-wrapper t-w-80">
+                    <!-- Begin navbar -->
+                    <the-navbar :data="listCategory"></the-navbar>
+                    <!-- End navbar -->
 
-                <!-- Begin carousel -->
-                <base-carousel :data="carouselData"></base-carousel>
-                <!-- End carousel -->
+                    <!-- Begin carousel -->
+                    <base-carousel :data="carouselData"></base-carousel>
+                    <!-- End carousel -->
+                </div>
             </div>
             <!-- End top body -->
 
@@ -177,6 +179,7 @@
                                 :inventory="data.quantity"
                                 :productName="data.name"
                                 :productId="data.id"
+                                @addToCart="addToCard"
                             >
                             </base-card>
                         </div>
@@ -348,7 +351,34 @@ export default {
     },
 
     methods: {
+        // Add product to cart:
+        addToCard(e) {
+            let productId = e.target.parentElement.nextSibling.innerText;
+            const token = localStorage.getItem('token');
 
+            // request
+            let productRequest = {
+                idProduct: Number(productId),
+                quantitySelected: 1 // default 1
+            }
+
+            // header
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+
+            // Call API
+            axios
+                .post('http://localhost:8080/api/v1/cart', productRequest, { headers })
+                .then((response) => {
+                    console.log("Add product to cart success!");
+                    console.log(response.data);
+                })
+                .catch((reject) => {
+                    console.log(reject);
+                });
+
+        }
     },
 
 }

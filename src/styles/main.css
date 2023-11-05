@@ -7,6 +7,16 @@
     background-color: rgb(246, 249, 252);
 }
 
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+a:hover {
+    text-decoration: none;
+    color: unset;
+}
+
 * {
     margin: 0;
     padding: 0;
