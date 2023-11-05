@@ -44,7 +44,25 @@
                 <div class="product-price">{{ formatPrice(productDetail.price) }}đ</div>
                 <!-- if product.quantity > 0 show: Stock Available else show: Non-Stock -->
                 <div class="product-inventory">Stock Available</div>
-                <base-button class="add-to-cart" :buttonName="'Add to Cart'"></base-button>
+
+                <!-- Begin select quantity -->
+                <div class="quantity-selector d-flex flex-row">
+                    <button class="btn btn-link px-2"
+                      onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                      <i class="fas fa-minus"></i>
+                    </button>
+
+                    <input id="form1" min="1" name="quantity" value="1" type="number"
+                      class="form-control form-control-sm" style="width: 50px;" />
+
+                    <button class="btn btn-link px-2"
+                      onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <!-- End select quantity -->
+
+                <base-button @onClickEvent="addManyProductToCart" class="add-to-cart" :buttonName="'Add to Cart'"></base-button>
             </div>
         </div>
     </div>
@@ -62,12 +80,11 @@ export default {
     props: {
     },
     beforeCreate() {
-        console.log('The id is: ' + this.$route.params.id);
+        // console.log('The id is: ' + this.$route.params.id);
         axios
             .get(`http://localhost:8080/api/v1/products/${this.$route.params.id}`)
             .then((response) => {
                 console.log("Get detail success!");
-                console.log(response.data);
                 this.productDetail = response.data;
             })
             .catch((reject) => {
@@ -86,6 +103,38 @@ export default {
             let val = (value/1).toFixed(0).replace('.', ',')
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
         },
+
+        // Add many product to cart:
+        addManyProductToCart(e) {
+            console.log(e);
+            let quantity = document.getElementById("form1").value;
+            let productId = this.$route.params.id;
+            const token = localStorage.getItem('token');
+
+            // request
+            let productRequest = {
+                idProduct: Number(productId),
+                quantitySelected: quantity
+            }
+
+            // header
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+
+            // Call API
+            axios
+                .post('http://localhost:8080/api/v1/cart', productRequest, { headers })
+                .then((response) => {
+                    console.log("Add product to cart success!");
+                    console.log(response.data);
+                    window.location.reload();
+                })
+                .catch((reject) => {
+                    console.log(reject);
+                });
+
+        }
     },
 
 }

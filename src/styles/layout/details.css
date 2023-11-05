@@ -83,10 +83,17 @@
     margin-bottom: 24px;
 }
 
-
 /* Button add to cart */
 #the-detail .add-to-cart {
     width: 124px;
+}
+
+#the-detail .quantity-selector {
+    margin-bottom: 20px;
+}
+
+#the-detail .quantity-selector i {
+    color: rgb(233, 69, 96);
 }
 
 #the-detail .add-to-cart #button-container button {

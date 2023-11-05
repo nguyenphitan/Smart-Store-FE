@@ -139,7 +139,8 @@ export default {
             axios
                 .post(`http://localhost:8080/api/v1/auth/login?username=${email}&password=${password}`)
                 .then((response) => {
-                    console.log(response);
+                    console.log(response.data);
+                    localStorage.setItem('token', response.data); 
                     window.location.reload();
                 })
                 .catch((reject) => {

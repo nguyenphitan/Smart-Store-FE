@@ -177,6 +177,7 @@
                                 :inventory="data.quantity"
                                 :productName="data.name"
                                 :productId="data.id"
+                                @addToCart="addToCard"
                             >
                             </base-card>
                         </div>
@@ -348,7 +349,34 @@ export default {
     },
 
     methods: {
+        // Add product to cart:
+        addToCard(e) {
+            let productId = e.target.parentElement.nextSibling.innerText;
+            const token = localStorage.getItem('token');
 
+            // request
+            let productRequest = {
+                idProduct: Number(productId),
+                quantitySelected: 1 // default 1
+            }
+
+            // header
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+
+            // Call API
+            axios
+                .post('http://localhost:8080/api/v1/cart', productRequest, { headers })
+                .then((response) => {
+                    console.log("Add product to cart success!");
+                    console.log(response.data);
+                })
+                .catch((reject) => {
+                    console.log(reject);
+                });
+
+        }
     },
 
 }
