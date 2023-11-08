@@ -1,0 +1,17 @@
+/* @media (min-width: 1025px) {
+    .h-custom {
+        height: 100vh !important;
+    }
+} */
+
+
+#the-cart .card-body input::placeholder {
+    color: #b0adad;
+    opacity: 1; 
+    font-size: 14px;
+    font-style: italic;
+}
+
+#the-cart .card-body input::-ms-input-placeholder { 
+    color: #b0adad;
+}

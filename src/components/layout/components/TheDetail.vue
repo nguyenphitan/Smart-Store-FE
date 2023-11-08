@@ -126,7 +126,7 @@ export default {
             axios
                 .post('http://localhost:8080/api/v1/cart', productRequest, { headers })
                 .then((response) => {
-                    console.log("Add product to cart success!");
+                    console.log("Get detail product success!");
                     console.log(response.data);
                     window.location.reload();
                 })
