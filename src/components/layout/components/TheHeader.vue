@@ -13,8 +13,10 @@
                         <i class="fa-solid fa-user"></i>
                     </div>
                     <div class="cart-info">
-                        <div class="cart-size">{{ cartSize }}</div>
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <router-link to="/cart" >
+                            <div class="cart-size">{{ cartSize }}</div>
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </router-link>
                     </div>
                 </div>
             </div>
