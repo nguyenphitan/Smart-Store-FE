@@ -2,8 +2,27 @@
     <div id="the-cart">
         <!-- Begin container -->
         <div id="the-cart-container">
+
+            <!-- Top -->
+            <div class="order-step">
+                <router-link to="/cart" class="step step-add">1. Cart</router-link>
+                
+                <div class="step-line step-line-1"></div>
+
+                <router-link to="/cart-details" class="step step-detail">2. Details</router-link>
+
+                <div class="step-line step-line-2"></div>
+                
+                <div class="step step-payment">3. Payment</div>
+                
+                <div class="step-line step-line-3"></div>
+                
+                <div class="step step-review">4. Review</div>
+            </div>
+
+            <!-- Bottom -->
             <section class="h-100 h-custom" style="background-color: rgb(246, 249, 252);">
-                <div class="container py-5 h-100">
+                <div class="container py-5 h-100" style="padding-top: 20px !important;">
                     <div class="row d-flex justify-content-center align-items-center h-100">
                         <div class="col">
                             <div class="card">
@@ -163,7 +182,7 @@
                         </div>
                     </div>
                 </div>
-                </section>
+            </section>
         </div>
         <!-- End container -->
     </div>

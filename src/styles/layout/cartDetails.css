@@ -1,0 +1,138 @@
+#cart-details-container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 80px;
+}
+
+/* Top */
+#the-cart-details .order-step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 66.6667%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#the-cart-details .order-step .step {
+    font-weight: 600;
+    padding: 8px 24px;
+    background-color: rgb(255, 225, 230);
+    color: rgb(233, 69, 96);
+    border-radius: 300px;
+    cursor: pointer;
+}
+
+#the-cart-details .order-step .step-add,
+#the-cart-details .order-step .step-detail {
+    padding: 8px 24px;
+    background-color: rgb(233, 69, 96);
+    color: #fff;
+    border-radius: 300px;
+}
+
+#the-cart-details .order-step .step-line {
+    width: 50px;
+    height: 4px;
+    background-color: rgb(255, 225, 230);
+}
+
+#the-cart-details .order-step .step-line-1 {
+    width: 50px;
+    height: 4px;
+    background-color: rgb(233, 69, 96);
+}
+
+/* Bottom */
+
+.cart-details-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Address */
+.shipping-address {
+    width: 100%;
+    background-color: #fff;
+    padding: 24px;
+    box-shadow: rgba(3, 0, 71, 0.09) 0px 1px 3px;
+}
+
+.shipping-address-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.address-title {
+    margin-bottom: 8px;
+    margin-top: 16px;
+}
+
+.shipping-address-left {
+    width: 46%;
+}
+
+.shipping-address-right {
+    width: 46%;
+}
+
+.shipping-address-left input,
+.shipping-address-right input {
+    width: 100%;
+    min-width: 354px;
+    padding: 8px 12px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid rgb(218, 225, 231);
+}
+
+.shipping-address-left input:hover,
+.shipping-address-right input:hover {
+    border-color: rgb(174, 180, 190);
+}
+
+.shipping-address-left input:focus,
+.shipping-address-right input:focus {
+    border: 1px solid rgb(233, 69, 96);
+    outline: none;
+    box-shadow: rgba(255, 225, 230, 0.1) 1px 1px 8px 4px;
+}
+
+
+
+
+/* Voucher */
+.apply-voucher {
+    width: 30%;
+    min-width: 384px;
+    margin-left: 24px;
+    padding: 24px;
+    background-color: #fff;
+    box-shadow: rgba(3, 0, 71, 0.09) 0px 1px 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.select-voucher {
+    border: 1px solid rgb(218, 225, 231);
+    border-radius: 5px;
+    padding: 10px 16px;
+}
+
+.btn-apply-voucher {
+    padding: 10px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.btn-apply-voucher:hover {
+    background-color: rgb(233, 69, 96);
+    color: #fff;
+}
+

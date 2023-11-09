@@ -12,6 +12,37 @@ a {
     color: unset;
 }
 
+/* Begin define common css */
+.t-flex {
+    display: flex;
+}
+
+.t-between {
+    justify-content: space-between;
+}
+
+.t-align-center {
+    align-items: center;
+}
+
+.t-text-right {
+    text-align: right;
+}
+
+.t-text-center {
+    text-align: center;
+}
+
+.t-border-red {
+    border: 1px solid rgb(233, 69, 96);
+}
+
+.t-color-red {
+    color: rgb(233, 69, 96);
+}
+
+/* End define common css */
+
 a:hover {
     text-decoration: none;
     color: unset;

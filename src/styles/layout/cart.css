@@ -4,6 +4,38 @@
     }
 } */
 
+/* Top */
+#the-cart .order-step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 66.6667%;
+    margin-top: 20px;
+}
+
+#the-cart .order-step .step {
+    font-weight: 600;
+    padding: 8px 24px;
+    background-color: rgb(255, 225, 230);
+    color: rgb(233, 69, 96);
+    border-radius: 300px;
+    cursor: pointer;
+}
+
+#the-cart .order-step .step-add {
+    padding: 8px 24px;
+    background-color: rgb(233, 69, 96);
+    color: #fff;
+    border-radius: 300px;
+}
+
+#the-cart .order-step .step-line {
+    width: 50px;
+    height: 4px;
+    background-color: rgb(255, 225, 230);
+}
+
+/* Bottom */
 
 #the-cart .card-body input::placeholder {
     color: #b0adad;
