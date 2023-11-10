@@ -13,7 +13,7 @@
 
                 <div class="step-line step-line-2"></div>
                 
-                <div class="step step-payment">3. Payment</div>
+                <router-link to="/cart-payment" class="step step-payment">3. Payment</router-link>
                 
                 <div class="step-line step-line-3"></div>
                 

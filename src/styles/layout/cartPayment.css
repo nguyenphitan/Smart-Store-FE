@@ -1,0 +1,111 @@
+#cart-payment-container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+
+/* Top */
+#the-cart-payment .order-step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 66.6667%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#the-cart-payment .order-step .step {
+    font-weight: 600;
+    padding: 8px 24px;
+    background-color: rgb(255, 225, 230);
+    color: rgb(233, 69, 96);
+    border-radius: 300px;
+    cursor: pointer;
+}
+
+#the-cart-payment .order-step .step-add,
+#the-cart-payment .order-step .step-detail,
+#the-cart-payment .order-step .step-payment {
+    padding: 8px 24px;
+    background-color: rgb(233, 69, 96);
+    color: #fff;
+    border-radius: 300px;
+}
+
+#the-cart-payment .order-step .step-line {
+    width: 50px;
+    height: 4px;
+    background-color: rgb(255, 225, 230);
+}
+
+#the-cart-payment .order-step .step-line-1,
+#the-cart-payment .order-step .step-line-2 {
+    width: 50px;
+    height: 4px;
+    background-color: rgb(233, 69, 96);
+}
+
+/* Bottom */
+
+.vnpay-payment, 
+.delivery-payment {
+    padding: 28px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 12px;
+    background-color: #fff;
+    box-shadow: rgba(3, 0, 71, 0.09) 0px 1px 3px;
+    border-radius: 5px;
+}
+
+.vnpay-payment:hover, 
+.delivery-payment:hover {
+    transition: ease-in 0.2s;
+    box-shadow: rgba(54, 53, 53, 0.043) 0px 3px 5px -1px, rgba(54, 53, 53, 0.043) 0px 5px 8px 0px, rgba(54, 53, 53, 0.043) 0px 1px 14px 0px;
+}
+
+.vnpay-payment label, 
+.delivery-payment label {
+    margin-bottom: unset;
+}
+
+.vnpay-payment input, 
+.delivery-payment input {
+    margin-right: 16px;
+    width: 20px;
+    height: 16px;
+}
+
+/* Payment amount */
+.payment-amount {
+    min-width: 384px;
+    margin-left: 24px;
+    box-shadow: rgba(3, 0, 71, 0.09) 0px 1px 3px;
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 5px;
+}
+
+.payment-amount-title {
+    font-weight: 600;
+}
+
+/* Button */
+.back-to-details {
+    margin-right: 16px;
+    border-radius: 8px;
+}
+
+.back-to-details:hover {
+    color: #fff;
+    background-color: rgb(233, 69, 96);
+}
+
+.go-to-review {
+    margin-left: 16px;
+    height: 40px;
+    border-radius: 8px;
+}

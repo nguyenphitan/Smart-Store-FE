@@ -46,42 +46,42 @@
 
 /* Bottom */
 
-.cart-details-bottom {
+#the-cart-details .cart-details-bottom {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
 /* Address */
-.shipping-address {
+#the-cart-details .shipping-address {
     width: 100%;
     background-color: #fff;
     padding: 24px;
     box-shadow: rgba(3, 0, 71, 0.09) 0px 1px 3px;
 }
 
-.shipping-address-wrapper {
+#the-cart-details .shipping-address-wrapper {
     width: 100%;
     display: flex;
     justify-content: space-between;
     
 }
 
-.address-title {
+#the-cart-details .address-title {
     margin-bottom: 8px;
     margin-top: 16px;
 }
 
-.shipping-address-left {
+#the-cart-details .shipping-address-left {
     width: 46%;
 }
 
-.shipping-address-right {
+#the-cart-details .shipping-address-right {
     width: 46%;
 }
 
-.shipping-address-left input,
-.shipping-address-right input {
+#the-cart-details .shipping-address-left input,
+#the-cart-details .shipping-address-right input {
     width: 100%;
     min-width: 354px;
     padding: 8px 12px;
@@ -90,13 +90,13 @@
     border: 1px solid rgb(218, 225, 231);
 }
 
-.shipping-address-left input:hover,
-.shipping-address-right input:hover {
+#the-cart-details .shipping-address-left input:hover,
+#the-cart-details .shipping-address-right input:hover {
     border-color: rgb(174, 180, 190);
 }
 
-.shipping-address-left input:focus,
-.shipping-address-right input:focus {
+#the-cart-details .shipping-address-left input:focus,
+#the-cart-details .shipping-address-right input:focus {
     border: 1px solid rgb(233, 69, 96);
     outline: none;
     box-shadow: rgba(255, 225, 230, 0.1) 1px 1px 8px 4px;
@@ -106,7 +106,7 @@
 
 
 /* Voucher */
-.apply-voucher {
+#the-cart-details .apply-voucher {
     width: 30%;
     min-width: 384px;
     margin-left: 24px;
@@ -118,21 +118,24 @@
     justify-content: space-around;
 }
 
-.select-voucher {
+#the-cart-details .select-voucher {
     border: 1px solid rgb(218, 225, 231);
     border-radius: 5px;
     padding: 10px 16px;
 }
 
-.btn-apply-voucher {
+#the-cart-details .btn-apply-voucher {
     padding: 10px 16px;
     cursor: pointer;
     border-radius: 5px;
     font-weight: 600;
 }
 
-.btn-apply-voucher:hover {
+#the-cart-details .btn-apply-voucher:hover {
     background-color: rgb(233, 69, 96);
     color: #fff;
 }
 
+#the-cart-details .apply-title {
+    font-weight: 600;
+}

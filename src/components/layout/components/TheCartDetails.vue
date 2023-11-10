@@ -13,7 +13,7 @@
 
                 <div class="step-line step-line-2"></div>
                 
-                <div class="step step-payment">3. Payment</div>
+                <router-link to="/cart-payment" class="step step-payment">3. Payment</router-link>
                 
                 <div class="step-line step-line-3"></div>
                 
@@ -73,27 +73,27 @@
                 <!-- Right -->
                 <div class="apply-voucher">
                     <div class="cart-sub-total t-flex t-between">
-                        <p>SubTotal: </p>
-                        <p>{{ formatPrice(totalPrice) }} VND</p>
+                        <p class="apply-title">SubTotal: </p>
+                        <p class="apply-title">{{ formatPrice(totalPrice) }} VND</p>
                     </div>
 
                     <div class="cart-shipping t-flex t-between">
-                        <p>Shipping: </p>
-                        <p>{{ formatPrice(totalPrice) }} VND</p>
+                        <p class="apply-title">Shipping: </p>
+                        <p class="apply-title">{{ formatPrice(totalPrice) }} VND</p>
                     </div>
 
                     <div class="cart-tax t-flex t-between">
-                        <p>Tax: </p>
-                        <p>{{ formatPrice(totalPrice) }} VND</p>
+                        <p class="apply-title">Tax: </p>
+                        <p class="apply-title">{{ formatPrice(totalPrice) }} VND</p>
                     </div>
 
                     <div class="cart-discount t-flex t-between">
-                        <p>Discount: </p>
-                        <p>{{ formatPrice(totalPrice) }} VND</p>
+                        <p class="apply-title">Discount: </p>
+                        <p class="apply-title">{{ formatPrice(totalPrice) }} VND</p>
                     </div>
 
                     <div class="total-amount t-text-right">
-                        <p>{{ formatPrice(totalPrice) }} VND</p>
+                        <p class="apply-title">{{ formatPrice(totalPrice) }} VND</p>
                     </div>
 
                     <div class="select-voucher">
