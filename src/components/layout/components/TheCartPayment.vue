@@ -11,11 +11,11 @@
 
                 <div class="step-line step-line-2"></div>
                 
-                <router-link to="/cart-payment" class="step step-payment">3. Payment</router-link>
+                <!-- <router-link to="/cart-payment" class="step step-payment">3. Payment</router-link>
                 
-                <div class="step-line step-line-3"></div>
+                <div class="step-line step-line-3"></div> -->
                 
-                <div class="step step-review">4. Review</div>
+                <div class="step step-review">3. Review</div>
             </div>
             <!-- End top -->
 
@@ -44,8 +44,8 @@
                         <div class="back-to-details t-border-red t-w-100 t-color-red t-bold-600 t-flex t-align-center t-justify-center t-pointer">
                             Back to checkout details
                         </div>
-                        <div class="go-to-review t-bold-600 t-color-white t-bg-red t-w-100 t-bold-600 t-flex t-align-center t-justify-center t-pointer">
-                            Review
+                        <div class="btn-payment t-bold-600 t-color-white t-bg-red t-w-100 t-bold-600 t-flex t-align-center t-justify-center t-pointer">
+                            Pay
                         </div>
                     </div>
                     <!-- End button -->

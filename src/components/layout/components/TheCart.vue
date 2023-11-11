@@ -13,11 +13,11 @@
 
                 <div class="step-line step-line-2"></div>
                 
-                <router-link to="/cart-payment" class="step step-payment">3. Payment</router-link>
+                <!-- <router-link to="/cart-payment" class="step step-payment">3. Payment</router-link>
                 
-                <div class="step-line step-line-3"></div>
+                <div class="step-line step-line-3"></div> -->
                 
-                <div class="step step-review">4. Review</div>
+                <router-link to="/orders-review" class="step step-review">3. Review</router-link>
             </div>
 
             <!-- Bottom -->
@@ -98,10 +98,11 @@
                                         <div class="col-lg-5">
                                             <div class="card text-white rounded-3" style="background-color: rgb(233, 69, 96);">
                                                 <div class="card-body">
-                                                    <div class="d-flex justify-content-between align-items-center mb-4">
-                                                    <h5 class="mb-0">Card details</h5>
-                                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                                                        class="img-fluid rounded-3" style="width: 45px;" alt="Avatar">
+                                                    <div for="payment-by-card"  
+                                                        class="pay-card payment-by-card t-flex t-pointer"
+                                                    >
+                                                        <input @change="getPaymentMethod($event)" class="pay-card t-pointer" id="payment-by-card" type="radio" checked name="payment-method" style="width: 20px; height: 24px; margin-right: 16px;">
+                                                        <h5 class="pay-card t-pointer"><label class="pay-card t-pointer" for="payment-by-card">Card details</label></h5>
                                                     </div>
 
                                                     <p class="small mb-2">Card type</p>
@@ -119,35 +120,42 @@
                                                     </a>
 
                                                     <form class="mt-4">
-                                                    <div class="form-outline form-white mb-4">
-                                                        <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
-                                                        placeholder="Cardholder's Name" />
-                                                        <label class="form-label" for="typeName">Cardholder's Name</label>
-                                                    </div>
+                                                        <div class="form-outline form-white mb-4">
+                                                            <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
+                                                            placeholder="Cardholder's Name" />
+                                                            <label class="form-label" for="typeName">Cardholder's Name</label>
+                                                        </div>
 
-                                                    <div class="form-outline form-white mb-4">
-                                                        <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
-                                                        placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
-                                                        <label class="form-label" for="typeText">Card Number</label>
-                                                    </div>
+                                                        <div class="form-outline form-white mb-4">
+                                                            <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
+                                                            placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
+                                                            <label class="form-label" for="typeText">Card Number</label>
+                                                        </div>
 
-                                                    <div class="row mb-4">
-                                                        <div class="col-md-6">
-                                                        <div class="form-outline form-white">
-                                                            <input type="text" id="typeExp" class="form-control form-control-lg" placeholder="MM/YYYY" size="7" minlength="7" maxlength="7" />
-                                                            <label class="form-label" for="typeExp">Expiration</label>
+                                                        <div class="row mb-4">
+                                                            <div class="col-md-6">
+                                                            <div class="form-outline form-white">
+                                                                <input type="text" id="typeExp" class="form-control form-control-lg" placeholder="MM/YYYY" size="7" minlength="7" maxlength="7" />
+                                                                <label class="form-label" for="typeExp">Expiration</label>
+                                                            </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                            <div class="form-outline form-white">
+                                                                <input type="password" id="typeText" class="form-control form-control-lg"
+                                                                placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
+                                                                <label class="form-label" for="typeText">Cvv</label>
+                                                            </div>
+                                                            </div>
                                                         </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                        <div class="form-outline form-white">
-                                                            <input type="password" id="typeText" class="form-control form-control-lg"
-                                                            placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
-                                                            <label class="form-label" for="typeText">Cvv</label>
-                                                        </div>
-                                                        </div>
-                                                    </div>
 
                                                     </form>
+
+                                                    <div
+                                                        class="pay-delivery cash-on-delivery t-flex t-pointer"
+                                                    >
+                                                        <input @change="getPaymentMethod($event)" id="cash-on-delivery" class="pay-delivery t-pointer" type="radio" name="payment-method" style="width: 20px; height: 24px; margin-right: 16px;">
+                                                        <h5 class="pay-delivery t-pointer"><label class="pay-delivery t-pointer" for="cash-on-delivery">Cash On Delivery</label></h5>
+                                                    </div>
 
                                                     <hr class="my-4">
 
@@ -166,12 +174,12 @@
                                                     <p class="mb-2">{{ formatPrice(Number(totalPrice) + 20000) }} VND</p>
                                                     </div>
 
-                                                    <button type="button" class="btn btn-info btn-block btn-lg" style="background-color: rgb(233, 176, 69); border: none;">
-                                                    <div class="d-flex justify-content-between">
-                                                        <span>{{ formatPrice(Number(totalPrice) + 20000) }} VND</span>
-                                                        <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
-                                                    </div>
-                                                    </button>
+                                                    <router-link :to="{ name: 'cartDetails', params: { method: paymentMethod}}" class="btn btn-info btn-block btn-lg" style="background-color: rgb(233, 176, 69); border: none;">
+                                                        <div class="d-flex justify-content-between">
+                                                            <span>{{ formatPrice(Number(totalPrice) + 20000) }} VND</span>
+                                                            <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                                                        </div>
+                                                    </router-link>
 
                                                 </div>
                                             </div>
@@ -228,6 +236,9 @@ export default {
             // Total price:
             totalPrice: 0,
 
+            // Payment method:
+            paymentMethod: 1,
+
         }
     },
     methods: {
@@ -235,6 +246,16 @@ export default {
         formatPrice(value) {
             let val = (value/1).toFixed(0).replace('.', ',')
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+        },
+
+        // Payment method: (online: 1 ; offline: 0)
+        getPaymentMethod(e) {
+            // console.log(e.target.checked);
+            if(e.target.classList.contains("pay-delivery")) {
+                this.paymentMethod = 0;
+            } else {
+                this.paymentMethod = 1;
+            }
         },
 
         // Delete product out to cart:

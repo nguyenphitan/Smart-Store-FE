@@ -124,18 +124,23 @@
     padding: 10px 16px;
 }
 
-#the-cart-details .btn-apply-voucher {
+#the-cart-details .btn-pay {
     padding: 10px 16px;
     cursor: pointer;
     border-radius: 5px;
+    background-color: #fff;
     font-weight: 600;
 }
 
-#the-cart-details .btn-apply-voucher:hover {
+#the-cart-details .btn-pay:hover {
     background-color: rgb(233, 69, 96);
     color: #fff;
 }
 
 #the-cart-details .apply-title {
     font-weight: 600;
+}
+
+.total-amount {
+    font-size: 20px;
 }

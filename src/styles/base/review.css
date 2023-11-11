@@ -1,0 +1,48 @@
+#base-review-container {
+    background-color: #fff;
+    height: 56px;
+    box-shadow: rgba(3, 0, 71, 0.09) 0px 1px 3px;
+    border-radius: 10px;
+    padding: 8px 16px;
+    margin-top: 1rem;
+}
+
+.order-content {
+    flex: 1 1 0px;
+    margin: 6px;
+}
+
+.order-code {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.order-status {
+    display: inline-block;
+    font-size: 12px;
+    padding: 0.25rem 1rem;
+    border-radius: 300px;
+}
+
+.order-icon {
+    text-align: right;
+}
+
+.order-icon i {
+    padding: 10px;
+}
+
+.order-icon i:hover {
+    color: rgb(233, 69, 96);
+}
+
+/* Status color */
+
+.t-color-processing .order-status {
+    background-color: rgba(15, 52, 96, 0.2);
+}   
+
+.t-color-delivered .order-status {
+    background-color: rgba(51, 208, 103, 0.15);
+    color: rgb(51, 208, 103);
+}

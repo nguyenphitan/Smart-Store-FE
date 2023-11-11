@@ -93,6 +93,15 @@
     font-weight: 600;
 }
 
+.cart-discount {
+    border-bottom: 1px solid #e3e3e3;
+    margin-bottom: 12px;
+}
+
+.total-amount {
+    font-size: 20px;
+}
+
 /* Button */
 .back-to-details {
     margin-right: 16px;
@@ -104,8 +113,12 @@
     background-color: rgb(233, 69, 96);
 }
 
-.go-to-review {
+.btn-payment {
     margin-left: 16px;
     height: 40px;
     border-radius: 8px;
+}
+
+.btn-payment:hover {
+    background-color: rgb(247, 96, 121);
 }
