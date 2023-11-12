@@ -12,6 +12,65 @@ a {
     color: unset;
 }
 
+/* Begin define common css */
+.t-flex {
+    display: flex;
+}
+
+.t-between {
+    justify-content: space-between;
+}
+
+.t-justify-center {
+    justify-content: center;
+}
+
+.t-align-center {
+    align-items: center;
+}
+
+.t-text-right {
+    text-align: right;
+}
+
+.t-text-center {
+    text-align: center;
+}
+
+.t-border-red {
+    border: 1px solid rgb(233, 69, 96);
+}
+
+.t-color-red {
+    color: rgb(233, 69, 96);
+}
+
+.t-w-100 {
+    width: 100%;
+}
+
+.t-w-30 {
+    width: 30%;
+}
+
+.t-bg-red {
+    background-color: rgb(233, 69, 96);
+}
+
+.t-color-white {
+    color: #fff;
+}
+
+.t-bold-600 {
+    font-weight: 600;
+}
+
+.t-pointer {
+    cursor: pointer;
+}
+
+/* End define common css */
+
 a:hover {
     text-decoration: none;
     color: unset;

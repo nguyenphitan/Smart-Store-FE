@@ -1,8 +1,9 @@
 #base-card {
     /* cursor: pointer; */
     max-width: 282px !important;
+    min-width: 264px !important;
     border-radius: 8px;
-    box-shadow: rgba(0, 0, 0, 0.06) 0px 3px 5px -1px, rgba(0, 0, 0, 0.043) 0px 5px 8px 0px, rgba(0, 0, 0, 0.035) 0px 1px 14px 0px;
+    box-shadow: rgba(3, 0, 71, 0.09) 0px 1px 3px;
 }
 
 #base-card:hover {

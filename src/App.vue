@@ -4,6 +4,7 @@
     <the-login :shopName="shopName"></the-login>
     <the-register :shopName="shopName"></the-register>
     <router-view></router-view>
+    <the-footer></the-footer>
 
   </div>
 </template>
@@ -12,6 +13,7 @@
 import TheHeader from './components/layout/components/TheHeader.vue'
 import TheLogin from './components/layout/components/TheLogin.vue'
 import TheRegister from './components/layout/components/TheRegister.vue'
+import TheFooter from './components/layout/components/TheFooter.vue'
 
 export default {
   name: 'App',
@@ -19,6 +21,7 @@ export default {
       TheHeader,
       TheLogin,
       TheRegister,
+      TheFooter,
   },
   data() {
     return {

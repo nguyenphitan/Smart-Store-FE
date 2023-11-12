@@ -1,0 +1,9 @@
+#base-products .render-product {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#base-products .render-product #base-card {
+    width: 30%;
+    margin: 1.2%;
+}

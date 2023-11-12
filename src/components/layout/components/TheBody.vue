@@ -6,7 +6,7 @@
             <div id="body-top">
                 <div class="body-top-wrapper t-w-80">
                     <!-- Begin navbar -->
-                    <the-navbar :data="listCategory"></the-navbar>
+                    <!-- <the-navbar :data="listCategory"></the-navbar> -->
                     <!-- End navbar -->
 
                     <!-- Begin carousel -->
@@ -155,10 +155,19 @@
                         <div class="category-container">
                             <div class="col-3 phone-nav">
                                 <base-category-card
-                                    v-for="(item, key) in phoneNavData"
+                                    @filterByCategory="filterByCategory"
+                                    :cardName="'All'"
+                                    :extendIcon="false"
+                                    :categoryId="0"
+                                ></base-category-card>
+                                <base-category-card
+                                    @filterByCategory="filterByCategory"
+                                    v-for="(item, key) in listCategory"
                                     :key="key"
                                     :cardName="item.name"
                                     :iconClassLeft="item.iconClassLeft"
+                                    :extendIcon="false"
+                                    :categoryId="item.id"
                                 ></base-category-card>
                             </div>
 
@@ -169,20 +178,9 @@
                     <div id="list-product">
                         <h3 style="font-weight: bold;">Products</h3>
                         <!-- Begin render list product -->
-                        <div class="render-product">
-                            <base-card
-                                v-for="(data, index) in listProducts" 
-                                :key="index"
-                                :categoryName="data.category.name"
-                                :imgURL="require('@/assets/imgs/' + data.photos)"
-                                :price="data.price"
-                                :inventory="data.quantity"
-                                :productName="data.name"
-                                :productId="data.id"
-                                @addToCart="addToCard"
-                            >
-                            </base-card>
-                        </div>
+                        <base-list-product
+                            :products="listProducts"
+                        ></base-list-product>
                         <!-- End render list product -->
                     </div>
 
@@ -200,44 +198,29 @@
 </template>
 
 <script>
-import TheNavbar from '../../layout/components/TheNavbar.vue'
+// import TheNavbar from '../../layout/components/TheNavbar.vue'
 import BaseCarousel from '../../base/BaseCarousel.vue'
 import BaseCarouselCard from '../../base/BaseCarouselCard.vue'
 import BaseMiniCard from '../../base/BaseMiniCard.vue'
 import BaseCategoryCard from '@/components/base/BaseCategoryCard.vue'
-import BaseCard from '@/components/base/BaseCard.vue'
+import BaseListProduct from '@/components/base/BaseListProduct.vue'
 import axios from 'axios'
 
 export default {
     name: 'the-body',
     components: {
-        TheNavbar,
+        // TheNavbar,
         BaseCarousel,
         BaseCarouselCard,
         BaseMiniCard,
         BaseCategoryCard,
-        BaseCard,
+        BaseListProduct,
     },
 
     data() {
         return {
             // List all product
             listProducts: [],
-
-
-            // List category for navbar
-            listCategory: [
-                {iconClassLeft: 'fa-brands fa-facebook', name: 'Electronics', extendIcon: true},
-                {iconClassLeft: 'fa-brands fa-facebook', name: 'Laptop', extendIcon: true},
-                {iconClassLeft: 'fa-brands fa-facebook', name: 'Desktop', extendIcon: true},
-                {iconClassLeft: 'fa-brands fa-facebook', name: 'Watch', extendIcon: true},
-                {iconClassLeft: 'fa-brands fa-facebook', name: 'Bikes', extendIcon: true},
-                {iconClassLeft: 'fa-brands fa-facebook', name: 'Music', extendIcon: false},
-                {iconClassLeft: 'fa-brands fa-facebook', name: 'Groceries', extendIcon: false},
-                {iconClassLeft: 'fa-brands fa-facebook', name: 'Automotive', extendIcon: false},
-                {iconClassLeft: 'fa-brands fa-facebook', name: 'Home & Garden', extendIcon: false},
-                {iconClassLeft: 'fa-brands fa-facebook', name: 'Health & Beauty', extendIcon: false}
-            ],
 
             // Banner data
             carouselData: [require('@/assets/imgs/carousel.png'), 
@@ -323,62 +306,94 @@ export default {
                 {imgURL: require('@/assets/imgs/arrivals6.webp'), price: 535000, productName: 'Bonsai tree'}
             ],
 
-            // Mobile phone nav data
-            phoneNavData: [
-                {iconClassLeft: 'fa-brands fa-apple', name: 'Apple'},
-                {iconClassLeft: 'fa-solid fa-s', name: 'SamSung'},
-                {iconClassLeft: 'fa-brands fa-apple', name: 'Xiaomi'},
-                {iconClassLeft: 'fa-brands fa-apple', name: 'Nokia'},
-                {iconClassLeft: 'fa-brands fa-apple', name: 'Lenovo'},
-                {iconClassLeft: 'fa-brands fa-apple', name: 'Asus'}
-            ],
+            // List category
+            listCategory: [],
 
         }
     },
 
     beforeCreate() {
+        let me = this;
+
         // Get all product
         axios
             .get("http://localhost:8080/api/v1/products")
             .then((response) => {
                 console.log('Get all product success!');
                 console.log(response.data);
-                this.listProducts = response.data;
+                me.listProducts = response.data;
             })
             .catch((reject) => {
                 console.log(reject);
             });
+        
+        
+        
+        // Get all category
+        axios
+            .get("http://localhost:8080/api/v1/category")
+            .then((response) => {
+                console.log('Get all category success!');
+                console.log(response.data);
+                me.listCategory = response.data;
+            })
+            .catch((reject) => {
+                console.log(reject);
+            });
+
+    },
+
+    watch: {
+        listProducts: {
+            deep: true
+        }
     },
 
     methods: {
-        // Add product to cart:
-        addToCard(e) {
-            let productId = e.target.parentElement.nextSibling.innerText;
-            const token = localStorage.getItem('token');
 
-            // request
-            let productRequest = {
-                idProduct: Number(productId),
-                quantitySelected: 1 // default 1
+        // Filter by category:
+        filterByCategory(e, categoryId) {
+            let me = this;
+
+            // All category:
+            if(categoryId == 0) {
+                // Get all product
+                axios
+                    .get("http://localhost:8080/api/v1/products")
+                    .then((response) => {
+                        console.log('Get all product success!');
+                        console.log(response.data);
+                        me.listProducts = response.data;
+                    })
+                    .catch((reject) => {
+                        console.log(reject);
+                    });
+
+            }
+            else {
+                // token
+                const token = localStorage.getItem('token');
+    
+                // header
+                const headers = {
+                    Authorization: `Bearer ${token}`,
+                };
+    
+                axios
+                    .get(`http://localhost:8080/api/v1/products/category/${categoryId}`, {headers})
+                    .then((response) => {
+                        console.log('Filter by category success!');
+                        console.log(response.data);
+                        me.listProducts = response.data;
+                    })
+                    .catch((reject) => {
+                        console.log(reject);
+                    });
             }
 
-            // header
-            const headers = {
-                Authorization: `Bearer ${token}`,
-            };
+        },
 
-            // Call API
-            axios
-                .post('http://localhost:8080/api/v1/cart', productRequest, { headers })
-                .then((response) => {
-                    console.log("Add product to cart success!");
-                    console.log(response.data);
-                })
-                .catch((reject) => {
-                    console.log(reject);
-                });
 
-        }
     },
 
 }
