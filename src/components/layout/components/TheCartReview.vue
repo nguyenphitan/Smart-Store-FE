@@ -11,17 +11,19 @@
             <div class="review-title t-flex">
                 <div class="title-name">Order #</div>
                 <div class="title-name">Status</div>
-                <div class="title-name purchase-date">Date purchased</div>
+                <div class="title-name purchase-date">Order date</div>
                 <div class="title-name">Total</div>
                 <div class="title-name"></div>
             </div>
-            <base-order-reivew></base-order-reivew>
-            <base-order-reivew></base-order-reivew>
             <base-order-reivew
-                :code="'#1f10985b'"
-                :status="'delivered'"
-                :total="89000"
-                :class="'t-color-delivered'"
+                v-for="(order, index) in listOrders" 
+                :key="index"
+                :id="order.id"
+                :code="order.code"
+                :orderDate="formatDate(order.orderDate)"
+                :status="order.status == 1 ? 'delivered' : 'processing'"
+                :class="order.status == 1 ? 't-color-delivered' : 't-color-processing'"
+                :total="order.total"
             ></base-order-reivew>
         </div>
         <!-- End container -->
@@ -30,10 +32,53 @@
 
 <script>
 import BaseOrderReivew from '@/components/base/BaseOrderReivew.vue'
+import axios from 'axios';
 
 export default {
-  components: { BaseOrderReivew },
     name: 'the-cart-review',
+    components: { 
+        BaseOrderReivew,
+    },
+    created() { // Load all order
+        // Token
+        const token = localStorage.getItem('token');
+
+        // header
+        const headers = {
+            Authorization: `Bearer ${token}`,
+        };
+
+        let me = this;
+
+        // Call API
+        axios
+            .get('http://localhost:8080/api/v1/order', { headers })
+            .then((response) => {
+                console.log(response.data);
+                me.listOrders = response.data;
+            })
+            .catch((reject) => {
+                console.log(reject);
+            });
+    },
+
+    data() {
+        return {
+            // List order of user:
+            listOrders: [],
+
+        }
+    },
+    methods: {
+        formatDate(dateTimeString) {
+            let date = new Date(dateTimeString);
+            let day = date.getDate();
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear();
+            return (day < 10 ? '0' : '') + day + '/' + (month < 10 ? '0' : '') + month + '/' + year;
+        }
+    },
+
 
 }
 </script>

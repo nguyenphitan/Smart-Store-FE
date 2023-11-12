@@ -24,15 +24,15 @@
     border-radius: 300px;
 }
 
-.order-icon {
+.order-icon-delete {
     text-align: right;
 }
 
-.order-icon i {
+.order-icon-delete i {
     padding: 10px;
 }
 
-.order-icon i:hover {
+.order-icon-delete i:hover {
     color: rgb(233, 69, 96);
 }
 

@@ -190,9 +190,6 @@ export default {
                 let city = document.querySelector('input[name="city"]').value;
                 let detailAddress = document.querySelector('input[name="detailAddress"]').value;
     
-                // Total price:
-                // let total = document.getElementById('total-price').innerText;
-    
                 // Request:
                 let paymentRequest = {
                     productInfo: this.productPaymentDTOs,
@@ -204,7 +201,7 @@ export default {
                     company: company,
                     city: city,
                     detailAddress: detailAddress,
-                    total: 199000
+                    total: this.totalPrice
                 };
     
                 // Call api:
