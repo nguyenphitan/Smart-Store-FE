@@ -1,0 +1,20 @@
+#the-footer {
+    background-color: rgb(15, 52, 96);
+    color: #fff;
+}
+
+#the-footer-container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 60px auto 0;
+    padding: 80px 0;
+}
+
+#the-footer .t-color-gray {
+    color: rgb(174, 180, 190);
+}
+
+#the-footer .t-color-gray:hover {
+    color: #fff;
+    cursor: pointer;
+}
