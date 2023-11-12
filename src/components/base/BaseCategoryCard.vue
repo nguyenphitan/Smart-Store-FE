@@ -1,5 +1,5 @@
 <template>
-    <div id="base-category-card">
+    <div @click="filterByCategory($event, categoryId)" id="base-category-card">
         <!-- Base category card -->
         <div id="category-card-container">
             <div class="category-summary">
@@ -30,8 +30,19 @@ export default {
         iconClassRight: {
             type: String,
             default: 'fa-solid fa-chevron-right'
+        },
+        categoryId: {
+            type: Number,
+            default: 1
+        },
+    },
+
+    methods: {
+        // Filter product by category:
+        filterByCategory(e, categoryId) {
+            this.$emit("filterByCategory", e, categoryId);
         }
-    }
+    },
 
 }
 </script>

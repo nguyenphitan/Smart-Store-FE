@@ -138,7 +138,6 @@
 #the-body #show-products {
     width: 80%;
     margin: 80px auto 0;
-    justify-content: space-between;
     display: flex;
 }
 
@@ -173,15 +172,3 @@
 #the-body #list-product {
     margin-left: 2%;
 }
-
-#the-body .render-product {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-#the-body .render-product #base-card {
-    width: 30%;
-    margin: 1.2%;
-}
-
-

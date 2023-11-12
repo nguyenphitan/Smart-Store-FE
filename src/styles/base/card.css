@@ -1,6 +1,7 @@
 #base-card {
     /* cursor: pointer; */
     max-width: 282px !important;
+    min-width: 264px !important;
     border-radius: 8px;
     box-shadow: rgba(3, 0, 71, 0.09) 0px 1px 3px;
 }
