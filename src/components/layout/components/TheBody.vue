@@ -6,7 +6,7 @@
             <div id="body-top">
                 <div class="body-top-wrapper t-w-80">
                     <!-- Begin navbar -->
-                    <the-navbar :data="listCategory"></the-navbar>
+                    <!-- <the-navbar :data="listCategory"></the-navbar> -->
                     <!-- End navbar -->
 
                     <!-- Begin carousel -->
@@ -200,7 +200,7 @@
 </template>
 
 <script>
-import TheNavbar from '../../layout/components/TheNavbar.vue'
+// import TheNavbar from '../../layout/components/TheNavbar.vue'
 import BaseCarousel from '../../base/BaseCarousel.vue'
 import BaseCarouselCard from '../../base/BaseCarouselCard.vue'
 import BaseMiniCard from '../../base/BaseMiniCard.vue'
@@ -211,7 +211,7 @@ import axios from 'axios'
 export default {
     name: 'the-body',
     components: {
-        TheNavbar,
+        // TheNavbar,
         BaseCarousel,
         BaseCarouselCard,
         BaseMiniCard,

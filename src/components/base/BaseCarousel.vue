@@ -13,7 +13,7 @@
                 </ol>
                 <div :class="key == 0 ? 'carousel-item active' : 'carousel-item'" 
                     v-for="(item, key) in data" :key="key">
-                    <div class="row align-items-center">
+                    <div class="row align-items-center t-between">
                         <div class="col-md-8 py-2 sale-info">
                             <h1 class="carousel-title">50% Off For Your First Shopping</h1>
                             <p class="carousel-description"> {{carouselDescription}} </p>
