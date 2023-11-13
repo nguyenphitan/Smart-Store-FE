@@ -143,6 +143,7 @@
 
 /* product-category */
 #the-body #product-category {
+    width: 25%;
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.06) 0px 3px 5px -1px, rgba(0, 0, 0, 0.043) 0px 5px 8px 0px, rgba(0, 0, 0, 0.035) 0px 1px 14px 0px;
     border-radius: 8px;
@@ -171,4 +172,23 @@
 
 #the-body #list-product {
     margin-left: 2%;
+    width: 100%;
 }
+
+/* Search product */
+#the-body #search-product {
+    width: 266px;
+    height: 40px;
+    padding: 0.35rem 8px;
+    margin: 1rem 0.1rem;
+    border-radius: 8px;
+    border: 1px solid #dfdede;
+    background-color: rgb(246, 249, 252);
+}
+
+#the-body #search-product:focus {
+    border: 1px solid rgb(233, 69, 96);
+    background-color: #fff;
+    outline: none;
+}
+
