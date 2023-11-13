@@ -1,0 +1,16 @@
+#base-list-category {
+    width: 100%;
+}
+
+#base-list-category-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+/* Item */
+#base-category-item {
+    flex: 25%;
+}
+

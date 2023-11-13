@@ -6,6 +6,11 @@ import TheCartDetails from '../components/layout/components/TheCartDetails.vue'
 // import TheCartPayment from '../components/layout/components/TheCartPayment.vue'
 import TheCartReview from '../components/layout/components/TheCartReview.vue'
 
+
+// Admin:
+import TheAdminHome from '../components/layout/admin/TheAdminHome.vue'
+
+
 export default [
     {path: "/", component: TheBody},
     {path: "/add-new-product", component: TheAddNewProduct},
@@ -14,4 +19,8 @@ export default [
     {path: "/cart-details", name: "cartDetails", component: TheCartDetails},
     // {path: "/cart-payment", name: "cartPayment", component: TheCartPayment},
     {path: "/orders-review", name: "orderReview", component: TheCartReview},
+
+    // Amdin:
+    {path: "/admin", name: "adminHone", component: TheAdminHome},
+
 ]

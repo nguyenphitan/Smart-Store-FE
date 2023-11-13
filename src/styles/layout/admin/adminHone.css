@@ -1,0 +1,62 @@
+#admin-container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Navbar */
+.admin-nav {
+    background-color: #fff;
+    width: 25%;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 26px;
+}
+
+.manager-category {
+    color: rgb(125, 135, 156);
+    cursor: pointer;
+    padding: 8px 16px;
+    margin: 16px 8px;
+    border-radius: 8px;
+    border: 1px solid #dfdfdf;
+    display: flex;
+    align-items: center;
+}
+
+.manager-product {
+    color: rgb(125, 135, 156);
+    cursor: pointer;
+    padding: 8px 16px;
+    margin: 16px 8px;
+    border-radius: 8px;
+    border: 1px solid #dfdfdf;
+    display: flex;
+    align-items: center;
+}
+
+.manager-order {
+    color: rgb(125, 135, 156);
+    cursor: pointer;
+    padding: 8px 16px;
+    margin: 16px 8px;
+    border-radius: 8px;
+    border: 1px solid #dfdfdf;
+    display: flex;
+    align-items: center;
+}
+
+.manager-category:hover,
+.manager-product:hover,
+.manager-order:hover {
+    background-color: rgb(233, 69, 96);
+    color: #fff;
+}
+
+
+
+/* Context view */
+.admin-context-view {
+    width: 75%;
+    margin-left: 24px;
+}
