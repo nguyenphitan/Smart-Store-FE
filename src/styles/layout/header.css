@@ -3,6 +3,11 @@
     padding-bottom: 4px;
     z-index: 2;
     background-color: #fff;
+    /* position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 30; */
 }
 
 #the-header .t-hover-red:hover {
