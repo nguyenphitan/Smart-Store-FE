@@ -153,7 +153,7 @@
                     <!-- Left -->
                     <div id="product-category">
                         <div class="category-container">
-                            <div class="col-3 phone-nav">
+                            <div class="phone-nav" style="padding: 0 8px;">
                                 <base-category-card
                                     @filterByCategory="filterByCategory"
                                     :cardName="'All'"
@@ -169,6 +169,9 @@
                                     :extendIcon="false"
                                     :categoryId="item.id"
                                 ></base-category-card>
+                                <div>
+                                    <input @change="searchProductByName" id="search-product" type="text" name="search-product" placeholder="Enter name..."/>
+                                </div>
                             </div>
 
                         </div>
@@ -353,6 +356,7 @@ export default {
 
         // Filter by category:
         filterByCategory(e, categoryId) {
+            console.log(e.target);
             let me = this;
 
             // All category:
@@ -392,6 +396,42 @@ export default {
             }
 
         },
+
+        // Search product:
+        searchProductByName(e) {
+            let me = this;
+            console.log(e.target);
+
+            let searchText = e.target.value;
+            console.log(searchText);
+            if(searchText == '') {
+                // Get all product
+                axios
+                    .get("http://localhost:8080/api/v1/products")
+                    .then((response) => {
+                        console.log('Get all product success!');
+                        console.log(response.data);
+                        me.listProducts = response.data;
+                    })
+                    .catch((reject) => {
+                        console.log(reject);
+                    });
+            }
+            else {
+                // Search product (like)
+                axios
+                    .get(`http://localhost:8080/api/v1/products/search?name=${searchText}`)
+                    .then((response) => {
+                        console.log('Search product success!');
+                        console.log(response.data);
+                        me.listProducts = response.data;
+                    })
+                    .catch((reject) => {
+                        console.log(reject);
+                    });
+            }
+
+        }
 
 
     },
