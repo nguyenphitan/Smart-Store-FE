@@ -37,19 +37,19 @@
                     <!-- Right -->
                     <div class="bot-right">
                         <div class="home t-title" @mouseleave="hideSubItem">
-                            <div class="t-hover-red" @mouseenter="showSubItem">Home</div>
+                            <a href="#the-body" class="t-hover-red" @mouseenter="showSubItem">Home</a>
                             <base-list-overlay @hideThis="hideThis" :data="homeList" class="sub-item sub-home"></base-list-overlay>
                         </div>
                         <div class="pages" @mouseleave="hideSubItem">
-                            <div class="t-title t-hover-red" @mouseenter="showSubItem">Pages</div>
+                            <a href="#flash-deal" class="t-title t-hover-red" @mouseenter="showSubItem">Flash Deals</a>
                             <base-list-overlay @hideThis="hideThis" :data="pageList" class="sub-item sub-pages"></base-list-overlay>
+                        </div>
+                        <div class="track-order">
+                            <a href="#show-products" class="t-title t-hover-red">Products</a>
                         </div>
                         <div class="pages" @mouseleave="hideSubItem">
                             <div class="t-title t-hover-red" @mouseenter="showSubItem">My Profile</div>
                             <base-list-overlay @hideThis="hideThis" :data="pageList" class="sub-item sub-pages"></base-list-overlay>
-                        </div>
-                        <div class="track-order">
-                            <div class="t-title t-hover-red">Track My Orders</div>
                         </div>
                         <div class="add-new-product">
                             <router-link to="/add-new-product" >Add New Product</router-link>
