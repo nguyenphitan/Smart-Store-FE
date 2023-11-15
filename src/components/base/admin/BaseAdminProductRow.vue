@@ -1,0 +1,227 @@
+<template>
+    <div id="base-product-row">
+        <!-- Container -->
+        <div id="product-row-container" class="t-flex t-align-center">
+            <div style="margin-right: 24px;">
+                <img :src="require('@/assets/imgs/' + imgSrc)" alt="product image" width="80px">
+            </div>
+            <div class="t-flex t-between" style="width: 100%; flex-wrap: wrap;">
+                <div style="flex: 30%; line-height: 12px;">
+                    <span style="font-weight: 600;">Name:</span>
+                    <input :class="'edit-product-' + id" class="input-field input-name" readonly type="text" :value="name">
+                </div>
+
+                <div style="flex: 30%; line-height: 12px;">
+                    <span style="font-weight: 600;">Price:</span>
+                    <input :class="'edit-product-' + id" class="input-field input-price" readonly type="text" :value="price">
+                </div>
+
+                <div style="flex: 30%; line-height: 12px;">
+                    <span style="font-weight: 600;">Inventory:</span>
+                    <input :class="'edit-product-' + id" class="input-field input-inventory" readonly type="text" :value="quantity">
+                </div>
+
+                <div style="flex: 30%; line-height: 12px;">
+                    <span style="font-weight: 600;">Category:</span>
+                    <input :class="'edit-product-' + id" class="input-field input-category" readonly type="text" :value="category">
+                </div>
+
+            </div>
+            <div style="width: 100px; display: flex;">
+                <i @click="saveUpdate($event, id, categoryId)" :class="'icon-save-' + id" style="display: none; padding: 8px; margin-right: 8px;" class="t-save-cancel t-pointer fa-regular fa-floppy-disk"></i>
+                <i @click="hideSaveAndCancel(id)" :class="'icon-cancel-' + id" style="display: none; padding: 8px;" class="t-save-cancel t-pointer fa-solid fa-ban"></i>
+
+                <i @click="enableInput(id)" :class="'icon-edit-' + id" style="padding: 8px; margin-right: 8px;" class="t-edit-delete t-pointer fa-regular fa-pen-to-square"></i>
+                <i @click="deleteEvent($event, id)" :class="'icon-delete-' + id" style="padding: 8px;" class="t-edit-delete t-pointer fa-regular fa-trash-can"></i>
+            </div>
+        </div>
+        <!-- End Container -->
+    </div>
+</template>
+
+<script>
+import axios from 'axios'
+
+export default {
+    name: 'base-product-row',
+    props: {
+        id: {
+            type: Number,
+            default: 1
+        },
+        imgSrc: {
+            type: String,
+            default: 'urus.webp'
+        },
+        name: {
+            type: String,
+            default: 'IPhone 15 Promax'
+        },
+        price: {
+            type: Number,
+            default: 199000
+        },
+        quantity: {
+            type: Number,
+            default: 100
+        },
+        category: {
+            type: String,
+            default: 'Mobile Phone'
+        },
+        categoryId: {
+            type: Number,
+            default: 1
+        }
+    },
+    methods: {
+        // Format price:
+        formatPrice(value) {
+            let val = (value/1).toFixed(0).replace('.', ',')
+            return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+        },
+
+        // Show icon: Save & Cancel
+        showSaveAndCancel(id) {
+            // Hide save and cancel of another
+            let saveAndCancels = document.querySelectorAll('.t-save-cancel');
+            for(let icon of saveAndCancels) {
+                icon.style.display = 'none';
+            }
+
+            // Show edit and delete of another
+            let editAndDeletes = document.querySelectorAll('.t-edit-delete');
+            for(let icon of editAndDeletes) {
+                icon.style.display = 'block';
+            }
+
+            // Show in target row
+            let saveIconQuery = '.icon-save-' + id;
+            let cancelIconQuery = '.icon-cancel-' + id;
+            document.querySelector(saveIconQuery).style.display = 'block';
+            document.querySelector(cancelIconQuery).style.display = 'block';
+
+            let editIconQuery = '.icon-edit-' + id;
+            let deleteIconQuery = '.icon-delete-' + id;
+            document.querySelector(editIconQuery).style.display = 'none';
+            document.querySelector(deleteIconQuery).style.display = 'none';
+        },
+
+        // Hide icon: Save & Cancel
+        hideSaveAndCancel(id) {
+            let saveAndCancels = document.querySelectorAll('.t-save-cancel');
+            for(let icon of saveAndCancels) {
+                icon.style.display = 'none';
+            }
+
+            let editIconQuery = '.icon-edit-' + id;
+            let deleteIconQuery = '.icon-delete-' + id;
+            document.querySelector(editIconQuery).style.display = 'block';
+            document.querySelector(deleteIconQuery).style.display = 'block';
+
+            this.disAbleAllInput();
+        },
+
+        // Disable all input:
+        disAbleAllInput() {
+            let inputs = document.querySelectorAll('.input-field');
+            
+            for(let input of inputs) {
+                input.setAttribute("readonly", "true");
+                input.style.border = 'none';
+            }
+        },
+
+        // Enable input:
+        enableInput(id) {
+            this.disAbleAllInput(id);
+            let classNameQuery = '.edit-product-' + id;
+            let inputs = document.querySelectorAll(classNameQuery);
+            
+            for(let input of inputs) {
+                input.attributes.removeNamedItem("readonly");
+                input.style.border = '1px solid #ccc';
+                input.style.borderRadius = '8px';
+            }
+
+            // show icon save & cancel
+            this.showSaveAndCancel(id);
+        },
+
+        // Save update product:
+        saveUpdate(e, id, categoryId) {
+            console.log(e.target);
+            let classNameQuery = '.edit-product-' + id;
+            let inputs = document.querySelectorAll(classNameQuery);
+
+            // request
+            let productDTO = {
+                name: inputs[0].value,
+                price: Number(inputs[1].value),
+                quantity: Number(inputs[2].value),
+                category: {
+                    id: categoryId
+                }
+            }
+
+            // call api
+            axios
+                .put(`http://localhost:8080/api/v1/products/${id}`, productDTO)
+                .then((response) => {
+                    console.log(response);
+                    alert("Update success!");
+                    window.location.reload();
+                })
+                .catch((reject) => {
+                    console.log(reject);
+                });
+        },
+
+        // Delete product:
+        deleteEvent(e, id) {
+            console.log(e);
+            axios
+                .delete(`http://localhost:8080/api/v1/products/${id}`)
+                .then((response) => {
+                    console.log(response);
+                    alert("Delete success!")
+                    window.location.reload();
+                })
+                .catch((reject) => {
+                    console.log(reject);
+                });
+        }
+    },
+}
+</script>
+
+<style scoped>
+#base-product-row #product-row-container {
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 26px;
+    margin: 12px;
+    padding: 4px;
+}
+
+#base-product-row i.t-pointer:hover {
+    color: rgb(233, 69, 96);
+}
+
+#base-product-row input, .t-readOnly {
+    border: none;
+    outline: none;
+    font-style: italic;
+    font-size: 14px;
+    margin-left: 2px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 4px 8px;
+}
+
+#base-product-row .input-inventory {
+    width: 100px;
+}
+
+
+</style>

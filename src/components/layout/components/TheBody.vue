@@ -20,7 +20,7 @@
             <div id="body-center">
                 <!-- Begin Flash Deal -->
                 <div class="t-w-80 flash-deal">
-                    <h2 class="center-title flash-deal-title"> 
+                    <h2 id="flash-deal" class="center-title flash-deal-title"> 
                         <!-- <i class="fa-solid fa-bolt"></i> -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="injected-svg" data-src="/assets/images/icons/light.svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <path d="M19.0765 9.48063H12.1242L15.5905 0L5 14.5194H11.9522L8.48592 24L19.0765 9.48063Z" fill="#D23F57"></path>
