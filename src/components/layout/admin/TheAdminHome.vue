@@ -32,6 +32,7 @@
 
             <!-- Begin view right -->
             <div class="admin-context-view">
+                <the-add-category></the-add-category>
                 <base-list-category :listCategory="listCategory"></base-list-category>
                 <base-list-product-admin :listProduct="listProduct"></base-list-product-admin>
             </div>
@@ -44,6 +45,7 @@
 <script>
 import BaseListCategory from '@/components/base/admin/BaseListCategory.vue'
 import BaseListProductAdmin from '@/components/base/admin/BaseListProductAdmin.vue';
+import TheAddCategory from './TheAddCategory.vue';
 import axios from 'axios';
 
 export default {
@@ -51,6 +53,7 @@ export default {
     components: {
         BaseListCategory,
         BaseListProductAdmin,
+        TheAddCategory
     },
 
     beforeCreate() {
@@ -139,5 +142,5 @@ export default {
 </script>
 
 <style>
-@import url('../../../styles/layout/admin/adminHone.css');
+@import url('../../../styles/layout/admin/adminHome.css');
 </style>
