@@ -61,3 +61,54 @@
     width: 75%;
     margin-left: 24px;
 }
+
+/* Popup add new category */
+#the-add-category {
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(48, 45, 45, 0.3);
+}
+
+#add-category-container {
+    position: relative;
+    padding: 12px;
+}
+
+.btn-add-category {
+    color: #fff;
+    background-color: rgb(233, 69, 96);
+}
+
+.btn-add-category:hover {
+    background-color: rgb(230, 95, 118);
+}
+
+.add-category-title {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #3e3d3d;
+}
+
+.exit-add-category {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    font-size: 18px;
+    padding: 8px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.exit-add-category:hover {
+    color: #9a9999;
+}
+
+
