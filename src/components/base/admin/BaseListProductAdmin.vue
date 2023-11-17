@@ -9,6 +9,7 @@
                 :name="product.name"
                 :imgSrc="product.photos"
                 :category="product.category.name"
+                :categoryId="product.category.id"
                 :quantity="product.quantity"
                 :price="product.price"
                 :editEvent="editEvent"

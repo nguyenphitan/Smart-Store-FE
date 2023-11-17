@@ -23,8 +23,11 @@
                 <p>Category:</p>
                 <div class="div-category-save">
                     <select class="product-category" name="product-category">
-                        <option value="1">Air Pods</option>
-                        <option value="2">Smart Watch</option>
+                        <option
+                            v-for="(item, key) in listCategory" 
+                            :key="key" 
+                            :value="item.id"
+                        > {{ item.name }} </option>
                     </select>
                     <button class="save-new-product" type="submit">Save</button>
                 </div>
@@ -40,6 +43,26 @@ import axios from 'axios';
 
 export default {
     name: 'add-new-product',
+    beforeCreate() {
+        let me = this;
+        // Get all category
+        axios
+            .get("http://localhost:8080/api/v1/category")
+            .then((response) => {
+                console.log('Get all category success!');
+                me.listCategory = response.data;
+            })
+            .catch((reject) => {
+                console.log(reject);
+            });
+        // End get all category
+    },
+    data() {
+        return {
+            // List of category
+            listCategory: [],
+        }
+    },
     methods: {
         
         // Upload img
@@ -60,12 +83,6 @@ export default {
             let imgFile = document.querySelector("#the-add-new-product input[name='product-img']").files[0];
             // let formData = new FormData();
             // formData.append("file", imgFile);
-            
-            // console.log(productName);
-            // console.log(productPrice);
-            // console.log(productQuantity);
-            // console.log(categoryId);
-            // console.log(imgFile);
 
             const formData = new FormData();
             formData.append('name', productName);
@@ -83,7 +100,7 @@ export default {
                 })
                 .then((response) => {
                     console.log(response);
-                    window.location.href = "/";
+                    window.location.reload();
                 })
                 .catch((reject) => {
                     console.log(reject);
