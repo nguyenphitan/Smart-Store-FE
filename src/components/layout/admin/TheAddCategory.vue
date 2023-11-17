@@ -1,5 +1,5 @@
 <template>
-    <div id="the-add-category" class="t-flex t-align-center t-justify-center">
+    <div id="the-add-category" class="t-flex t-align-center t-justify-center" style="z-index: 2;">
         <!-- Begin container -->
         <div id="add-category-container" class="t-flex t-align-center t-justify-center"
             style="flex-direction: column; height: 250px; width: 42%; max-width: 500px; background-color: #fff;

@@ -23,12 +23,24 @@
 
                 <div style="flex: 30%; line-height: 12px;">
                     <span style="font-weight: 600;">Category:</span>
+                    <select 
+                        :class="'product-category-' + id"
+                        class="product-category" 
+                        name="product-category" 
+                        style="border: 1px solid #ccc; outline: none; border-radius: 8px; margin-left: 12px; padding: 4px 8px; display: none;">
+                        <option
+                            v-for="(item, key) in listCategory" 
+                            :key="key" 
+                            :value="item.id"
+                            :selected="item.id == categoryId"
+                        > {{ item.name }} </option>
+                    </select>
                     <input :class="'edit-product-' + id" class="input-field input-category" readonly type="text" :value="category">
                 </div>
 
             </div>
             <div style="width: 100px; display: flex;">
-                <i @click="saveUpdate($event, id, categoryId)" :class="'icon-save-' + id" style="display: none; padding: 8px; margin-right: 8px;" class="t-save-cancel t-pointer fa-regular fa-floppy-disk"></i>
+                <i @click="saveUpdate($event, id)" :class="'icon-save-' + id" style="display: none; padding: 8px; margin-right: 8px;" class="t-save-cancel t-pointer fa-regular fa-floppy-disk"></i>
                 <i @click="hideSaveAndCancel(id)" :class="'icon-cancel-' + id" style="display: none; padding: 8px;" class="t-save-cancel t-pointer fa-solid fa-ban"></i>
 
                 <i @click="enableInput(id)" :class="'icon-edit-' + id" style="padding: 8px; margin-right: 8px;" class="t-edit-delete t-pointer fa-regular fa-pen-to-square"></i>
@@ -74,11 +86,67 @@ export default {
             default: 1
         }
     },
+    beforeCreate() {
+        let me = this;
+        // Get all category
+        axios
+            .get("http://localhost:8080/api/v1/category")
+            .then((response) => {
+                console.log('Get all category success!');
+                me.listCategory = response.data;
+            })
+            .catch((reject) => {
+                console.log(reject);
+            });
+        // End get all category
+    },
+    data() {
+        return {
+            // List of category:
+            listCategory: [],
+        }
+    },
     methods: {
         // Format price:
         formatPrice(value) {
             let val = (value/1).toFixed(0).replace('.', ',')
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+        },
+
+        // Hide select category
+        hideCategory(id) {
+            // hide select category
+            let selectCategory = '.product-category-' + id;
+            let inputCategory = '.edit-product-' + id + '.input-category';
+            document.querySelector(selectCategory).style.display = 'none';
+            document.querySelector(inputCategory).style.display = 'inline-block';
+        },
+
+        // Hide select category
+        hideAllCategory() {
+            // hide select category
+            let selectCategory = '#base-product-row .product-category';
+            let selects = document.querySelectorAll(selectCategory);
+            for(let select of selects) {
+                select.style.display = 'none';
+            }
+
+            // Show input
+            let inputCategoryQuery = '.input-category';
+            let inputCategorys = document.querySelectorAll(inputCategoryQuery);
+            for(let input of inputCategorys) {
+                input.style.display = 'inline-block';
+            }
+            // console.log(document.querySelector(inputCategory));
+        },
+
+        // Show select category
+        showCategory(id) {
+            // show select category
+            let selectCategory = '.product-category-' + id;
+            let inputCategory = '.edit-product-' + id + '.input-category';
+            document.querySelector(selectCategory).style.display = 'inline-block';
+            document.querySelector(inputCategory).style.display = 'none';
         },
 
         // Show icon: Save & Cancel
@@ -120,6 +188,9 @@ export default {
             document.querySelector(deleteIconQuery).style.display = 'block';
 
             this.disAbleAllInput();
+
+            // Hide select category:
+            this.hideCategory(id);
         },
 
         // Disable all input:
@@ -146,13 +217,23 @@ export default {
 
             // show icon save & cancel
             this.showSaveAndCancel(id);
+
+            // Hide all category select
+            this.hideAllCategory();
+
+            // show category select
+            this.showCategory(id);
         },
 
         // Save update product:
-        saveUpdate(e, id, categoryId) {
+        saveUpdate(e, id) {
             console.log(e.target);
             let classNameQuery = '.edit-product-' + id;
+            let selectcategoryQuery = '.product-category-' + id;
+
             let inputs = document.querySelectorAll(classNameQuery);
+            let categoryIdUpdate = document.querySelector(selectcategoryQuery).value;
+            console.log("category id: " + categoryIdUpdate);
 
             // request
             let productDTO = {
@@ -160,7 +241,7 @@ export default {
                 price: Number(inputs[1].value),
                 quantity: Number(inputs[2].value),
                 category: {
-                    id: categoryId
+                    id: Number(categoryIdUpdate)
                 }
             }
 
@@ -180,16 +261,18 @@ export default {
         // Delete product:
         deleteEvent(e, id) {
             console.log(e);
-            axios
-                .delete(`http://localhost:8080/api/v1/products/${id}`)
-                .then((response) => {
-                    console.log(response);
-                    alert("Delete success!")
-                    window.location.reload();
-                })
-                .catch((reject) => {
-                    console.log(reject);
-                });
+            if(confirm("Are you sure?")) {
+                axios
+                    .delete(`http://localhost:8080/api/v1/products/${id}`)
+                    .then((response) => {
+                        console.log(response);
+                        alert("Delete success!")
+                        window.location.reload();
+                    })
+                    .catch((reject) => {
+                        console.log(reject);
+                    });
+            }
         }
     },
 }
