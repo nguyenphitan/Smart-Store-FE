@@ -7,8 +7,11 @@
                 <span id="order-status" class="order-status">{{ status }}</span>
             </div>
             <div class="order-content order-date">{{ orderDate }}</div>
-            <div class="order-content order-total">{{ formatPrice(total) }} VND</div>
-            <div class="order-content order-icon-delete t-pointer"><i @click="deleteOrder(id)" class="fa-regular fa-trash-can"></i></div>
+            <div style="text-align: right;" class="order-content order-total">{{ formatPrice(total) }} VND</div>
+            <div class="order-content order-icon-delete">
+                <i @click="deliveredOrder(id)" style="margin-right: 8px; cursor: pointer;" class="fa-regular fa-square-check"></i>
+                <i @click="deleteOrder(id)" class="t-pointer fa-regular fa-trash-can"></i>
+            </div>
         </div>
         <!-- End container -->
     </div>
@@ -50,6 +53,31 @@ export default {
 
         // Delete order:
         deleteOrder(orderId) {
+            if(confirm("Are you sure?")) {
+                // token
+                const token = localStorage.getItem('token');
+
+                // header
+                const headers = {
+                    Authorization: `Bearer ${token}`,
+                };
+
+                axios
+                    .delete(`http://localhost:8080/api/v1/order/${orderId}`, {headers})
+                    .then((response) => {
+                        console.log(response);
+                        console.log('Delete order success!');
+                        window.location.reload();
+                    })
+                    .catch((reject) => {
+                        console.log(reject);
+                    });
+            }
+        },
+        // End delete order
+
+        // Delivered order
+        deliveredOrder(orderId) {
             // token
             const token = localStorage.getItem('token');
 
@@ -59,16 +87,17 @@ export default {
             };
 
             axios
-                .delete(`http://localhost:8080/api/v1/order/${orderId}`, {headers})
+                .put(`http://localhost:8080/api/v1/order/${orderId}`, {headers})
                 .then((response) => {
                     console.log(response);
-                    console.log('Delete order success!');
+                    console.log('Update order status success!');
                     window.location.reload();
                 })
                 .catch((reject) => {
                     console.log(reject);
                 });
-        }
+        },
+        // End delivered order
 
     },
 

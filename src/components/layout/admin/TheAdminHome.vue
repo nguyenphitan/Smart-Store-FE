@@ -17,7 +17,7 @@
                 <!-- End product -->
 
                 <!-- Product -->
-                <div class="manager-order">
+                <div @click="getAllOrder" class="manager-order">
                     <h5>Orders</h5>
                 </div>
                 <!-- End product -->
@@ -35,6 +35,7 @@
                 <the-add-category></the-add-category>
                 <base-list-category :listCategory="listCategory"></base-list-category>
                 <base-list-product-admin :listProduct="listProduct"></base-list-product-admin>
+                <base-list-order-manager :listOrders="listOrders"></base-list-order-manager>
             </div>
             <!-- End view right -->
         </div>
@@ -46,6 +47,7 @@
 import BaseListCategory from '@/components/base/admin/BaseListCategory.vue'
 import BaseListProductAdmin from '@/components/base/admin/BaseListProductAdmin.vue';
 import TheAddCategory from './TheAddCategory.vue';
+import BaseListOrderManager from '@/components/base/admin/BaseListOrderManager.vue';
 import axios from 'axios';
 
 export default {
@@ -53,7 +55,8 @@ export default {
     components: {
         BaseListCategory,
         BaseListProductAdmin,
-        TheAddCategory
+        TheAddCategory,
+        BaseListOrderManager,
     },
 
     beforeCreate() {
@@ -84,18 +87,33 @@ export default {
 
             // List of product
             listProduct: [],
+
+            // List of order
+            listOrders: [],
+            
         }
     },
 
     methods: {
+        // Open category manager
         openCategoryManager() {
             document.getElementById("base-list-category").style.display = 'block';
             document.getElementById("base-list-product-admin").style.display = 'none';
+            document.getElementById("base-list-order-manager").style.display = 'none';
         },
 
+        // Open product manager
         openProductManager() {
             document.getElementById("base-list-product-admin").style.display = 'block';
             document.getElementById("base-list-category").style.display = 'none';
+            document.getElementById("base-list-order-manager").style.display = 'none';
+        },
+
+        // Open order manager
+        openOrderManager() {
+            document.getElementById("base-list-order-manager").style.display = 'block';
+            document.getElementById("base-list-category").style.display = 'none';
+            document.getElementById("base-list-product-admin").style.display = 'none';
         },
 
         // Begin load List product
@@ -133,6 +151,31 @@ export default {
                 });
         },
         // End load List product
+
+        // Begin load List order
+        getAllOrder() {
+            let me = this;
+            // Token
+            const token = localStorage.getItem('token');
+            // header
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+            // Call API
+            axios
+                .get('http://localhost:8080/api/v1/order', { headers })
+                .then((response) => {
+                    console.log(response.data);
+                    me.listOrders = response.data;
+
+                    // open order manager
+                    me.openOrderManager();
+                })
+                .catch((reject) => {
+                    console.log(reject);
+                });
+        },
+        // End load List order
 
     },
     

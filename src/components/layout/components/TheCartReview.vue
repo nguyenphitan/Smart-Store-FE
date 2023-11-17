@@ -12,7 +12,7 @@
                 <div class="title-name">Order #</div>
                 <div class="title-name">Status</div>
                 <div class="title-name purchase-date">Order date</div>
-                <div class="title-name">Total</div>
+                <div class="title-name" style="text-align: right;">Total</div>
                 <div class="title-name"></div>
             </div>
             <base-order-reivew
@@ -39,7 +39,7 @@ export default {
     components: { 
         BaseOrderReivew,
     },
-    created() { // Load all order
+    beforeCreate() { // Load all order
         // Token
         const token = localStorage.getItem('token');
 

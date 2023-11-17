@@ -36,6 +36,14 @@
     color: rgb(233, 69, 96);
 }
 
+.fa-square-check {
+    font-size: 15px;
+}
+
+.fa-square-check:hover {
+    color: rgb(9, 237, 9) !important;
+}
+
 /* Status color */
 
 .t-color-processing .order-status {
