@@ -27,11 +27,10 @@
                         </svg>
                         Flash Deals
                     </h2>
-                    <base-carousel-card 
-                        :datas="flashDealData" 
-                        :status="productCard"
+                    <base-carousel-discount 
+                        :productDiscounts="productDiscounts"
                         :settings="productSetting"
-                    ></base-carousel-card>
+                    ></base-carousel-discount>
                 </div>
                 <!-- End Flash Deal -->
 
@@ -207,6 +206,7 @@ import BaseCarouselCard from '../../base/BaseCarouselCard.vue'
 import BaseMiniCard from '../../base/BaseMiniCard.vue'
 import BaseCategoryCard from '@/components/base/BaseCategoryCard.vue'
 import BaseListProduct from '@/components/base/BaseListProduct.vue'
+import BaseCarouselDiscount from '@/components/base/BaseCarouselDiscount.vue'
 import axios from 'axios'
 
 export default {
@@ -218,12 +218,16 @@ export default {
         BaseMiniCard,
         BaseCategoryCard,
         BaseListProduct,
+        BaseCarouselDiscount,
     },
 
     data() {
         return {
             // List all product
             listProducts: [],
+
+            // List of product discounts
+            productDiscounts: [],
 
             // Banner data
             carouselData: [require('@/assets/imgs/carousel.png'), 
@@ -235,33 +239,6 @@ export default {
             // Show carousel base top category
             topCategory: 'top-category',
             
-            // Flash deal data
-            flashDealData: [
-                {categoryName: 'Watch', productName: 'Smart watch black', price: 100000, 
-                    inventory: 9, imgURL: require('@/assets/imgs/flash-2.webp')},
-                {categoryName: 'Watch', productName: 'Smart watch black', price: 100000, 
-                    inventory: 9, imgURL: require('@/assets/imgs/flash-2.webp')},
-                {categoryName: 'Watch', productName: 'Smart watch black', price: 100000, 
-                    inventory: 9, imgURL: require('@/assets/imgs/flash-2.webp')},
-                {categoryName: 'Watch', productName: 'Smart watch black', price: 100000, 
-                    inventory: 9, imgURL: require('@/assets/imgs/flash-2.webp')},
-                {categoryName: 'Watch', productName: 'Smart watch black', price: 100000, 
-                    inventory: 9, imgURL: require('@/assets/imgs/flash-3.webp')},
-                {categoryName: 'Watch', productName: 'Smart watch black', price: 150000, 
-                    inventory: 9, imgURL: require('@/assets/imgs/flash-3.webp')},
-                {categoryName: 'Watch', productName: 'Smart watch black', price: 150000, 
-                    inventory: 9, imgURL: require('@/assets/imgs/flash-3.webp')},
-                {categoryName: 'Watch', productName: 'Smart watch black', price: 150000, 
-                    inventory: 9, imgURL: require('@/assets/imgs/flash-3.webp')},
-                {categoryName: 'Watch', productName: 'Smart watch black', price: 150000, 
-                    inventory: 9, imgURL: require('@/assets/imgs/flash-2.webp')},
-                {categoryName: 'Watch', productName: 'Smart watch black', price: 100000, 
-                    inventory: 9, imgURL: require('@/assets/imgs/flash-2.webp')},
-                {categoryName: 'Watch', productName: 'Smart watch black', price: 100000, 
-                    inventory: 9, imgURL: require('@/assets/imgs/flash-2.webp')},
-                {categoryName: 'Watch', productName: 'Smart watch black', price: 100000, 
-                    inventory: 9, imgURL: require('@/assets/imgs/flash-2.webp')},
-            ],
             productSetting: { // Setting for carousel
                 "dots": true,
                 "infinite": true,
@@ -318,6 +295,19 @@ export default {
     beforeCreate() {
         let me = this;
 
+        // Get all product discount
+        axios
+            .get("http://localhost:8080/api/v1/products/discounts")
+            .then((response) => {
+                console.log('Get all product discount success!');
+                console.log(response.data);
+                me.productDiscounts = response.data;
+            })
+            .catch((reject) => {
+                console.log(reject);
+            });
+        // End get all product discount
+
         // Get all product
         axios
             .get("http://localhost:8080/api/v1/products")
@@ -329,8 +319,7 @@ export default {
             .catch((reject) => {
                 console.log(reject);
             });
-        
-        
+        // End get all product
         
         // Get all category
         axios
@@ -343,6 +332,7 @@ export default {
             .catch((reject) => {
                 console.log(reject);
             });
+        // End get all category
 
     },
 

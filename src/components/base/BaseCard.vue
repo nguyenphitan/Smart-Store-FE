@@ -4,10 +4,10 @@
         <router-link :to="{ name: 'details', params: { id: productId}}">
             <div id="base-card-container">
                 <div class="card">
-                    <div class="d-flex justify-content-between p-3 position-absolute">
+                    <div v-if="discount != 0" class="d-flex justify-content-between p-3 position-absolute">
                         <!-- <p class="lead mb-0">Today's Combo Offer</p> -->
                         <div class="bg-info d-flex align-items-center justify-content-center shadow-1-strong sale-off">
-                            <p class="text-white mb-0 small">50% off</p>
+                            <p class="text-white mb-0 small">{{discount}}% off</p>
                         </div>
                     </div>
                     <img v-bind:src="imgURL"
@@ -30,7 +30,10 @@
                         </div>
 
                         <div class="d-flex justify-content-between align-items-center t-top-12">
-                            <h5 class="mb-0 product-price"> <div class="unit-price">₫</div> {{formatPrice(price)}}</h5>
+                            <div class="t-flex">
+                                <h5 class="mb-0 product-price"> <div class="unit-price">₫</div> {{formatPrice(price - (price * discount / 100))}}</h5>
+                                <h5 v-if="discount != 0" style="margin-left: 8px; color: rgb(125, 135, 156); text-decoration: line-through;" class="mb-0 product-price"> <div class="unit-price">₫</div> {{formatPrice(price)}}</h5>
+                            </div>
                             <div @click="addToCard" class="add-to-cart">
                                 <i class="fa-solid fa-plus"></i>
                             </div>
@@ -81,6 +84,10 @@ export default {
         productId: {
             type: Number,
             default: 1
+        },
+        discount: {
+            type: Number,
+            default: 0
         },
 
     },

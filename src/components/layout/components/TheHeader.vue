@@ -37,11 +37,11 @@
                     <!-- Right -->
                     <div class="bot-right">
                         <div class="home t-title" @mouseleave="hideSubItem">
-                            <a href="#the-body" class="t-hover-red" @mouseenter="showSubItem">Home</a>
+                            <a href="/" class="t-hover-red" @mouseenter="showSubItem">Home</a>
                             <base-list-overlay @hideThis="hideThis" :data="homeList" class="sub-item sub-home"></base-list-overlay>
                         </div>
                         <div class="pages" @mouseleave="hideSubItem">
-                            <a href="#flash-deal" class="t-title t-hover-red" @mouseenter="showSubItem">Flash Deals</a>
+                            <router-link :to="{ name: 'flashDeals'}" class="t-title t-hover-red" @mouseenter="showSubItem">Flash Deals</router-link>
                             <base-list-overlay @hideThis="hideThis" :data="pageList" class="sub-item sub-pages"></base-list-overlay>
                         </div>
                         <div class="track-order">
