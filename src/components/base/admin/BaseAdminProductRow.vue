@@ -5,23 +5,23 @@
             <div style="margin-right: 24px;">
                 <img :src="require('@/assets/imgs/' + imgSrc)" alt="product image" width="80px">
             </div>
-            <div class="t-flex t-between" style="width: 100%; flex-wrap: wrap;">
-                <div style="flex: 30%; line-height: 12px;">
+            <div class="t-flex" style="width: 100%; flex-wrap: wrap;">
+                <div style="line-height: 12px;">
                     <span style="font-weight: 600;">Name:</span>
                     <input :class="'edit-product-' + id" class="input-field input-name" readonly type="text" :value="name">
                 </div>
 
-                <div style="flex: 30%; line-height: 12px;">
+                <div style="line-height: 12px;">
                     <span style="font-weight: 600;">Price:</span>
                     <input :class="'edit-product-' + id" class="input-field input-price" readonly type="text" :value="price">
                 </div>
 
-                <div style="flex: 30%; line-height: 12px;">
+                <div style="line-height: 12px;">
                     <span style="font-weight: 600;">Inventory:</span>
                     <input :class="'edit-product-' + id" class="input-field input-inventory" readonly type="text" :value="quantity">
                 </div>
 
-                <div style="flex: 30%; line-height: 12px;">
+                <div style="line-height: 12px;">
                     <span style="font-weight: 600;">Category:</span>
                     <select 
                         :class="'product-category-' + id"
@@ -36,6 +36,11 @@
                         > {{ item.name }} </option>
                     </select>
                     <input :class="'edit-product-' + id" class="input-field input-category" readonly type="text" :value="category">
+                </div>
+
+                <div style="line-height: 12px;">
+                    <span style="font-weight: 600;">Discount:</span>
+                    <input :class="'edit-product-' + id" class="input-field input-discount" readonly type="text" :value="discount + '%'">
                 </div>
 
             </div>
@@ -84,7 +89,11 @@ export default {
         categoryId: {
             type: Number,
             default: 1
-        }
+        },
+        discount: {
+            type: Number,
+            default: 0
+        },
     },
     beforeCreate() {
         let me = this;
@@ -242,7 +251,8 @@ export default {
                 quantity: Number(inputs[2].value),
                 category: {
                     id: Number(categoryIdUpdate)
-                }
+                },
+                discount: Number(inputs[4].value.split("%")[0])
             }
 
             // call api

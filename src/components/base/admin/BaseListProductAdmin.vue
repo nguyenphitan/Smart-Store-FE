@@ -12,6 +12,7 @@
                 :categoryId="product.category.id"
                 :quantity="product.quantity"
                 :price="product.price"
+                :discount="product.discount"
                 :editEvent="editEvent"
             >
             </base-admin-product-row>
