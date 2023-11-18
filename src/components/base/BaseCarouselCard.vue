@@ -2,23 +2,7 @@
     <div id="base-carousel-card">
         <!-- Base carousel card -->
         <div id="carousel-card-container">
-            <!-- Begin product carousel -->
-            <VueSlickCarousel 
-                v-bind="settings" 
-                v-if="status == productStatus"
-            >
-                <!-- Using product card for carousel -->
-                <base-card 
-                    v-for="(data, key) in datas" :key="key"
-                    :categoryName="data.categoryName" 
-                    :imgURL="data.imgURL"
-                    :inventory="data.inventory"
-                    :price="data.price"
-                    :productName="data.productName"
-                ></base-card>
-            </VueSlickCarousel>
-            <!-- End product carousel -->
-
+            <!-- Begin top category -->
             <VueSlickCarousel
                 v-bind="settings" 
                 v-if="status == categoryStatus"
@@ -35,7 +19,6 @@
 </template>
 
 <script>
-import BaseCard from './BaseCard.vue'
 import BaseTopCategory from './BaseTopCategory.vue'
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
@@ -45,7 +28,6 @@ import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 export default {
     name: 'base-carousel-card',
     components: {
-        BaseCard,
         BaseTopCategory,
         VueSlickCarousel,
     },

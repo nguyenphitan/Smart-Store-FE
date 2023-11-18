@@ -4,14 +4,15 @@
         <div id="list-product-container">
             <div class="render-product">
                 <base-card
-                    v-for="(data, index) in products" 
+                    v-for="(product, index) in products" 
                     :key="index"
-                    :categoryName="data.category.name"
-                    :imgURL="require('@/assets/imgs/' + data.photos)"
-                    :price="data.price"
-                    :inventory="data.quantity"
-                    :productName="data.name"
-                    :productId="data.id"
+                    :categoryName="product.category.name"
+                    :imgURL="require('@/assets/imgs/' + product.photos)"
+                    :price="product.price"
+                    :inventory="product.quantity"
+                    :productName="product.name"
+                    :productId="product.id"
+                    :discount="product.discount"
                     @addToCart="addToCard"
                 >
                 </base-card>

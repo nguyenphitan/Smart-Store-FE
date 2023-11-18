@@ -4,6 +4,6 @@
 }
 
 #base-products .render-product #base-card {
-    width: 30% !important;
+    flex: 1 1 1px;
     margin: 1.2% !important;
 }

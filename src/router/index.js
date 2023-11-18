@@ -5,6 +5,7 @@ import TheCart from '../components/layout/components/TheCart.vue'
 import TheCartDetails from '../components/layout/components/TheCartDetails.vue'
 // import TheCartPayment from '../components/layout/components/TheCartPayment.vue'
 import TheCartReview from '../components/layout/components/TheCartReview.vue'
+import TheFlashDeals from '../components/layout/components/TheFlashDeals.vue'
 
 
 // Admin:
@@ -19,6 +20,7 @@ export default [
     {path: "/cart-details", name: "cartDetails", component: TheCartDetails},
     // {path: "/cart-payment", name: "cartPayment", component: TheCartPayment},
     {path: "/orders-review", name: "orderReview", component: TheCartReview},
+    {path: "/flash-deals", name: "flashDeals", component: TheFlashDeals},
 
     // Amdin:
     {path: "/admin", name: "adminHone", component: TheAdminHome},
