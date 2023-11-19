@@ -14,11 +14,23 @@
                 <div id="register-body">
                     <form>
                         <!-- Fullname -->
-                        <div class="enter-fullname">
-                            <label for="#">Full Name:</label>
+                        <div class="enter-firstname">
+                            <label for="#">Fisrt Name <span style="color: rgb(233, 69, 96);">*</span></label>
                             <base-input
-                                class="fullname-register"
-                                :inputPlaceholder="'Nguyễn Phi Tân'"
+                                class="firstname-register"
+                                :inputPlaceholder="'Nguyen'"
+                                :inputType="'text'"
+                                :required="true"
+                            >
+                            </base-input>
+                        </div>
+
+                        <!-- Fullname -->
+                        <div class="enter-lastname">
+                            <label for="#">Last Name <span style="color: rgb(233, 69, 96);">*</span></label>
+                            <base-input
+                                class="lastname-register"
+                                :inputPlaceholder="'Tan'"
                                 :inputType="'text'"
                                 :required="true"
                             >
@@ -27,7 +39,7 @@
 
                         <!-- Email -->
                         <div class="enter-email">
-                            <label for="#">Enter your email</label>
+                            <label for="#">Enter your email <span style="color: rgb(233, 69, 96);">*</span></label>
                             <base-input
                                 class="email-register"
                                 :inputPlaceholder="emailPlaceholder"
@@ -39,7 +51,7 @@
 
                         <!-- Password -->
                         <div class="enter-password">
-                            <label for="#">Password</label>
+                            <label for="#">Password <span style="color: rgb(233, 69, 96);">*</span></label>
                             <base-input 
                                 class="password-register"
                                 :iconClass="iconClass"
@@ -50,7 +62,7 @@
 
                         <!-- Confirm Password -->
                         <div class="enter-password-confirm">
-                            <label for="#">Confirm Password</label>
+                            <label for="#">Confirm Password <span style="color: rgb(233, 69, 96);">*</span></label>
                             <base-input 
                                 class="password-confirm"
                                 :iconClass="iconClass"
@@ -141,16 +153,17 @@ export default {
 
         // Register
         registerNewAccount() {
-            let fullName = document.querySelector('#the-register .fullname-register input').value;
+            let firstName = document.querySelector('#the-register .firstname-register input').value;
+            let lastName = document.querySelector('#the-register .lastname-register input').value;
             let email = document.querySelector('#the-register .email-register input').value;
             let password = document.querySelector('#the-register .password-register input').value;
 
-            if(email == "" || password == "" || fullName == "") {
+            if(email == "" || password == "" || firstName == "" || lastName == "") {
                 return;
             }
 
             axios
-                .post(`http://localhost:8080/api/v1/auth/register?fullName=${fullName}&username=${email}&password=${password}`)
+                .post(`http://localhost:8080/api/v1/auth/register?firstName=${firstName}&lastName=${lastName}&username=${email}&password=${password}`)
                 .then((response) => {
                     console.log(response);
                     window.location.reload();

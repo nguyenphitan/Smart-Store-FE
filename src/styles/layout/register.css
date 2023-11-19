@@ -18,10 +18,10 @@
     margin: 0 auto;
     border-radius: 8px;
     position: fixed;
-    top: 50px;
+    top: 30px;
     left: 0;
     right: 0;
-    bottom: 50px;
+    bottom: 30px;
     background-color: #fff;
 }
 
@@ -55,7 +55,11 @@
 }
 
 /* Body */
-#the-register .enter-fullname {
+#the-register .enter-firstname {
+    margin-bottom: 12px;
+}
+
+#the-register .enter-lastname {
     margin-bottom: 12px;
 }
 

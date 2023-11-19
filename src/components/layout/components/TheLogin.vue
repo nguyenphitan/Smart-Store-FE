@@ -15,7 +15,7 @@
                     <form>
                         <!-- Email -->
                         <div class="enter-email">
-                            <label for="#">Enter your email</label>
+                            <label for="#">Enter your email <span style="color: rgb(233, 69, 96);">*</span></label>
                             <base-input
                                 @enterEvent="checkLogin"
                                 class="email-login"
@@ -28,7 +28,7 @@
 
                         <!-- Password -->
                         <div class="enter-password">
-                            <label for="#">Password</label>
+                            <label for="#">Password <span style="color: rgb(233, 69, 96);">*</span></label>
                             <base-input 
                                 @enterEvent="checkLogin"
                                 class="password-login"

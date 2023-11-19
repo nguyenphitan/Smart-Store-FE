@@ -43,6 +43,11 @@
     margin-right: 20px;
 }
 
+.user-info img {
+    width: 100%;
+    height: 100%;
+}
+
 #the-header .user-info, 
 #the-header .cart-info {
     color: #686868;

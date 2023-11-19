@@ -10,7 +10,8 @@
                 <base-search></base-search>
                 <div class="d-flex">
                     <div @click="openLoginForm" class="user-info">
-                        <i class="fa-solid fa-user"></i>
+                        <i v-if="userProfile.avatarUrl == null" class="fa-solid fa-user"></i>
+                        <img v-if="userProfile.avatarUrl != null" :src="require('@/assets/imgs/' + userProfile.avatarUrl)" alt="">
                     </div>
                     <div class="cart-info">
                         <router-link to="/cart" >
@@ -48,7 +49,7 @@
                             <a href="#show-products" class="t-title t-hover-red">Products</a>
                         </div>
                         <div class="pages" @mouseleave="hideSubItem">
-                            <div class="t-title t-hover-red" @mouseenter="showSubItem">My Profile</div>
+                            <router-link :to="{ name: 'profile'}" class="t-title t-hover-red" @mouseenter="showSubItem">My Profile</router-link>
                             <base-list-overlay @hideThis="hideThis" :data="pageList" class="sub-item sub-pages"></base-list-overlay>
                         </div>
                         <div class="add-new-product">
@@ -75,27 +76,45 @@ export default {
         BaseCategoryCard,
         BaseListOverlay,
     },
-    created() {
+    beforeCreate() {
+        let me = this;
         const token = localStorage.getItem('token');
         // header
         const headers = {
             Authorization: `Bearer ${token}`,
         };
 
+        // Load cart size
         axios
             .get("http://localhost:8080/api/v1/cart/size", {headers})
             .then((response) => {
                 console.log(response.data);
-                this.cartSize = response.data;
+                me.cartSize = response.data;
             })
             .catch((reject) => {
                 console.log(reject);
             });
+        // End load cart size
+
+        // Load user info
+        axios
+            .get("http://localhost:8080/api/v1/user-profile", {headers})
+            .then((response) => {
+                console.log('Get user profile success');
+                console.log(response.data);
+                me.userProfile = response.data;
+            })
+            .catch((reject) => {
+                console.log(reject);
+            });
+        // End load user info
     },
     data() {
         return {
             // Cart size
             cartSize: 0,
+            // User info
+            userProfile: {},
 
             categoryIcon: 'fa-solid fa-list',
             downIcon: 'fa-solid fa-chevron-down',
