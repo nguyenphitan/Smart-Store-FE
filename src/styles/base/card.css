@@ -77,3 +77,7 @@
     display: flex;
     align-items: center;
 }
+
+#base-card .card-img-top {
+    height: 279.779px;
+}

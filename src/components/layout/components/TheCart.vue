@@ -59,7 +59,7 @@
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between">
                                                             <div class="d-flex flex-row align-items-center">
-                                                                <div>
+                                                                <div style="margin-right: 20px;">
                                                                     <img
                                                                         v-bind:src="require('@/assets/imgs/' + data.product.photos)"
                                                                         class="img-fluid rounded-3" alt="Shopping item" style="width: 100px;">

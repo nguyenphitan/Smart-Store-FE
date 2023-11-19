@@ -17,6 +17,8 @@
                     :price="product.price"
                     :productName="product.name"
                     :discount="product.discount"
+                    :productId="product.id"
+                    @addToCart="addToCart"
                 ></base-card>
             </VueSlickCarousel>
             <!-- End product discount -->
@@ -31,6 +33,7 @@ import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 // optional style for arrows & dots
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+import axios from 'axios'
 
 export default {
     name: 'base-carousel-discount',
@@ -52,6 +55,37 @@ export default {
         return {
             
         }
+    },
+    methods: {
+        // Add product to cart:
+        addToCart(e) {
+            let productId = e.target.parentElement.nextSibling.innerText;
+            console.log(productId);
+            const token = localStorage.getItem('token');
+
+            // request
+            let productRequest = {
+                idProduct: Number(productId),
+                quantitySelected: 1 // default 1
+            }
+
+            // header
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+
+            // Call API
+            axios
+                .post('http://localhost:8080/api/v1/cart', productRequest, { headers })
+                .then((response) => {
+                    console.log("Add product to cart success!");
+                    console.log(response.data);
+                })
+                .catch((reject) => {
+                    console.log(reject);
+                });
+
+        },
     },
 
 }

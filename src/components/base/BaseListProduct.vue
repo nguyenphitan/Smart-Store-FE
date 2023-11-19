@@ -13,7 +13,7 @@
                     :productName="product.name"
                     :productId="product.id"
                     :discount="product.discount"
-                    @addToCart="addToCard"
+                    @addToCart="addToCart"
                 >
                 </base-card>
             </div>
@@ -39,7 +39,7 @@ export default {
     },
     methods: {
         // Add product to cart:
-        addToCard(e) {
+        addToCart(e) {
             let productId = e.target.parentElement.nextSibling.innerText;
             const token = localStorage.getItem('token');
 

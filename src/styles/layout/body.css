@@ -94,6 +94,10 @@
     border-radius: 8px;
 }
 
+#body-center .top-rating .rating-left #base-mini-card .product-img {
+    height: unset;
+}
+
 .top-rating .rating-right {
     display: flex;
     box-shadow: rgb(3 0 71 / 9%) 0px 8px 45px;
@@ -119,15 +123,13 @@
 /* New Arrivals */
 .new-arrivals-content {
     background-color: #fff;
+    border-radius: 8px;
+    box-shadow: rgba(3, 0, 71, 0.09) 0px 1px 3px;
 }
 
 .new-arrivals-content #base-mini-card {
     width: 198.66px;
     height: 252.66px;
-}
-
-.new-arrivals-content #base-mini-card:hover {
-    box-shadow: unset;
 }
 
 .new-arrivals-content #base-mini-card .product-img {
