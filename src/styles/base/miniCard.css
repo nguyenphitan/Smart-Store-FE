@@ -20,6 +20,12 @@
 #base-mini-card .product-img {
     border-radius: 8px;
     padding: 16px;
+    height: 165px;
+}
+
+#base-mini-card .product-img img {
+    height: 100%;
+    width: 100%;
 }
 
 #base-mini-card .t-top-4 {

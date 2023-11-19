@@ -1,7 +1,7 @@
 <template>
     <div id="the-detail">
         <!-- Top -->
-        <div class="order-step">
+        <!-- <div class="order-step">
             <div class="step step-add">1. Cart</div>
             <div class="step-line"></div>
             <div class="step step-detail">2. Details</div>
@@ -9,7 +9,7 @@
             <div class="step step-payment">3. Payment</div>
             <div class="step-line"></div>
             <div class="step step-review">4. Review</div>
-        </div>
+        </div> -->
 
         <!-- Bottom -->
         <div class="product-detail">
@@ -21,8 +21,8 @@
                 </div>
 
                 <!-- Small image -->
-                <div class="small-img">
-                    <img v-bind:src="require('@/assets/imgs/' + productDetail.photos)" alt="" width="65px">
+                <div class="small-img" style="margin-top: 20px;">
+                    <img v-bind:src="require('@/assets/imgs/' + productDetail.photos)" alt="" width="65px" style="margin-right: 8px;">
                     <img v-bind:src="require('@/assets/imgs/' + productDetail.photos)" alt="" width="65px">
                 </div>
             </div>

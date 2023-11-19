@@ -117,11 +117,12 @@
                     <!-- Begin new arrivals content -->
                     <div class="new-arrivals-content t-flex t-justify-between">
                         <base-mini-card
-                            v-for="(item, key) in arrivalData"
+                            v-for="(product, key) in newProducts"
                             :key="key"
-                            :imgURL="item.imgURL"
-                            :price="item.price"
-                            :productName="item.productName"
+                            :imgURL="require('@/assets/imgs/' + product.photos)"
+                            :price="product.price"
+                            :productName="product.name"
+                            :productId="product.id"
                         ></base-mini-card>
                     </div>
                     <!-- End new arrivals content -->
@@ -229,6 +230,9 @@ export default {
             // List of product discounts
             productDiscounts: [],
 
+            // List of new products
+            newProducts: [],
+
             // Banner data
             carouselData: [require('@/assets/imgs/carousel.png'), 
                             require('@/assets/imgs/carousel.png'), 
@@ -274,16 +278,6 @@ export default {
                 {iconStar: true, imgURL: require('@/assets/imgs/top-rating-2.webp'), price: 199000, productName: 'Shoe'},
                 {iconStar: true, imgURL: require('@/assets/imgs/top-rating-3.webp'), price: 5990000, productName: 'Phone'},
                 {iconStar: true, imgURL: require('@/assets/imgs/top-rating-4.webp'), price: 99000, productName: 'Watch'},
-            ],
-
-            // Arrival data
-            arrivalData: [
-                {imgURL: require('@/assets/imgs/arrivals1.webp'), price: 150000, productName: 'Sunglass'},
-                {imgURL: require('@/assets/imgs/arrivals2.webp'), price: 250000, productName: 'Mackeup'},
-                {imgURL: require('@/assets/imgs/arrivals3.webp'), price: 350000, productName: 'Smart watch'},
-                {imgURL: require('@/assets/imgs/arrivals4.webp'), price: 15000, productName: 'Lipstick'},
-                {imgURL: require('@/assets/imgs/arrivals5.webp'), price: 55000, productName: 'Green plant'},
-                {imgURL: require('@/assets/imgs/arrivals6.webp'), price: 535000, productName: 'Bonsai tree'}
             ],
 
             // List category
@@ -333,6 +327,19 @@ export default {
                 console.log(reject);
             });
         // End get all category
+
+        // Get new products
+        axios
+            .get("http://localhost:8080/api/v1/products/new")
+            .then((response) => {
+                console.log('Get new products success!');
+                console.log(response.data);
+                me.newProducts = response.data;
+            })
+            .catch((reject) => {
+                console.log(reject);
+            });
+        // End get new products
 
     },
 

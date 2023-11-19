@@ -2,7 +2,7 @@
     <div id="base-mini-card">
         <!-- Base mini card -->
         <div id="mini-card-container">
-            <div class="card">
+            <router-link :to="{ name: 'details', params: { id: productId}}" class="card">
                 <div class="product-img">
                     <img v-bind:src="imgURL" class="card-img-top" alt="Laptop" />
                 </div>
@@ -32,7 +32,7 @@
                         <h5 class="mb-0 product-price"> <div class="unit-price">₫</div> {{formatPrice(price)}}</h5>
                     </div>
                 </div>
-            </div>
+            </router-link>
         </div>
     </div>
 </template>
@@ -60,7 +60,11 @@ export default {
         iconStar: {
             type: Boolean,
             default: false
-        }
+        },
+        productId: {
+            type: Number,
+            default: 1
+        },
     },
     methods: {
 
