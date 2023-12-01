@@ -1,5 +1,60 @@
+#the-profile {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+/* Navbar */
+.user-nav {
+    width: 25%;
+    max-width: 278px;
+    margin-right: 24px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 26px;
+    border-radius: 8px;
+    height: fit-content;
+}
+
+.user-profile {
+    color: rgb(125, 135, 156);
+    cursor: pointer;
+    padding: 8px 16px;
+    margin: 16px 8px;
+    border-radius: 8px;
+    border: 1px solid #dfdfdf;
+    display: flex;
+    align-items: center;
+}
+
+.user-order {
+    color: rgb(125, 135, 156);
+    cursor: pointer;
+    padding: 8px 16px;
+    margin: 16px 8px;
+    border-radius: 8px;
+    border: 1px solid #dfdfdf;
+    display: flex;
+    align-items: center;
+}
+
+.user-order:hover,
+.user-profile:hover {
+    background-color: rgb(233, 69, 96);
+    color: #fff;
+}
+
+
+/* Content */
+#the-profile .user-context-view {
+    width: 50%;
+}
+
+#base-user-profile {
+    width: 100%;
+}
+
 #the-profile-container {
-    width: 60%;
+    width: 100%;
     margin: 0 auto;
     padding: 24px 28px;
     background-color: #fff;

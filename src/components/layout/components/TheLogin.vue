@@ -140,7 +140,8 @@ export default {
                 .post(`http://localhost:8080/api/v1/auth/login?username=${email}&password=${password}`)
                 .then((response) => {
                     console.log(response.data);
-                    localStorage.setItem('token', response.data); 
+                    localStorage.setItem('token', response.data.token); 
+                    localStorage.setItem('role', response.data.role);
                     window.location.reload();
                 })
                 .catch((reject) => {
