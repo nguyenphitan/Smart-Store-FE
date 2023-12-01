@@ -54,3 +54,8 @@
     background-color: rgba(51, 208, 103, 0.15);
     color: rgb(51, 208, 103);
 }
+
+.t-color-cancelled .order-status {
+    background-color: rgb(255, 225, 230);
+    color: rgb(233, 69, 96);
+}

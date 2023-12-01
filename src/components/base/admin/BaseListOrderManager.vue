@@ -15,8 +15,8 @@
                 :id="order.id"
                 :code="order.code"
                 :orderDate="formatDate(order.orderDate)"
-                :status="order.status == 1 ? 'delivered' : 'processing'"
-                :class="order.status == 1 ? 't-color-delivered' : 't-color-processing'"
+                :status="getStatus(order.status)"
+                :class="getClassWithStatus(order.status)"
                 :total="order.total"
             ></base-order-reivew>
         </div>
@@ -45,7 +45,33 @@ export default {
             let month = date.getMonth() + 1;
             let year = date.getFullYear();
             return (day < 10 ? '0' : '') + day + '/' + (month < 10 ? '0' : '') + month + '/' + year;
-        }
+        },
+        getStatus(status) {
+            if(status == 0) {
+                return 'processing';
+            }
+
+            if(status == 1) {
+                return 'delivered';
+            }
+            
+            if(status == 2) {
+                return 'cancelled';
+            }
+        },
+        getClassWithStatus(status) {
+            if(status == 0) {
+                return 't-color-processing';
+            }
+
+            if(status == 1) {
+                return 't-color-delivered';
+            }
+            
+            if(status == 2) {
+                return 't-color-cancelled';
+            }
+        },
     },
 
 }
