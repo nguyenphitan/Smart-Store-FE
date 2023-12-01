@@ -1,19 +1,21 @@
 <template>
     <div id="base-order-review">
         <!-- Container -->
-        <div id="base-review-container" class="t-flex t-align-center">
-            <div class="order-content order-code">{{ code }}</div>
-            <div class="order-content">
-                <span id="order-status" class="order-status">{{ status }}</span>
+        <router-link :to="{ name: 'orderDetails', params: { orderId: id}}">
+            <div id="base-review-container" class="t-flex t-align-center">
+                <div class="order-content order-code">{{ code }}</div>
+                <div class="order-content">
+                    <span id="order-status" class="order-status">{{ status }}</span>
+                </div>
+                <div class="order-content order-date">{{ orderDate }}</div>
+                <div style="text-align: right;" class="order-content order-total">{{ formatPrice(total) }} VND</div>
+                <div class="order-content order-icon-delete">
+                    <i v-if="this.userRole == 'ADMIN'" @click="deliveredOrder(id)" style="margin-right: 8px; cursor: pointer;" class="fa-regular fa-square-check"></i>
+                    <i v-if="this.userRole == 'USER' && status == 'processing'" @click="cancelOrder(id)" class="t-pointer fa-solid fa-ban"></i>
+                    <i v-if="status == 'delivered' || status == 'cancelled'" @click="deleteOrder(id)" class="t-pointer fa-regular fa-trash-can"></i>
+                </div>
             </div>
-            <div class="order-content order-date">{{ orderDate }}</div>
-            <div style="text-align: right;" class="order-content order-total">{{ formatPrice(total) }} VND</div>
-            <div class="order-content order-icon-delete">
-                <i v-if="this.userRole == 'ADMIN'" @click="deliveredOrder(id)" style="margin-right: 8px; cursor: pointer;" class="fa-regular fa-square-check"></i>
-                <i v-if="this.userRole == 'USER' && status == 'processing'" @click="cancelOrder(id)" class="t-pointer fa-solid fa-ban"></i>
-                <i v-if="status == 'delivered' || status == 'cancelled'" @click="deleteOrder(id)" class="t-pointer fa-regular fa-trash-can"></i>
-            </div>
-        </div>
+        </router-link>
         <!-- End container -->
     </div>
 </template>

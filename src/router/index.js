@@ -7,6 +7,7 @@ import TheCartDetails from '../components/layout/components/TheCartDetails.vue'
 import TheCartReview from '../components/layout/components/TheCartReview.vue'
 import TheFlashDeals from '../components/layout/components/TheFlashDeals.vue'
 import TheProfile from '../components/layout/components/TheProfile.vue'
+import BaseOrderDetail from '../components/base/BaseOrderDetail.vue'
 
 
 // Admin:
@@ -23,6 +24,7 @@ export default [
     {path: "/orders-review", name: "orderReview", component: TheCartReview},
     {path: "/flash-deals", name: "flashDeals", component: TheFlashDeals},
     {path: "/profile", name: "profile", component: TheProfile},
+    {path: "/order-details", name: "orderDetails", component: BaseOrderDetail},
 
     // Amdin:
     {path: "/admin", name: "adminHone", component: TheAdminHome},

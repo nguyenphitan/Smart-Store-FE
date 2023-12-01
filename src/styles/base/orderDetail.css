@@ -1,0 +1,66 @@
+#base-order-detail {
+    margin-top: 32px;
+}
+
+#order-detail-container {
+    width: 50%;
+    margin: 0 auto;
+}
+
+#base-order-detail #base-button {
+    background-color: rgb(255, 225, 230);
+}
+
+#base-order-detail #base-button button {
+    color: rgb(233, 69, 96) !important;
+    font-weight: 600;
+}
+
+/* Area 1 */
+#base-order-detail .area-1 #base-button {
+    width: 132px;
+}
+
+/* Area 2 */
+#base-order-detail .area-2 {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: rgba(3, 0, 71, 0.09) 0px 1px 3px;
+    margin-top: 24px;
+}
+
+.t-process-common {
+    width: 64px;
+    height: 64px;
+    border-radius: 64px;
+    color: #fff;
+    background-color: rgb(233, 69, 96);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.t-delivery {
+    background-color: rgb(227, 233, 239);
+    color: rgb(233, 69, 96);
+}
+
+.t-line-1 {
+    flex: 1 1 0px;
+    width: 50px;
+    height: 4px;
+    background-color: rgb(233, 69, 96);
+}
+
+.t-line-2 {
+    flex: 1 1 0px;
+    width: 50px;
+    height: 4px;
+    background-color: rgb(227, 233, 239);
+}
+
+/* Area 3 */
+#base-order-detail .area-3 {
+    margin-top: 32px;
+}
