@@ -35,6 +35,31 @@ export default {
         BaseListOrderManager,
     },
     beforeCreate() {
+        // back to orderList when click Order List button from order detail
+        let isOrderListClick = this.$route.params.isOrderList;
+        if(isOrderListClick == 1) {
+            let me = this;
+            // Token
+            const token = localStorage.getItem('token');
+            // header
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+            // Call API
+            axios
+                .get('http://localhost:8080/api/v1/order', { headers })
+                .then((response) => {
+                    console.log(response.data);
+                    me.userOrders = response.data;
+                    me.openUserOrders();
+                })
+                .catch((reject) => {
+                    console.log(reject);
+                });
+
+            return;
+        }
+
         let me = this;
 
         // Token

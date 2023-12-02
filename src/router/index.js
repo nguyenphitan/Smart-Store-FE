@@ -24,7 +24,7 @@ export default [
     {path: "/orders-review", name: "orderReview", component: TheCartReview},
     {path: "/flash-deals", name: "flashDeals", component: TheFlashDeals},
     {path: "/profile", name: "profile", component: TheProfile},
-    {path: "/order-details", name: "orderDetails", component: BaseOrderDetail},
+    {path: "/order-details/:orderId", name: "orderDetails", component: BaseOrderDetail},
 
     // Amdin:
     {path: "/admin", name: "adminHone", component: TheAdminHome},

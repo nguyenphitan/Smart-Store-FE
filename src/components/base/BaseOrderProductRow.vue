@@ -28,12 +28,12 @@
                         class="product-category" 
                         name="product-category" 
                         style="border: 1px solid #ccc; outline: none; border-radius: 8px; margin-left: 12px; padding: 4px 8px; display: none;">
-                        <option
+                        <!-- <option
                             v-for="(item, key) in listCategory" 
                             :key="key" 
                             :value="item.id"
                             :selected="item.id == categoryId"
-                        > {{ item.name }} </option>
+                        > {{ item.name }} </option> -->
                     </select>
                     <input :class="'edit-product-' + id" class="input-field input-category" readonly type="text" :value="category">
                 </div>
