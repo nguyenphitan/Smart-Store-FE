@@ -2,7 +2,6 @@
     <div id="the-body">
         <!-- The body -->
         <div id="the-body-container">
-            <canvas id="lineChart"></canvas>
             <!-- Begin top body -->
             <div id="body-top">
                 <div class="body-top-wrapper t-w-80">

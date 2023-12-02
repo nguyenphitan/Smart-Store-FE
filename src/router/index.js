@@ -12,6 +12,7 @@ import BaseOrderDetail from '../components/base/BaseOrderDetail.vue'
 
 // Admin:
 import TheAdminHome from '../components/layout/admin/TheAdminHome.vue'
+import TheStatistics from '../components/layout/admin/TheStatistics.vue'
 
 
 export default [
@@ -28,5 +29,6 @@ export default [
 
     // Amdin:
     {path: "/admin", name: "adminHone", component: TheAdminHome},
+    {path: "/admin/statistics", name: "statistics", component: TheStatistics},
 
 ]
