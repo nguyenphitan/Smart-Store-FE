@@ -2,6 +2,7 @@
     <div id="the-body">
         <!-- The body -->
         <div id="the-body-container">
+            <canvas id="lineChart"></canvas>
             <!-- Begin top body -->
             <div id="body-top">
                 <div class="body-top-wrapper t-w-80">
@@ -75,7 +76,7 @@
                                 :iconStar="item.iconStar"
                                 :imgURL="item.imgURL"
                                 :price="item.price"
-                                :productName="item.productName"   
+                                :productName="item.productName"
                             ></base-mini-card>
                         </div>
                         <!-- End rating left -->
