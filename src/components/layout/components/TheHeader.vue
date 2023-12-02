@@ -27,12 +27,12 @@
             <div id="bot-header">
                 <div id="bot-container">
                     <!-- Left -->
-                    <div class="bot-left">
-                        <base-category-card
+                    <div class="bot-left" style="height: 20px;">
+                        <!-- <base-category-card
                             :iconClassLeft="categoryIcon"
                             :iconClassRight="downIcon"
                             :cardName="cardName"
-                        ></base-category-card>
+                        ></base-category-card> -->
                     </div>
 
                     <!-- Right -->
@@ -65,7 +65,7 @@
 
 <script>
 import BaseSearch from '../../base/BaseSearch.vue'
-import BaseCategoryCard from '../../base/BaseCategoryCard.vue'
+// import BaseCategoryCard from '../../base/BaseCategoryCard.vue'
 import BaseListOverlay from '../../base/BaseListOverlay.vue'
 import axios from 'axios'
 
@@ -73,7 +73,7 @@ export default {
     name: 'the-header',
     components: {
         BaseSearch,
-        BaseCategoryCard,
+        // BaseCategoryCard,
         BaseListOverlay,
     },
     beforeCreate() {

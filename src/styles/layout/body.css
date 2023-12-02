@@ -5,6 +5,11 @@
     /* padding-top: 134px; */
 }
 
+#the-body .t-active {
+    background-color: rgb(255, 225, 230);
+    color: rgb(233, 69, 96);
+}
+
 #the-body .t-flex {
     display: flex;
 }

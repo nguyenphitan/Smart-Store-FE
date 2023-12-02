@@ -73,6 +73,8 @@ export default {
         openUserProfile() {
             document.querySelector('#the-profile #base-user-profile').style.display = 'block';
             document.querySelector('#the-profile #base-list-order-manager').style.display = 'none';
+            document.querySelector('#the-profile .user-profile').classList.add('t-active');
+            document.querySelector('#the-profile .user-order').classList.remove('t-active');
         },
         // End open user profile
 
@@ -80,6 +82,8 @@ export default {
         openUserOrders() {
             document.querySelector('#the-profile #base-user-profile').style.display = 'none';
             document.querySelector('#the-profile #base-list-order-manager').style.display = 'block';
+            document.querySelector('#the-profile .user-profile').classList.remove('t-active');
+            document.querySelector('#the-profile .user-order').classList.add('t-active');
         },
         // End open user orders
 

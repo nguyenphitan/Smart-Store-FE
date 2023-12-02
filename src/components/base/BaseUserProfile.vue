@@ -1,9 +1,9 @@
 <template>
     <div id="base-user-profile">
-        <!-- <h2 class="profile-account">
+        <h2 class="profile-account">
             <i class="fa-solid fa-gear"></i>
             <span>Account</span>
-        </h2> -->
+        </h2>
         <!-- Container -->
         <div id="the-profile-container">
             <!-- Avatar -->

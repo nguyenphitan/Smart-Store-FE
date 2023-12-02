@@ -26,6 +26,7 @@
                                 :iconClassLeft="item.iconClassLeft"
                                 :extendIcon="false"
                                 :categoryId="item.id"
+                                :imgSrc="item.imgSrc"
                             ></base-category-card>
                             <div>
                                 <input @change="searchProductByName" id="search-product" type="text" name="search-product" placeholder="Enter name..."/>

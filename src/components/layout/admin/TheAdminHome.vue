@@ -100,6 +100,10 @@ export default {
             document.getElementById("base-list-category").style.display = 'block';
             document.getElementById("base-list-product-admin").style.display = 'none';
             document.getElementById("base-list-order-manager").style.display = 'none';
+
+            document.querySelector('#the-admin .admin-nav .manager-category').classList.add('t-active');
+            document.querySelector('#the-admin .admin-nav .manager-product').classList.remove('t-active');
+            document.querySelector('#the-admin .admin-nav .manager-order').classList.remove('t-active');
         },
 
         // Open product manager
@@ -107,6 +111,10 @@ export default {
             document.getElementById("base-list-product-admin").style.display = 'block';
             document.getElementById("base-list-category").style.display = 'none';
             document.getElementById("base-list-order-manager").style.display = 'none';
+
+            document.querySelector('#the-admin .admin-nav .manager-category').classList.remove('t-active');
+            document.querySelector('#the-admin .admin-nav .manager-product').classList.add('t-active');
+            document.querySelector('#the-admin .admin-nav .manager-order').classList.remove('t-active');
         },
 
         // Open order manager
@@ -114,6 +122,10 @@ export default {
             document.getElementById("base-list-order-manager").style.display = 'block';
             document.getElementById("base-list-category").style.display = 'none';
             document.getElementById("base-list-product-admin").style.display = 'none';
+
+            document.querySelector('#the-admin .admin-nav .manager-category').classList.remove('t-active');
+            document.querySelector('#the-admin .admin-nav .manager-product').classList.remove('t-active');
+            document.querySelector('#the-admin .admin-nav .manager-order').classList.add('t-active');
         },
 
         // Begin load List product

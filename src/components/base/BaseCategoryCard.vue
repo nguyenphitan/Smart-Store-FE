@@ -3,7 +3,7 @@
         <!-- Base category card -->
         <div id="category-card-container">
             <div class="category-summary">
-                <i :class="iconClassLeft"></i>
+                <img :src="require('@/assets/imgs/' + imgSrc)" alt="category image" width="52px">
                 <div class="category-card-name">{{cardName}}</div>
             </div>
             <i v-if="extendIcon" :class="iconClassRight"></i>
@@ -15,13 +15,13 @@
 export default {
     name: 'base-category-card',
     props: {
+        imgSrc: {
+            type: String,
+            default: 'all.jpg'
+        },
         cardName: {
             type: String,
             default: 'Electronics'
-        },
-        iconClassLeft: {
-            type: String,
-            default: 'fa-solid fa-laptop-medical'
         },
         extendIcon: {
             type: Boolean,
