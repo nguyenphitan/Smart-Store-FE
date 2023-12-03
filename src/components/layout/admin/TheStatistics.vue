@@ -7,18 +7,19 @@
         <!-- Container -->
         <div id="statistics-container">
             <div id="list-month">
-                <div @click="statisticOfMonth" class="t-month-common month-1 t-active">January</div>
-                <div @click="statisticOfMonth" class="t-month-common month-2">February</div>
-                <div @click="statisticOfMonth" class="t-month-common month-3">March</div>
-                <div @click="statisticOfMonth" class="t-month-common month-4">April</div>
-                <div @click="statisticOfMonth" class="t-month-common month-5">May</div>
-                <div @click="statisticOfMonth" class="t-month-common month-6">June</div>
-                <div @click="statisticOfMonth" class="t-month-common month-7">July</div>
-                <div @click="statisticOfMonth" class="t-month-common month-8">August</div>
-                <div @click="statisticOfMonth" class="t-month-common month-9">September</div>
-                <div @click="statisticOfMonth" class="t-month-common month-10">October</div>
-                <div @click="statisticOfMonth" class="t-month-common month-11">November</div>
-                <div @click="statisticOfMonth" class="t-month-common month-12">December</div>
+                <div @click="statisticsOfMonth" class="t-month-common month-0 t-active">{{ currentYear }}</div>
+                <div @click="statisticsOfMonth" class="t-month-common month-1">January</div>
+                <div @click="statisticsOfMonth" class="t-month-common month-2">February</div>
+                <div @click="statisticsOfMonth" class="t-month-common month-3">March</div>
+                <div @click="statisticsOfMonth" class="t-month-common month-4">April</div>
+                <div @click="statisticsOfMonth" class="t-month-common month-5">May</div>
+                <div @click="statisticsOfMonth" class="t-month-common month-6">June</div>
+                <div @click="statisticsOfMonth" class="t-month-common month-7">July</div>
+                <div @click="statisticsOfMonth" class="t-month-common month-8">August</div>
+                <div @click="statisticsOfMonth" class="t-month-common month-9">September</div>
+                <div @click="statisticsOfMonth" class="t-month-common month-10">October</div>
+                <div @click="statisticsOfMonth" class="t-month-common month-11">November</div>
+                <div @click="statisticsOfMonth" class="t-month-common month-12">December</div>
             </div>
             <Bar
                 id="my-chart-id"
@@ -33,6 +34,7 @@
 <script>
 import { Bar } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+import axios from 'axios'
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
@@ -41,12 +43,19 @@ export default {
     components: {
         Bar,
     },
+    created() {
+        this.statisticsOfYear(2023);
+    },
     data() {
         return {
+            // current year
+            currentYear: 2023,
+            
+            // chart data
             chartData: {
                 labels: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 
                 'August', 'September', 'October', 'November', 'December' ],
-                datasets: [ { data: [40, 20, 12, 10, 15, 25, 24, 36, 29, 18, 38, 39] } ]
+                datasets: [ { data: [] } ]
             },
             chartOptions: {
                 responsive: true
@@ -54,8 +63,31 @@ export default {
         }
     },
     methods: {
-        // Get statistics:
-        statisticOfMonth(e) {
+        // Get statistics of the year
+        statisticsOfYear(year) {
+            let me = this;
+            const token = localStorage.getItem('token');
+            // header
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+            // Call API
+            axios
+                .get(`http://localhost:8080/api/v1/statistics/${year}`, { headers })
+                .then((response) => {
+                    console.log("Statistics success");
+                    // let result = [];
+                    for(let dto of response.data) {
+                        me.chartData.datasets[0].data.push(dto.total);
+                    }
+                })
+                .catch((reject) => {
+                    console.log(reject);
+                });
+        },
+
+        // Get statistics of month:
+        statisticsOfMonth(e) {
             let month = e.target.innerText;
             console.log(month);
             
