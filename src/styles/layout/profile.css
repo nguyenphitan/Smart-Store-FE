@@ -1,13 +1,18 @@
 #the-profile {
     display: flex;
     justify-content: center;
-    margin-top: 16px;
+}
+
+h5 {
+    margin: 0;
+    padding: 0;
 }
 
 /* Navbar */
 .user-nav {
     width: 25%;
     max-width: 278px;
+    margin-top: 24px;
     margin-right: 24px;
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 26px;
@@ -43,6 +48,11 @@
     color: #fff;
 }
 
+#the-profile .t-active {
+    background-color: rgb(255, 225, 230);
+    color: rgb(233, 69, 96);
+}
+
 
 /* Content */
 #the-profile .user-context-view {
@@ -66,7 +76,7 @@
 .profile-account {
     font-size: 25px;
     font-weight: bold;
-    width: 60%;
+    /* width: 60%; */
     margin: 0 auto;
     display: flex;
     align-items: center;

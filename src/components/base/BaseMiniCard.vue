@@ -17,7 +17,7 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <span class="t-left-8" v-text="'(' + evaluate + ')'"></span>
+                        <!-- <span class="t-left-8" v-text="'(' + evaluate + ')'"></span> -->
                     </div>
 
                     <div :class="iconStar == false ? 
@@ -52,10 +52,6 @@ export default {
         imgURL: {
             type: String,
             default: require('@/assets/imgs/bgwatch.webp')
-        },
-        evaluate: {
-            type: String,
-            default: Math.round(Math.random() * 10)
         },
         iconStar: {
             type: Boolean,

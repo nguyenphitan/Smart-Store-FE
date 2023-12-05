@@ -75,7 +75,7 @@
                                 :iconStar="item.iconStar"
                                 :imgURL="item.imgURL"
                                 :price="item.price"
-                                :productName="item.productName"   
+                                :productName="item.productName"
                             ></base-mini-card>
                         </div>
                         <!-- End rating left -->
@@ -153,7 +153,7 @@
                     <!-- Left -->
                     <div id="product-category">
                         <div class="category-container">
-                            <div class="phone-nav" style="padding: 0 8px;">
+                            <div class="phone-nav" style="padding: 0 16px;">
                                 <base-category-card
                                     @filterByCategory="filterByCategory"
                                     :cardName="'All'"
@@ -168,6 +168,7 @@
                                     :iconClassLeft="item.iconClassLeft"
                                     :extendIcon="false"
                                     :categoryId="item.id"
+                                    :imgSrc="item.imgSrc"
                                 ></base-category-card>
                                 <div>
                                     <input @change="searchProductByName" id="search-product" type="text" name="search-product" placeholder="Enter name..."/>
@@ -350,7 +351,6 @@ export default {
     },
 
     methods: {
-
         // Filter by category:
         filterByCategory(e, categoryId) {
             console.log(e.target);

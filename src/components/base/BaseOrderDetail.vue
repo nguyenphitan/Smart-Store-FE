@@ -11,7 +11,9 @@
                     <h2 style="font-size: 25px; font-weight: bold; margin-left: 8px;">Order Details</h2>
                 </div>
                 <div>
-                    <base-button :buttonName="'Order List'"></base-button>
+                    <router-link :to="{ name: 'profile', params: { isOrderList: 1 }}">
+                        <base-button :buttonName="'Order List'"></base-button>
+                    </router-link>
                 </div>
             </div>
             <!-- End Area 1 -->
@@ -151,6 +153,11 @@ export default {
             let val = (value/1).toFixed(0).replace('.', ',')
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
         },
+
+        // Go back
+        // backLastPage() {
+        //     window.history.back();
+        // },
     },
 
 }

@@ -6,6 +6,11 @@
     justify-content: space-between;
 }
 
+#admin-container .t-active {
+    background-color: rgb(255, 225, 230);
+    color: rgb(233, 69, 96);
+}
+
 /* Navbar */
 .admin-nav {
     height: fit-content;

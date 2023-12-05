@@ -35,6 +35,31 @@ export default {
         BaseListOrderManager,
     },
     beforeCreate() {
+        // back to orderList when click Order List button from order detail
+        let isOrderListClick = this.$route.params.isOrderList;
+        if(isOrderListClick == 1) {
+            let me = this;
+            // Token
+            const token = localStorage.getItem('token');
+            // header
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+            // Call API
+            axios
+                .get('http://localhost:8080/api/v1/order', { headers })
+                .then((response) => {
+                    console.log(response.data);
+                    me.userOrders = response.data;
+                    me.openUserOrders();
+                })
+                .catch((reject) => {
+                    console.log(reject);
+                });
+
+            return;
+        }
+
         let me = this;
 
         // Token
@@ -73,6 +98,8 @@ export default {
         openUserProfile() {
             document.querySelector('#the-profile #base-user-profile').style.display = 'block';
             document.querySelector('#the-profile #base-list-order-manager').style.display = 'none';
+            document.querySelector('#the-profile .user-profile').classList.add('t-active');
+            document.querySelector('#the-profile .user-order').classList.remove('t-active');
         },
         // End open user profile
 
@@ -80,6 +107,8 @@ export default {
         openUserOrders() {
             document.querySelector('#the-profile #base-user-profile').style.display = 'none';
             document.querySelector('#the-profile #base-list-order-manager').style.display = 'block';
+            document.querySelector('#the-profile .user-profile').classList.remove('t-active');
+            document.querySelector('#the-profile .user-order').classList.add('t-active');
         },
         // End open user orders
 
