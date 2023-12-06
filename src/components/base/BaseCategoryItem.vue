@@ -53,7 +53,7 @@ export default {
 
         // Click delete category
         deleteCategory(id) {
-            if(confirm("Are you sure delete this category?")) {
+            if(confirm("If you delete this category, all products in the category will also be deleted. Are you sure?")) {
                 axios
                     .delete(`http://localhost:8080/api/v1/category/${id}`)
                     .then((response) => {
