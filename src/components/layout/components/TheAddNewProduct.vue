@@ -100,6 +100,7 @@ export default {
                 })
                 .then((response) => {
                     console.log(response);
+                    alert("Add new product successful");
                     window.location.reload();
                 })
                 .catch((reject) => {
