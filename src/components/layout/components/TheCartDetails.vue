@@ -31,19 +31,19 @@
                         <!-- col left -->
                         <div class="shipping-address-left">
                             <div class="shipping-item">
-                                <p class="address-title">Full Name</p>
+                                <p class="address-title">Full Name <span class="t-color-red">*</span> </p>
                                 <input name="fullName" type="text" required/>
                             </div>
                             <div class="shipping-item">
-                                <p class="address-title">Phone Number</p>
+                                <p class="address-title">Phone Number <span class="t-color-red">*</span></p>
                                 <input name="phone" type="text" required/>
                             </div>
                             <div class="shipping-item">
-                                <p class="address-title">Zip Code</p>
+                                <p class="address-title">Zip Code <span class="t-color-red">*</span></p>
                                 <input name="zip" type="text" required/>
                             </div>
                             <div class="shipping-item">
-                                <p class="address-title">District</p>
+                                <p class="address-title">District <span class="t-color-red">*</span></p>
                                 <input name="district" type="text" required/>
                             </div>
                         </div>
@@ -51,19 +51,19 @@
                         <!-- col right -->
                         <div class="shipping-address-right">
                             <div class="shipping-item">
-                                <p class="address-title">Email Address</p>
+                                <p class="address-title">Email Address <span class="t-color-red">*</span></p>
                                 <input name="email" type="email" required/>
                             </div>
                             <div class="shipping-item">
-                                <p class="address-title">Company</p>
+                                <p class="address-title">Company <span class="t-color-red">*</span></p>
                                 <input name="company" type="text" required/>
                             </div>
                             <div class="shipping-item">
-                                <p class="address-title">City</p>
+                                <p class="address-title">City <span class="t-color-red">*</span></p>
                                 <input name="city" type="text" required/>
                             </div>
                             <div class="shipping-item">
-                                <p class="address-title">Detailed Address</p>
+                                <p class="address-title">Detailed Address <span class="t-color-red">*</span></p>
                                 <input name="detailAddress" type="text" required/>
                             </div>
                         </div>
@@ -77,23 +77,13 @@
                         <p class="apply-title">{{ formatPrice(totalPrice) }} VND</p>
                     </div>
 
-                    <div class="cart-shipping t-flex t-between">
-                        <p class="apply-title">Shipping: </p>
-                        <p class="apply-title">{{ formatPrice(totalPrice) }} VND</p>
-                    </div>
-
-                    <div class="cart-tax t-flex t-between">
-                        <p class="apply-title">Tax: </p>
-                        <p class="apply-title">{{ formatPrice(totalPrice) }} VND</p>
-                    </div>
-
                     <div class="cart-discount t-flex t-between">
                         <p class="apply-title">Discount: </p>
-                        <p class="apply-title">{{ formatPrice(totalPrice) }} VND</p>
+                        <p class="apply-title">{{ formatPrice(discountValue) }} VND</p>
                     </div>
 
                     <div class="total-amount t-text-right">
-                        <p id="total-price" class="apply-title">{{ formatPrice(totalPrice) }} VND</p>
+                        <p id="total-price" class="apply-title">{{ formatPrice(amount) }} VND</p>
                     </div>
 
                     <div class="select-voucher">
@@ -137,7 +127,12 @@ export default {
             .get('http://localhost:8080/api/v1/cart', { headers })
             .then((response) => {
                 for(let cartResponse of response.data) {
-                    this.totalPrice += (cartResponse.product.price * cartResponse.quantity);
+                    let productPrice = cartResponse.product.price;
+                    let productDiscount = cartResponse.product.discount;
+
+                    me.totalPrice += (cartResponse.product.price * cartResponse.quantity);
+                    me.discountValue += productPrice * productDiscount / 100;
+                    me.amount = me.totalPrice - me.discountValue;
 
                     // build productItem to payment
                     let productItem = {
@@ -155,11 +150,16 @@ export default {
                 console.log(reject);
             });
     },
-
     data() {
         return {
-            // Subtotal"
+            // Subtotal
             totalPrice: 0,
+
+            // Discount 
+            discountValue: 0,
+
+            // Amount
+            amount: 0,
 
             // List product to payment:
             productPaymentDTOs: [],
@@ -178,17 +178,27 @@ export default {
         paymentHandle() {
             console.log(this.productPaymentDTOs);
 
-            // Payment if list product item not empty
-            if(this.productPaymentDTOs.length != 0) {
-                // Get info:
-                let fullName = document.querySelector('input[name="fullName"]').value;
-                let phone = document.querySelector('input[name="phone"]').value;
-                let zip = document.querySelector('input[name="zip"]').value;
-                let district = document.querySelector('input[name="district"]').value;
-                let email = document.querySelector('input[name="email"]').value;
-                let company = document.querySelector('input[name="company"]').value;
-                let city = document.querySelector('input[name="city"]').value;
-                let detailAddress = document.querySelector('input[name="detailAddress"]').value;
+            // Get info:
+            let fullName = document.querySelector('input[name="fullName"]').value;
+            let phone = document.querySelector('input[name="phone"]').value;
+            let zip = document.querySelector('input[name="zip"]').value;
+            let district = document.querySelector('input[name="district"]').value;
+            let email = document.querySelector('input[name="email"]').value;
+            let company = document.querySelector('input[name="company"]').value;
+            let city = document.querySelector('input[name="city"]').value;
+            let detailAddress = document.querySelector('input[name="detailAddress"]').value;
+
+            // Payment if list product item not empty and info not empty
+            if(this.productPaymentDTOs.length != 0 
+                && fullName.trim() != '' 
+                && phone.trim() != '' 
+                && zip.trim() != '' 
+                && district.trim() != '' 
+                && email.trim() != '' 
+                && company.trim() != '' 
+                && city.trim() != '' 
+                && detailAddress.trim() != ''
+            ) {
     
                 // Request:
                 let paymentRequest = {
@@ -201,7 +211,7 @@ export default {
                     company: company,
                     city: city,
                     detailAddress: detailAddress,
-                    total: this.totalPrice
+                    total: this.amount
                 };
     
                 // Call api:

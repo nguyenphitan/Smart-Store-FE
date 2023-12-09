@@ -67,3 +67,7 @@
 #the-cart .btn-delete-product-out-cart:hover {
     color: black !important;
 }
+
+#the-cart .t-discount {
+    padding: 4px 8px;
+}

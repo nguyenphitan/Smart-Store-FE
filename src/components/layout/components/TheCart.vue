@@ -58,6 +58,11 @@
                                                 <router-link :to="{ name: 'details', params: { id: data.product.id}}">
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between">
+                                                            <div v-if="data.product.discount > 0" class="d-flex justify-content-between p-3 position-absolute">
+                                                                <div class="bg-info d-flex align-items-center justify-content-center shadow-1-strong sale-off" style="border-radius: 8px; padding: 2px 4px;">
+                                                                    <p class="text-white mb-0 small">{{data.product.discount}}% off</p>
+                                                                </div>
+                                                            </div>
                                                             <div class="d-flex flex-row align-items-center">
                                                                 <div style="margin-right: 20px;">
                                                                     <img
@@ -80,7 +85,7 @@
                                                                     <h5 class="fw-normal mb-0">2</h5>
                                                                 </div> -->
                                                                 <div style="width: 120px;">
-                                                                    <span class="mb-0">{{ formatPrice(data.product.price * data.quantity) }} VND</span>
+                                                                    <span class="mb-0">{{ formatPrice((data.product.price - data.product.price * data.product.discount / 100) * data.quantity) }} VND</span>
                                                                 </div>
                                                                 <span class="btn-delete-product-out-cart" @click="deleteProduct($event, data.id)" style="color: #cecece; cursor: pointer; padding: 4px;">
                                                                     <i class="fas fa-trash-alt"></i>
@@ -159,27 +164,19 @@
 
                                                     <hr class="my-4">
 
-                                                    <div class="d-flex justify-content-between">
-                                                    <p class="mb-2">Subtotal</p>
-                                                    <p class="mb-2">{{ formatPrice(totalPrice) }} VND</p>
-                                                    </div>
-
-                                                    <div class="d-flex justify-content-between">
-                                                    <p class="mb-2">Shipping</p>
-                                                    <p class="mb-2">{{ formatPrice(20000) }} VND</p>
-                                                    </div>
-
                                                     <div class="d-flex justify-content-between mb-4">
                                                     <p class="mb-2">Total(Incl. taxes)</p>
-                                                    <p class="mb-2">{{ formatPrice(Number(totalPrice) + 20000) }} VND</p>
+                                                    <p class="mb-2">{{ formatPrice(Number(totalPrice)) }} VND</p>
                                                     </div>
 
                                                     <router-link :to="{ name: 'cartDetails', params: { method: paymentMethod}}" class="btn btn-info btn-block btn-lg" style="background-color: rgb(233, 176, 69); border: none;">
                                                         <div class="d-flex justify-content-between">
-                                                            <span>{{ formatPrice(Number(totalPrice) + 20000) }} VND</span>
+                                                            <span>{{ formatPrice(Number(totalPrice)) }} VND</span>
                                                             <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                                                         </div>
                                                     </router-link>
+
+                                                    <!-- <button @click="paymentByVNPay(totalPrice)">Payment by VNPay</button> -->
 
                                                 </div>
                                             </div>
@@ -220,7 +217,11 @@ export default {
                 this.cartData = response.data;
 
                 for(let cartResponse of response.data) {
-                    this.totalPrice += (cartResponse.product.price * cartResponse.quantity);
+                    let productPrice = cartResponse.product.price;
+                    let discount = cartResponse.product.discount;
+                    let realPrice = productPrice - productPrice * discount / 100;
+
+                    this.totalPrice += (realPrice * cartResponse.quantity);
                 }
 
             })
@@ -280,6 +281,12 @@ export default {
                     console.log(reject);
                 });
         },
+
+        // Test payment by VNPay
+        paymentByVNPay(amount) {
+            window.location.href = `http://localhost:8080/api/v1/cart/payment/${amount}`;
+        },
+
     },
 
 }
