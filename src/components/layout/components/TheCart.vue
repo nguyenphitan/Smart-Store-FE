@@ -106,7 +106,7 @@
                                                     <div for="payment-by-card"  
                                                         class="pay-card payment-by-card t-flex t-pointer"
                                                     >
-                                                        <input @change="getPaymentMethod($event)" class="pay-card t-pointer" id="payment-by-card" type="radio" checked name="payment-method" style="width: 20px; height: 24px; margin-right: 16px;">
+                                                        <input @focus="getPaymentMethod($event)" class="pay-card t-pointer" id="payment-by-card" type="radio" checked name="payment-method" style="width: 20px; height: 24px; margin-right: 16px;">
                                                         <h5 class="pay-card t-pointer"><label class="pay-card t-pointer" for="payment-by-card">Card details</label></h5>
                                                     </div>
 
@@ -158,7 +158,7 @@
                                                     <div
                                                         class="pay-delivery cash-on-delivery t-flex t-pointer"
                                                     >
-                                                        <input @change="getPaymentMethod($event)" id="cash-on-delivery" class="pay-delivery t-pointer" type="radio" name="payment-method" style="width: 20px; height: 24px; margin-right: 16px;">
+                                                        <input @focus="getPaymentMethod($event)" id="cash-on-delivery" class="pay-delivery t-pointer" type="radio" name="payment-method" style="width: 20px; height: 24px; margin-right: 16px;">
                                                         <h5 class="pay-delivery t-pointer"><label class="pay-delivery t-pointer" for="cash-on-delivery">Cash On Delivery</label></h5>
                                                     </div>
 
@@ -169,12 +169,19 @@
                                                     <p class="mb-2">{{ formatPrice(Number(totalPrice)) }} VND</p>
                                                     </div>
 
-                                                    <router-link :to="{ name: 'cartDetails', params: { method: paymentMethod}}" class="btn btn-info btn-block btn-lg" style="background-color: rgb(233, 176, 69); border: none;">
+                                                    <router-link v-if="this.paymentMethod == 0" :to="{ name: 'cartDetails', params: { method: paymentMethod}}" class="btn btn-info btn-block btn-lg" style="background-color: rgb(233, 176, 69); border: none;">
                                                         <div class="d-flex justify-content-between">
                                                             <span>{{ formatPrice(Number(totalPrice)) }} VND</span>
                                                             <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                                                         </div>
                                                     </router-link>
+
+                                                    <div @click="paymentOnline(totalPrice)" v-if="this.paymentMethod == 1" class="btn btn-info btn-block btn-lg" style="background-color: rgb(233, 176, 69); border: none;">
+                                                        <div class="d-flex justify-content-between">
+                                                            <span>{{ formatPrice(Number(totalPrice)) }} VND</span>
+                                                            <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                                                        </div>
+                                                    </div>
 
                                                     <!-- <button @click="paymentByVNPay(totalPrice)">Payment by VNPay</button> -->
 
@@ -199,6 +206,7 @@ import axios from 'axios';
 export default {
     name: "the-cart",
     created() { // Get cart detail:
+        let me = this;
         // Token
         const token = localStorage.getItem('token');
         console.log(token);
@@ -222,6 +230,14 @@ export default {
                     let realPrice = productPrice - productPrice * discount / 100;
 
                     this.totalPrice += (realPrice * cartResponse.quantity);
+
+                    // build productItem to payment
+                    let productItem = {
+                        productId: cartResponse.product.id,
+                        quanitySelected: cartResponse.quantity
+                    };
+
+                    me.productPaymentDTOs.push(productItem);
                 }
 
             })
@@ -240,6 +256,9 @@ export default {
             // Payment method:
             paymentMethod: 1,
 
+            // list product for payment:
+            productPaymentDTOs: [],
+
         }
     },
     methods: {
@@ -253,9 +272,13 @@ export default {
         getPaymentMethod(e) {
             // console.log(e.target.checked);
             if(e.target.classList.contains("pay-delivery")) {
+                // Cash on delivery
                 this.paymentMethod = 0;
+                console.log("Cash on delivery");
             } else {
+                // Payment Online
                 this.paymentMethod = 1;
+                console.log("Payment online");
             }
         },
 
@@ -282,9 +305,39 @@ export default {
                 });
         },
 
-        // Test payment by VNPay
-        paymentByVNPay(amount) {
-            window.location.href = `http://localhost:8080/api/v1/cart/payment/${amount}`;
+        // Payment online by VNPay
+        paymentOnline(amount) {
+            const token = localStorage.getItem('token');
+
+            // header
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+
+            // Request:
+            let paymentRequest = {
+                productInfo: this.productPaymentDTOs,
+                fullName: "NGUYEN VAN A",
+                phone: "0934998386",
+                zip: "100000",
+                district: "Dong Da",
+                email: "xonv@vnpay.vn",
+                company: "Cong Ty Co Phan Giai Phap Thanh Toan Viet Nam",
+                city: "Ha Noi",
+                detailAddress: "22 Lang Ha",
+                total: amount
+            };
+
+            axios
+                .post(`http://localhost:8080/api/v1/cart/payment/request`, paymentRequest, {headers})
+                .then((response) => {
+                    console.log(response);
+                    window.location.href = `http://localhost:8080/api/v1/cart/payment/${amount}`;
+                })
+                .catch((reject) => {
+                    console.log(reject);
+                });
+
         },
 
     },

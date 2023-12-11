@@ -141,9 +141,6 @@ export default {
                     };
 
                     me.productPaymentDTOs.push(productItem);
-
-                    console.log("List: " + me.productPaymentDTOs);
-
                 }
             })
             .catch((reject) => {
