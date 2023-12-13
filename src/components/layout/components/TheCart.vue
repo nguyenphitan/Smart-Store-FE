@@ -169,7 +169,15 @@
                                                     <p class="mb-2">{{ formatPrice(Number(totalPrice)) }} VND</p>
                                                     </div>
 
-                                                    <router-link v-if="this.paymentMethod == 0" :to="{ name: 'cartDetails', params: { method: paymentMethod}}" class="btn btn-info btn-block btn-lg" style="background-color: rgb(233, 176, 69); border: none;">
+                                                    <div @click="notificationNotProductToPayment" v-if="this.paymentMethod == 0 && this.productPaymentDTOs.length < 1" 
+                                                        class="btn btn-info btn-block btn-lg" style="background-color: rgb(233, 176, 69); border: none;">
+                                                        <div class="d-flex justify-content-between">
+                                                            <span>{{ formatPrice(Number(totalPrice)) }} VND</span>
+                                                            <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <router-link v-if="this.paymentMethod == 0 && this.productPaymentDTOs.length > 0" :to="{ name: 'cartDetails', params: { method: paymentMethod}}" class="btn btn-info btn-block btn-lg" style="background-color: rgb(233, 176, 69); border: none;">
                                                         <div class="d-flex justify-content-between">
                                                             <span>{{ formatPrice(Number(totalPrice)) }} VND</span>
                                                             <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
@@ -268,6 +276,11 @@ export default {
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
         },
 
+        // Notification payment product is empty
+        notificationNotProductToPayment() {
+            alert("Your cart is empty!");
+        },
+
         // Payment method: (online: 1 ; offline: 0)
         getPaymentMethod(e) {
             // console.log(e.target.checked);
@@ -307,6 +320,11 @@ export default {
 
         // Payment online by VNPay
         paymentOnline(amount) {
+            if(this.productPaymentDTOs.length == 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+
             const token = localStorage.getItem('token');
 
             // header
