@@ -10,9 +10,9 @@
                 <div class="order-content order-date">{{ orderDate }}</div>
                 <div style="text-align: right;" class="order-content order-total">{{ formatPrice(total) }} VND</div>
                 <div class="order-content order-icon-delete">
-                    <i v-if="this.userRole == 'ADMIN'" @click="deliveredOrder(id)" style="margin-right: 8px; cursor: pointer;" class="fa-regular fa-square-check"></i>
-                    <i v-if="this.userRole == 'USER' && status == 'processing'" @click="cancelOrder(id)" class="t-pointer fa-solid fa-ban"></i>
-                    <i v-if="status == 'delivered' || status == 'cancelled'" @click="deleteOrder(id)" class="t-pointer fa-regular fa-trash-can"></i>
+                    <i v-if="this.userRole == 'ADMIN'" @click="deliveredOrder($event, id)" style="margin-right: 8px; cursor: pointer;" class="fa-regular fa-square-check"></i>
+                    <i v-if="this.userRole == 'USER' && status == 'processing'" @click="cancelOrder($event, id)" class="t-pointer fa-solid fa-ban"></i>
+                    <i v-if="status == 'delivered' || status == 'cancelled'" @click="deleteOrder($event, id)" class="t-pointer fa-regular fa-trash-can"></i>
                 </div>
             </div>
         </router-link>
@@ -64,8 +64,10 @@ export default {
         },
 
         // Delete order:
-        deleteOrder(orderId) {
-            if(confirm("Are you sure?")) {
+        deleteOrder(e, orderId) {
+            e.preventDefault();
+            
+            if(confirm("Are you sure delete order?")) {
                 // token
                 const token = localStorage.getItem('token');
 
@@ -89,7 +91,9 @@ export default {
         // End delete order
 
         // Delivered order
-        deliveredOrder(orderId) {
+        deliveredOrder(e, orderId) {
+            e.preventDefault();
+            
             // token
             const token = localStorage.getItem('token');
 
@@ -112,26 +116,30 @@ export default {
         // End delivered order
 
         // Cancel order (USER)
-        cancelOrder(orderId) {
-            // token
-            const token = localStorage.getItem('token');
+        cancelOrder(e, orderId) {
+            e.preventDefault();
+            
+            if(confirm("Are you sure cancel order?")) {
+                // token
+                const token = localStorage.getItem('token');
 
-            // header
-            const headers = {
-                Authorization: `Bearer ${token}`,
-            };
+                // header
+                const headers = {
+                    Authorization: `Bearer ${token}`,
+                };
 
-            axios
-                .put(`http://localhost:8080/api/v1/order/cancel/${orderId}`, {headers})
-                .then((response) => {
-                    console.log(response);
-                    console.log('Cancel order status success!');
-                    alert("Order Cancelled!")
-                    window.location.reload();
-                })
-                .catch((reject) => {
-                    console.log(reject);
-                });
+                axios
+                    .put(`http://localhost:8080/api/v1/order/cancel/${orderId}`, {headers})
+                    .then((response) => {
+                        console.log(response);
+                        console.log('Cancel order status success!');
+                        alert("Order Cancelled!")
+                        window.location.reload();
+                    })
+                    .catch((reject) => {
+                        console.log(reject);
+                    });
+            }
         }
         // End cancel order (USER)
 

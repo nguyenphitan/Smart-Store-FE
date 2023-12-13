@@ -63,6 +63,11 @@ export default {
             console.log(productId);
             const token = localStorage.getItem('token');
 
+            if(token == null) {
+                document.getElementById('the-login').style.display = 'block';
+                return;
+            }
+
             // request
             let productRequest = {
                 idProduct: Number(productId),

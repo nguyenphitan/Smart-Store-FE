@@ -35,6 +35,14 @@ export default {
         BaseListOrderManager,
     },
     beforeCreate() {
+        // Token
+        const token = localStorage.getItem('token');
+
+        if(token == null) {
+            document.getElementById('the-login').style.display = 'block';
+            return;
+        }
+
         // back to orderList when click Order List button from order detail
         let isOrderListClick = this.$route.params.isOrderList;
         if(isOrderListClick == 1) {
@@ -61,9 +69,6 @@ export default {
         }
 
         let me = this;
-
-        // Token
-        const token = localStorage.getItem('token');
 
         // header
         const headers = {

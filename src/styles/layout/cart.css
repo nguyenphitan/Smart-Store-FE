@@ -13,6 +13,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding-bottom: 80px;
+    padding-top: 116px;
 }
 
 
@@ -66,4 +67,8 @@
 
 #the-cart .btn-delete-product-out-cart:hover {
     color: black !important;
+}
+
+#the-cart .t-discount {
+    padding: 4px 8px;
 }

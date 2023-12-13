@@ -111,6 +111,11 @@ export default {
             let productId = this.$route.params.id;
             const token = localStorage.getItem('token');
 
+            if(token == null) {
+                document.getElementById('the-login').style.display = 'block';
+                return;
+            }
+
             // request
             let productRequest = {
                 idProduct: Number(productId),
