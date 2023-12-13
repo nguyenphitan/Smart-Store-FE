@@ -1,6 +1,7 @@
 #the-profile {
     display: flex;
     justify-content: center;
+    padding-top: 116px;
 }
 
 h5 {

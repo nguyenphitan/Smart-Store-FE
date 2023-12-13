@@ -52,9 +52,9 @@
                             <router-link :to="{ name: 'profile'}" class="t-title t-hover-red" @mouseenter="showSubItem">My Profile</router-link>
                             <base-list-overlay @hideThis="hideThis" :data="pageList" class="sub-item sub-pages"></base-list-overlay>
                         </div>
-                        <div class="add-new-product">
+                        <!-- <div class="add-new-product">
                             <router-link to="/add-new-product" >Add New Product</router-link>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
