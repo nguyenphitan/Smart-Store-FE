@@ -13,11 +13,11 @@
 
                 <div style="line-height: 12px;">
                     <span style="font-weight: 600;">Price:</span>
-                    <input :class="'edit-product-' + id" class="input-field input-price" readonly type="text" :value="price">
+                    <input :class="'edit-product-' + id" class="input-field input-price" readonly type="text" :value="formatPrice(price) + ' VND'">
                 </div>
 
                 <div style="line-height: 12px;">
-                    <span style="font-weight: 600;">Inventory:</span>
+                    <span style="font-weight: 600;">Quantity:</span>
                     <input :class="'edit-product-' + id" class="input-field input-inventory" readonly type="text" :value="quantity">
                 </div>
 
@@ -85,6 +85,13 @@ export default {
         discount: {
             type: Number,
             default: 0
+        },
+    },
+    methods: {
+        // Format price:
+        formatPrice(value) {
+            let val = (value/1).toFixed(0).replace('.', ',')
+            return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
         },
     },
 }
