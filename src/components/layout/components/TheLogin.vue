@@ -142,7 +142,8 @@ export default {
                     console.log(response.data);
                     localStorage.setItem('token', response.data.token); 
                     localStorage.setItem('role', response.data.role);
-                    window.location.reload();
+                    console.log(response.data.role);
+                    // window.location.reload();
                 })
                 .catch((reject) => {
                     console.log(reject);

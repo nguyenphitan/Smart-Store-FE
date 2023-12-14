@@ -10,7 +10,7 @@
                 <div class="order-content order-date">{{ orderDate }}</div>
                 <div style="text-align: right;" class="order-content order-total">{{ formatPrice(total) }} VND</div>
                 <div class="order-content order-icon-delete">
-                    <i v-if="this.userRole == 'ADMIN'" @click="deliveredOrder($event, id)" style="margin-right: 8px; cursor: pointer;" class="fa-regular fa-square-check"></i>
+                    <i v-if="this.userRole == 'ADMIN' && status == 'processing'" @click="deliveredOrder($event, id)" style="cursor: pointer;" class="fa-regular fa-square-check"></i>
                     <i v-if="this.userRole == 'USER' && status == 'processing'" @click="cancelOrder($event, id)" class="t-pointer fa-solid fa-ban"></i>
                     <i v-if="status == 'delivered' || status == 'cancelled'" @click="deleteOrder($event, id)" class="t-pointer fa-regular fa-trash-can"></i>
                 </div>
@@ -47,8 +47,9 @@ export default {
             default: 199000
         }
     },
-    beforeCreate() {
+    created() {
         this.userRole = localStorage.getItem('role');
+        console.log(this.userRole);
     },
     data() {
         return {
