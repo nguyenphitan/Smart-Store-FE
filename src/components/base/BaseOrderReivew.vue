@@ -82,7 +82,8 @@ export default {
                     .then((response) => {
                         console.log(response);
                         console.log('Delete order success!');
-                        window.location.reload();
+                        // window.location.reload();
+                        this.$emit("reloadPage", e);
                     })
                     .catch((reject) => {
                         console.log(reject);
@@ -108,7 +109,8 @@ export default {
                 .then((response) => {
                     console.log(response);
                     console.log('Delivered order status success!');
-                    window.location.reload();
+                    // window.location.reload();
+                    this.$emit("reloadPage", e);
                 })
                 .catch((reject) => {
                     console.log(reject);
@@ -135,7 +137,8 @@ export default {
                         console.log(response);
                         console.log('Cancel order status success!');
                         alert("Order Cancelled!")
-                        window.location.reload();
+                        // window.location.reload();
+                        this.$emit("reloadPage", e);
                     })
                     .catch((reject) => {
                         console.log(reject);

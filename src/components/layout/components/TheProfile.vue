@@ -18,7 +18,7 @@
 
         <div class="user-context-view">
             <base-user-profile :userProfile="userProfile"></base-user-profile>
-            <base-list-order-manager :listOrders="userOrders"></base-list-order-manager>
+            <base-list-order-manager :listOrders="userOrders" @reloadPage="reloadPage"></base-list-order-manager>
         </div>
     </div>
 </template>
@@ -99,6 +99,12 @@ export default {
         }
     },
     methods: {
+        // reload page order:
+        reloadPage(e) {
+            console.log(e.target);
+            this.getUserOrders();
+        },
+
         // Open user profile
         openUserProfile() {
             document.querySelector('#the-profile #base-user-profile').style.display = 'block';
