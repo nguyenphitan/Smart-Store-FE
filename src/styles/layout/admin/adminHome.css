@@ -54,9 +54,21 @@
     align-items: center;
 }
 
+.manager-statistics {
+    color: rgb(125, 135, 156);
+    cursor: pointer;
+    padding: 8px 16px;
+    margin: 16px 8px;
+    border-radius: 8px;
+    border: 1px solid #dfdfdf;
+    display: flex;
+    align-items: center;
+}
+
 .manager-category:hover,
 .manager-product:hover,
-.manager-order:hover {
+.manager-order:hover,
+.manager-statistics:hover {
     background-color: rgb(233, 69, 96);
     color: #fff;
 }

@@ -6,22 +6,27 @@
             <div class="admin-nav">
                 <!-- Category -->
                 <div @click="getAllCategory" class="manager-category">
-                    <h5>Categories</h5>
+                    <h5><i class="fa-solid fa-list" style="margin-right: 8px;"></i> Categories</h5>
                 </div>
                 <!-- End category -->
 
                 <!-- Product -->
                 <div @click="getAllProduct" class="manager-product">
-                    <h5>Products</h5>
+                    <h5><i class="fa-brands fa-product-hunt" style="margin-right: 8px;"></i> Products</h5>
                 </div>
                 <!-- End product -->
 
-                <!-- Product -->
+                <!-- Order -->
                 <div @click="getAllOrder" class="manager-order">
-                    <h5>Orders</h5>
+                    <h5><i class="fa-solid fa-cart-arrow-down" style="margin-right: 8px;"></i> Orders</h5>
                 </div>
-                <!-- End product -->
+                <!-- End order -->
 
+                <!-- Statistics -->
+                <router-link to="/admin/statistics" class="manager-statistics">
+                    <h5><i class="fa-solid fa-chart-simple" style="margin-right: 8px;"></i> Statistics</h5>
+                </router-link>
+                <!-- End Statistics -->
 
 
                 <!-- Discount -->
