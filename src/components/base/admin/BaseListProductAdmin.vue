@@ -16,6 +16,7 @@
                 :quantity="product.quantity"
                 :price="product.price"
                 :discount="product.discount"
+                @reloadPage="reloadPage"
             >
             </base-admin-product-row>
         </div>
@@ -36,6 +37,11 @@ export default {
             type: Array,
             default: new Array()
         },
+    },
+    methods: {
+        reloadPage(e) {
+            this.$emit("reloadPage", e);
+        }
     },
 }
 </script>

@@ -39,8 +39,8 @@
             <div class="admin-context-view">
                 <the-add-category></the-add-category>
                 <base-list-category :listCategory="listCategory"></base-list-category>
-                <base-list-product-admin :listProduct="listProduct"></base-list-product-admin>
-                <base-list-order-manager :listOrders="listOrders"></base-list-order-manager>
+                <base-list-product-admin :listProduct="listProduct" @reloadPage="reloadProductPage"></base-list-product-admin>
+                <base-list-order-manager :listOrders="listOrders" @reloadPage="reloadOrderPage"></base-list-order-manager>
             </div>
             <!-- End view right -->
         </div>
@@ -100,6 +100,19 @@ export default {
     },
 
     methods: {
+        // reloadProductPage
+        reloadProductPage(e) {
+            console.log(e.target);
+            this.getAllProduct();
+        },
+        
+        // reloadOrderPage
+        reloadOrderPage(e) {
+            console.log(e.target);
+            this.getAllOrder();
+        },
+
+
         // Open category manager
         openCategoryManager() {
             document.getElementById("base-list-category").style.display = 'block';
@@ -180,7 +193,7 @@ export default {
             };
             // Call API
             axios
-                .get('http://localhost:8080/api/v1/order', { headers })
+                .get('http://localhost:8080/api/v1/admin/order', { headers })
                 .then((response) => {
                     console.log(response.data);
                     me.listOrders = response.data;

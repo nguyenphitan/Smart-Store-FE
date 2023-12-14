@@ -85,6 +85,7 @@ export default {
                 .then((response) => {
                     console.log("Add product to cart success!");
                     console.log(response.data);
+                    // window.location.reload();
                 })
                 .catch((reject) => {
                     console.log(reject);

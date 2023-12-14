@@ -67,6 +67,7 @@ export default {
         // Delete order:
         deleteOrder(e, orderId) {
             e.preventDefault();
+            let me = this;
             
             if(confirm("Are you sure delete order?")) {
                 // token
@@ -83,7 +84,7 @@ export default {
                         console.log(response);
                         console.log('Delete order success!');
                         // window.location.reload();
-                        this.$emit("reloadPage", e);
+                        me.$emit("reloadPage", e);
                     })
                     .catch((reject) => {
                         console.log(reject);
@@ -95,6 +96,8 @@ export default {
         // Delivered order
         deliveredOrder(e, orderId) {
             e.preventDefault();
+
+            let me = this;
             
             // token
             const token = localStorage.getItem('token');
@@ -110,7 +113,7 @@ export default {
                     console.log(response);
                     console.log('Delivered order status success!');
                     // window.location.reload();
-                    this.$emit("reloadPage", e);
+                    me.$emit("reloadPage", e);
                 })
                 .catch((reject) => {
                     console.log(reject);
@@ -121,6 +124,7 @@ export default {
         // Cancel order (USER)
         cancelOrder(e, orderId) {
             e.preventDefault();
+            let me = this;
             
             if(confirm("Are you sure cancel order?")) {
                 // token
@@ -138,7 +142,7 @@ export default {
                         console.log('Cancel order status success!');
                         alert("Order Cancelled!")
                         // window.location.reload();
-                        this.$emit("reloadPage", e);
+                        me.$emit("reloadPage", e);
                     })
                     .catch((reject) => {
                         console.log(reject);

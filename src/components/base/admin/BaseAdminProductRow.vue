@@ -236,6 +236,7 @@ export default {
 
         // Save update product:
         saveUpdate(e, id) {
+            let me = this;
             console.log(e.target);
             let classNameQuery = '.edit-product-' + id;
             let selectcategoryQuery = '.product-category-' + id;
@@ -261,7 +262,10 @@ export default {
                 .then((response) => {
                     console.log(response);
                     alert("Update success!");
-                    window.location.reload();
+                    // window.location.reload();
+                    me.disAbleAllInput();
+                    me.hideAllCategory();
+                    me.$emit("reloadPage", e);
                 })
                 .catch((reject) => {
                     console.log(reject);
@@ -270,6 +274,7 @@ export default {
 
         // Delete product:
         deleteEvent(e, id) {
+            let me = this;
             console.log(e);
             if(confirm("Are you sure?")) {
                 axios
@@ -277,7 +282,10 @@ export default {
                     .then((response) => {
                         console.log(response);
                         alert("Delete success!")
-                        window.location.reload();
+                        // window.location.reload();
+                        me.disAbleAllInput();
+                        me.hideAllCategory();
+                        me.$emit("reloadPage", e);
                     })
                     .catch((reject) => {
                         console.log(reject);
