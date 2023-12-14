@@ -6,22 +6,27 @@
             <div class="admin-nav">
                 <!-- Category -->
                 <div @click="getAllCategory" class="manager-category">
-                    <h5>Categories</h5>
+                    <h5><i class="fa-solid fa-list" style="margin-right: 8px;"></i> Categories</h5>
                 </div>
                 <!-- End category -->
 
                 <!-- Product -->
                 <div @click="getAllProduct" class="manager-product">
-                    <h5>Products</h5>
+                    <h5><i class="fa-brands fa-product-hunt" style="margin-right: 8px;"></i> Products</h5>
                 </div>
                 <!-- End product -->
 
-                <!-- Product -->
+                <!-- Order -->
                 <div @click="getAllOrder" class="manager-order">
-                    <h5>Orders</h5>
+                    <h5><i class="fa-solid fa-cart-arrow-down" style="margin-right: 8px;"></i> Orders</h5>
                 </div>
-                <!-- End product -->
+                <!-- End order -->
 
+                <!-- Statistics -->
+                <router-link to="/admin/statistics" class="manager-statistics">
+                    <h5><i class="fa-solid fa-chart-simple" style="margin-right: 8px;"></i> Statistics</h5>
+                </router-link>
+                <!-- End Statistics -->
 
 
                 <!-- Discount -->
@@ -34,8 +39,8 @@
             <div class="admin-context-view">
                 <the-add-category></the-add-category>
                 <base-list-category :listCategory="listCategory"></base-list-category>
-                <base-list-product-admin :listProduct="listProduct"></base-list-product-admin>
-                <base-list-order-manager :listOrders="listOrders"></base-list-order-manager>
+                <base-list-product-admin :listProduct="listProduct" @reloadPage="reloadProductPage"></base-list-product-admin>
+                <base-list-order-manager :listOrders="listOrders" @reloadPage="reloadOrderPage"></base-list-order-manager>
             </div>
             <!-- End view right -->
         </div>
@@ -95,6 +100,19 @@ export default {
     },
 
     methods: {
+        // reloadProductPage
+        reloadProductPage(e) {
+            console.log(e.target);
+            this.getAllProduct();
+        },
+        
+        // reloadOrderPage
+        reloadOrderPage(e) {
+            console.log(e.target);
+            this.getAllOrder();
+        },
+
+
         // Open category manager
         openCategoryManager() {
             document.getElementById("base-list-category").style.display = 'block';
@@ -175,7 +193,7 @@ export default {
             };
             // Call API
             axios
-                .get('http://localhost:8080/api/v1/order', { headers })
+                .get('http://localhost:8080/api/v1/admin/order', { headers })
                 .then((response) => {
                     console.log(response.data);
                     me.listOrders = response.data;

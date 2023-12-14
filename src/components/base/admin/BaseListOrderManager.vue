@@ -18,6 +18,7 @@
                 :status="getStatus(order.status)"
                 :class="getClassWithStatus(order.status)"
                 :total="order.total"
+                @reloadPage="reloadPage"
             ></base-order-reivew>
         </div>
         <!-- End container -->
@@ -39,6 +40,10 @@ export default {
         }
     },
     methods: {
+        reloadPage(e) {
+            this.$emit("reloadPage", e);
+        },
+
         formatDate(dateTimeString) {
             let date = new Date(dateTimeString);
             let day = date.getDate();
@@ -46,6 +51,7 @@ export default {
             let year = date.getFullYear();
             return (day < 10 ? '0' : '') + day + '/' + (month < 10 ? '0' : '') + month + '/' + year;
         },
+
         getStatus(status) {
             if(status == 0) {
                 return 'processing';

@@ -209,6 +209,7 @@ export default {
     font-size: 25px;
     width: 80%;
     margin: 24px auto 12px;
+    padding-top: 116px;
 }
 
 /* Container */

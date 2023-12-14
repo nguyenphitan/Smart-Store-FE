@@ -10,9 +10,9 @@
                 <div class="order-content order-date">{{ orderDate }}</div>
                 <div style="text-align: right;" class="order-content order-total">{{ formatPrice(total) }} VND</div>
                 <div class="order-content order-icon-delete">
-                    <i v-if="this.userRole == 'ADMIN'" @click="deliveredOrder($event, id)" style="margin-right: 8px; cursor: pointer;" class="fa-regular fa-square-check"></i>
+                    <i v-if="this.userRole == 'ADMIN' && status == 'processing'" @click="deliveredOrder($event, id)" style="cursor: pointer;" class="fa-regular fa-square-check"></i>
                     <i v-if="this.userRole == 'USER' && status == 'processing'" @click="cancelOrder($event, id)" class="t-pointer fa-solid fa-ban"></i>
-                    <i v-if="status == 'delivered' || status == 'cancelled'" @click="deleteOrder($event, id)" class="t-pointer fa-regular fa-trash-can"></i>
+                    <i v-if="status == 'cancelled'" @click="deleteOrder($event, id)" class="t-pointer fa-regular fa-trash-can"></i>
                 </div>
             </div>
         </router-link>
@@ -47,8 +47,9 @@ export default {
             default: 199000
         }
     },
-    beforeCreate() {
+    created() {
         this.userRole = localStorage.getItem('role');
+        console.log(this.userRole);
     },
     data() {
         return {
@@ -66,6 +67,7 @@ export default {
         // Delete order:
         deleteOrder(e, orderId) {
             e.preventDefault();
+            let me = this;
             
             if(confirm("Are you sure delete order?")) {
                 // token
@@ -81,7 +83,8 @@ export default {
                     .then((response) => {
                         console.log(response);
                         console.log('Delete order success!');
-                        window.location.reload();
+                        // window.location.reload();
+                        me.$emit("reloadPage", e);
                     })
                     .catch((reject) => {
                         console.log(reject);
@@ -93,6 +96,8 @@ export default {
         // Delivered order
         deliveredOrder(e, orderId) {
             e.preventDefault();
+
+            let me = this;
             
             // token
             const token = localStorage.getItem('token');
@@ -107,7 +112,8 @@ export default {
                 .then((response) => {
                     console.log(response);
                     console.log('Delivered order status success!');
-                    window.location.reload();
+                    // window.location.reload();
+                    me.$emit("reloadPage", e);
                 })
                 .catch((reject) => {
                     console.log(reject);
@@ -118,6 +124,7 @@ export default {
         // Cancel order (USER)
         cancelOrder(e, orderId) {
             e.preventDefault();
+            let me = this;
             
             if(confirm("Are you sure cancel order?")) {
                 // token
@@ -134,7 +141,8 @@ export default {
                         console.log(response);
                         console.log('Cancel order status success!');
                         alert("Order Cancelled!")
-                        window.location.reload();
+                        // window.location.reload();
+                        me.$emit("reloadPage", e);
                     })
                     .catch((reject) => {
                         console.log(reject);
