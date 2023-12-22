@@ -8,11 +8,16 @@
                     <router-link to="/">T.A.N</router-link>
                 </div>
                 <base-search></base-search>
-                <div class="d-flex">
+                <div class="d-flex" @mouseleave="hideLogout">
                     <div @click="openLoginForm" class="user-info">
                         <i v-if="userProfile.avatarUrl == null" class="fa-solid fa-user"></i>
-                        <img v-if="userProfile.avatarUrl != null" :src="require('@/assets/imgs/' + userProfile.avatarUrl)" alt="">
+                        <img 
+                            @click="showLogout($event)"
+                            v-if="userProfile.avatarUrl != null" 
+                            :src="require('@/assets/imgs/' + userProfile.avatarUrl)" 
+                            alt="avatar">
                     </div>
+                    <div @click="logoutAccount" class="t-logout">Logout</div>
                     <div class="cart-info">
                         <router-link to="/cart" >
                             <div class="cart-size">{{ cartSize }}</div>
@@ -124,6 +129,22 @@ export default {
         }
     },
     methods: {
+
+        // Show logout:
+        showLogout(e) {
+            e.preventDefault();
+            console.log(e.target);
+            if(this.userProfile.avatarUrl != null) {
+                document.querySelector('#the-header .t-logout').style.display = 'flex';
+            }
+        },
+
+        // Hide logout:
+        hideLogout() {
+            if(this.userProfile.avatarUrl != null) {
+                document.querySelector('#the-header .t-logout').style.display = 'none';
+            }
+        },
         
         // Show/Hide sub item when hover into title:
         showSubItem(e) {
@@ -146,8 +167,30 @@ export default {
 
         // Open login form
         openLoginForm() {
-            document.getElementById('the-login').style.display = 'block';
+            if(this.userProfile.avatarUrl == null) {
+                document.getElementById('the-login').style.display = 'block';
+            }
         },
+
+        // Handle logout:
+        logoutAccount() {
+            if(this.userProfile.avatarUrl != null) {
+                // clear storage:
+                localStorage.clear();
+                sessionStorage.clear();
+
+                // call api:
+                axios
+                    .get("http://localhost:8080/api/v1/auth/logout")
+                    .then((response) => {
+                        console.log(response.data);
+                        window.location.reload();
+                    })
+                    .catch((reject) => {
+                        console.log(reject);
+                    });
+            }
+        }
 
 
     },

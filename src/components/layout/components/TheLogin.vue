@@ -12,12 +12,11 @@
 
                 <!-- Begin body -->
                 <div id="login-body">
-                    <form>
+                    <form @submit="checkLogin">
                         <!-- Email -->
                         <div class="enter-email">
                             <label for="#">Enter your email <span style="color: rgb(233, 69, 96);">*</span></label>
                             <base-input
-                                @enterEvent="checkLogin"
                                 class="email-login"
                                 :required="true"
                                 :inputPlaceholder="emailPlaceholder"
@@ -30,7 +29,6 @@
                         <div class="enter-password">
                             <label for="#">Password <span style="color: rgb(233, 69, 96);">*</span></label>
                             <base-input 
-                                @enterEvent="checkLogin"
                                 class="password-login"
                                 :required="true"
                                 :iconClass="iconClass"
@@ -39,7 +37,7 @@
                         </div>
                         
                         <!-- Login button -->
-                        <base-button :buttonType="'submit'" @onClickEvent="checkLogin" class="btn-login" :buttonName="loginBtn"></base-button>
+                        <base-button :buttonType="'submit'" class="btn-login" :buttonName="loginBtn"></base-button>
                     </form>
                     <div class="login-on">on</div>
                     <base-button class="login-on-facebook" :buttonName="faceBookName" :iconClass="facebookIcon"></base-button>
@@ -143,7 +141,7 @@ export default {
                     localStorage.setItem('token', response.data.token); 
                     localStorage.setItem('role', response.data.role);
                     console.log(response.data.role);
-                    // window.location.reload();
+                    window.location.reload();
                 })
                 .catch((reject) => {
                     console.log(reject);
