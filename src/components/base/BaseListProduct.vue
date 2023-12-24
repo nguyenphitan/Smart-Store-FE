@@ -17,6 +17,16 @@
                 >
                 </base-card>
             </div>
+            <div style="display: flex; justify-content: right;">
+                <!-- Paging -->
+                <t-paginate
+                    :page-count="totalPage"
+                    :click-handler="goToPage"
+                    :prev-text="'Prev'"
+                    :next-text="'Next'"
+                    :container-class="'t-paging'">
+                </t-paginate>
+            </div>
         </div>
         <!-- End container -->
     </div>
@@ -35,6 +45,10 @@ export default {
         products: {
             type: Array,
             default: new Array()
+        },
+        totalPage: {
+            type: Number,
+            default: 0
         },
     },
     methods: {
@@ -71,6 +85,11 @@ export default {
                     console.log(reject);
                 });
 
+        },
+
+        // Go to page:
+        goToPage(page) {
+            this.$emit("goToPage", page);
         },
     },
 

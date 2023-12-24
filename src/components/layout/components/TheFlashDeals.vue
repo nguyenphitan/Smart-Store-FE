@@ -41,7 +41,9 @@
                     <h3 style="font-weight: bold;">Products</h3>
                     <!-- Begin render list product -->
                     <base-list-product
-                        :products="productDiscounts"
+                        :products="listProducts"
+                        :totalPage="productPageable.totalPages"
+                        @goToPage="goToPage"
                     ></base-list-product>
                     <!-- End render list product -->
                 </div>
@@ -69,11 +71,10 @@ export default {
 
         // Get all product discount
         axios
-            .get("http://localhost:8080/api/v1/products/discounts")
+            .get(`http://localhost:8080/api/v1/products?isDiscount=${1}`)
             .then((response) => {
-                console.log('Get all product discount success!');
-                console.log(response.data);
-                me.productDiscounts = response.data;
+                me.productPageable = response.data;
+                me.listProducts = response.data.content;
             })
             .catch((reject) => {
                 console.log(reject);
@@ -95,34 +96,64 @@ export default {
 
     },
     watch: {
-        productDiscounts: {
+        listProducts: {
             deep: true
         }
     },
     data() {
         return {
+            // product pageable
+            productPageable: {},
+
             // List of product discounts
-            productDiscounts: [],
+            listProducts: [],
 
             // List of category
             listCategory: [],
         }
     },
     methods: {
+        // active category filter:
+        activeCategoryFilter(e, categoryId) {
+            this.clearCategoryOtherActive();
+            if(e.target.classList.contains("category-card-container")) {
+                e.target.classList.add("category-active");
+                e.target.setAttribute("t-categoryId", categoryId);
+            } else if(e.target.parentElement.classList.contains("category-card-container")) {
+                e.target.parentElement.classList.add("category-active");
+                e.target.parentElement.setAttribute("t-categoryId", categoryId);
+            } else if(e.target.parentElement.parentElement.classList.contains("category-card-container")) {
+                e.target.parentElement.parentElement.classList.add("category-active");
+                e.target.parentElement.parentElement.setAttribute("t-categoryId", categoryId);
+            }
+        },
+
+        // Clear category other active:
+        clearCategoryOtherActive() {
+            let categories = document.querySelectorAll("#the-flash-deals .category-active");
+            for(let category of categories) {
+                category.classList.remove("category-active");
+                category.removeAttribute("t-categoryId");
+            }
+        },
+
         // Filter by category:
         filterByCategory(e, categoryId) {
             console.log(e.target);
+            this.activeCategoryFilter(e, categoryId);
+
+            // clear input search:
+            document.querySelector("#show-products #search-product").value = '';
+
             let me = this;
 
             // All category:
             if(categoryId == 0) {
-                // Get all product
                 axios
-                    .get("http://localhost:8080/api/v1/products/discounts")
+                    .get(`http://localhost:8080/api/v1/products?isDiscount=${1}`)
                     .then((response) => {
-                        console.log('Get all product discount success!');
-                        console.log(response.data);
-                        me.productDiscounts = response.data;
+                        me.productPageable = response.data;
+                        me.listProducts = response.data.content;
                     })
                     .catch((reject) => {
                         console.log(reject);
@@ -130,20 +161,11 @@ export default {
 
             }
             else {
-                // token
-                const token = localStorage.getItem('token');
-    
-                // header
-                const headers = {
-                    Authorization: `Bearer ${token}`,
-                };
-    
                 axios
-                    .get(`http://localhost:8080/api/v1/products/category/discounts/${categoryId}`, {headers})
+                    .get(`http://localhost:8080/api/v1/products?isDiscount=${1}&categoryId=${categoryId}`)
                     .then((response) => {
-                        console.log('Filter by category success!');
-                        console.log(response.data);
-                        me.productDiscounts = response.data;
+                        me.productPageable = response.data;
+                        me.listProducts = response.data.content;
                     })
                     .catch((reject) => {
                         console.log(reject);
@@ -157,36 +179,127 @@ export default {
             let me = this;
             console.log(e.target);
 
+            let categoryFilter = document.querySelector("#the-flash-deals .category-active");
             let searchText = e.target.value;
             console.log(searchText);
             if(searchText == '') {
-                // Get all product
-                axios
-                    .get("http://localhost:8080/api/v1/products/discounts")
+                if(categoryFilter != null && categoryFilter.getAttribute("t-categoryId") != 0) {
+                    let categoryId = categoryFilter.getAttribute("t-categoryId");
+
+                    axios
+                        .get(`http://localhost:8080/api/v1/products?isDiscount=${1}&categoryId=${categoryId}`)
+                        .then((response) => {
+                            me.productPageable = response.data;
+                            me.listProducts = response.data.content;
+                        })
+                        .catch((reject) => {
+                            console.log(reject);
+                        });
+                        
+                } else {
+                    // Get all product
+                    axios
+                        .get(`http://localhost:8080/api/v1/products?isDiscount=${1}`)
+                        .then((response) => {
+                            me.productPageable = response.data;
+                            me.listProducts = response.data.content;
+                        })
+                        .catch((reject) => {
+                            console.log(reject);
+                        });
+                }
+
+            }
+            else {
+                // Search product (like)
+                if(categoryFilter != null && categoryFilter.getAttribute("t-categoryId") != 0) {
+                    let categoryId = categoryFilter.getAttribute("t-categoryId");
+
+                    axios
+                        .get(`http://localhost:8080/api/v1/products?isDiscount=${1}&categoryId=${categoryId}&search=${searchText}`)
+                        .then((response) => {
+                            me.productPageable = response.data;
+                            me.listProducts = response.data.content;
+                        })
+                        .catch((reject) => {
+                            console.log(reject);
+                        });
+                        
+                } else {
+                    axios
+                        .get(`http://localhost:8080/api/v1/products?isDiscount=${1}&search=${searchText}`)
+                        .then((response) => {
+                            me.productPageable = response.data;
+                            me.listProducts = response.data.content;
+                        })
+                        .catch((reject) => {
+                            console.log(reject);
+                        });
+                }
+            }
+
+        },
+
+        // Go to page:
+        goToPage(page) {
+            console.log(page);
+            let me = this;
+
+            let categoryFilter = document.querySelector("#the-flash-deals .category-active");
+            let searchText = document.querySelector("#show-products #search-product").value;
+            
+            if(searchText != '') {
+                if(categoryFilter != null && categoryFilter.getAttribute("t-categoryId") != 0) {
+                    let categoryId = categoryFilter.getAttribute("t-categoryId");
+
+                    axios
+                        .get(`http://localhost:8080/api/v1/products?isDiscount=${1}&categoryId=${categoryId}&search=${searchText}&page=${page-1}`)
+                        .then((response) => {
+                            me.productPageable = response.data;
+                            me.listProducts = response.data.content;
+                        })
+                        .catch((reject) => {
+                            console.log(reject);
+                        });
+
+                } else {
+                    axios
+                    .get(`http://localhost:8080/api/v1/products?isDiscount=${1}&search=${searchText}&page=${page-1}`)
                     .then((response) => {
-                        console.log('Get all product discount success!');
-                        console.log(response.data);
-                        me.productDiscounts = response.data;
+                        me.productPageable = response.data;
+                        me.listProducts = response.data.content;
                     })
                     .catch((reject) => {
                         console.log(reject);
                     });
-            }
-            else {
-                // Search product (like)
+                }
+                    
+            } else if(categoryFilter != null && categoryFilter.getAttribute("t-categoryId") != 0) {
+                let categoryId = categoryFilter.getAttribute("t-categoryId");
+
                 axios
-                    .get(`http://localhost:8080/api/v1/products/discounts/search?name=${searchText}`)
+                    .get(`http://localhost:8080/api/v1/products?isDiscount=${1}&categoryId=${categoryId}&page=${page-1}`)
                     .then((response) => {
-                        console.log('Search product success!');
-                        console.log(response.data);
-                        me.productDiscounts = response.data;
+                        me.productPageable = response.data;
+                        me.listProducts = response.data.content;
+                    })
+                    .catch((reject) => {
+                        console.log(reject);
+                    });
+
+            } else {
+                axios
+                    .get(`http://localhost:8080/api/v1/products?isDiscount=${1}&page=${page-1}`)
+                    .then((response) => {
+                        me.productPageable = response.data;
+                        me.listProducts = response.data.content;
                     })
                     .catch((reject) => {
                         console.log(reject);
                     });
             }
 
-        }
+        },
     },
 }
 </script>

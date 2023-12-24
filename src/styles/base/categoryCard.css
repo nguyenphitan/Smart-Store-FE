@@ -12,10 +12,14 @@
     cursor: pointer;
 }
 
-#base-category-card #category-card-container:hover {
-    background-color: #ffe1e6;
+#base-category-card .category-active {
     color: rgb(233, 69, 96);
 }
+
+/* #base-category-card #category-card-container:hover {
+    background-color: #ffe1e6;
+    color: rgb(233, 69, 96);
+} */
 
 #base-category-card .category-summary {
     display: flex;
@@ -25,3 +29,8 @@
 #base-category-card .category-card-name {
     margin-left: 16px;
 }
+
+.category-summary * {
+    pointer-events: none;
+}
+

@@ -7,3 +7,32 @@
     flex: 1 1 1px;
     margin: 1.2% !important;
 }
+
+.t-paging {
+    display: flex;
+    list-style-type: none;
+    margin-top: 20px;
+}
+
+.t-paging li {
+    margin: 0 4px;
+}
+
+
+.t-paging li a {
+    padding: 4px 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.t-paging li.active a {
+    background-color: rgb(233, 69, 96);
+    color: #fff;
+}
+
+.t-paging li a:hover {
+    background-color: #e7e7e7;
+    border-color: #eeeeee;
+}

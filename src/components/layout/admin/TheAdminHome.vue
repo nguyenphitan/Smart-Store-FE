@@ -168,10 +168,10 @@ export default {
             let me = this;
 
             axios
-                .get("http://localhost:8080/api/v1/products")
+                .get(`http://localhost:8080/api/v1/products?size=${1000}`)
                 .then((response) => {
                     console.log('Get all product success!');
-                    me.listProduct = response.data;
+                    me.listProduct = response.data.content;
 
                     // open product list:
                     me.openProductManager();
