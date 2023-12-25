@@ -103,6 +103,9 @@ export default {
         // reloadProductPage
         reloadProductPage(e) {
             console.log(e.target);
+            // clear input search and select box
+            document.querySelector('#base-list-product-admin .search-text').value = '';
+            document.querySelector('#base-list-product-admin #admin-filter').selectedIndex = 0;
             this.getAllProduct();
         },
         

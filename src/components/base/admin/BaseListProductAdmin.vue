@@ -5,11 +5,15 @@
             <div class="function-area">
                 <div class="t-flex" style="margin-left: 16px; margin-top: 16px;">
                     <div class="admin-search-product">
-                        <input type="text" name="searchText" class="search-text">
+                        <input @change="searchProductByName" type="text" name="searchText" class="search-text">
                     </div>
 
                     <div class="admin-filter-product">
-                        <select name="admin-filter" id="admin-filter">
+                        <select 
+                            @change="filterByCategory" 
+                            name="admin-filter" 
+                            id="admin-filter">
+                            <option value="0">All</option>
                             <option 
                                 v-for="(category, index) in categories" 
                                 :key="index" 
@@ -58,6 +62,11 @@ export default {
             default: new Array()
         },
     },
+    watch: {
+        listProduct: {
+            deep: true
+        }
+    },
     data() {
         return {
             // list of category:
@@ -84,7 +93,97 @@ export default {
     methods: {
         reloadPage(e) {
             this.$emit("reloadPage", e);
-        }
+        },
+
+        // Filter by category:
+        filterByCategory(e) {
+            console.log(e.target);
+            let categoryId = e.target.value;
+
+            // clear input search:
+            document.querySelector("#base-list-product-admin .search-text").value = '';
+
+            let me = this;
+
+            // All category:
+            if(categoryId == 0) {
+                axios
+                    .get(`http://localhost:8080/api/v1/products?size=${1000}`)
+                    .then((response) => {
+                        me.listProduct = response.data.content;
+                    })
+                    .catch((reject) => {
+                        console.log(reject);
+                    });
+
+            }
+            else {
+                axios
+                    .get(`http://localhost:8080/api/v1/products?size=${1000}&categoryId=${categoryId}`)
+                    .then((response) => {
+                        me.listProduct = response.data.content;
+                    })
+                    .catch((reject) => {
+                        console.log(reject);
+                    });
+            }
+
+        },
+
+        // Search product:
+        searchProductByName(e) {
+            let me = this;
+            console.log(e.target);
+
+            let categoryId = document.querySelector("#base-list-product-admin #admin-filter").value;
+            let searchText = e.target.value;
+            console.log(searchText);
+            if(searchText == '') {
+                if(categoryId != null && categoryId != 0) {
+                    axios
+                        .get(`http://localhost:8080/api/v1/products?size=${1000}&categoryId=${categoryId}`)
+                        .then((response) => {
+                            me.listProduct = response.data.content;
+                        })
+                        .catch((reject) => {
+                            console.log(reject);
+                        });
+                } else {
+                    // Get all product
+                    axios
+                        .get(`http://localhost:8080/api/v1/products?size=${1000}`)
+                        .then((response) => {
+                            me.listProduct = response.data.content;
+                        })
+                        .catch((reject) => {
+                            console.log(reject);
+                        });
+                }
+            }
+            else {
+                if(categoryId != null && categoryId != 0) {
+                    axios
+                        .get(`http://localhost:8080/api/v1/products?size=${1000}&search=${searchText}&categoryId=${categoryId}`)
+                        .then((response) => {
+                            me.listProduct = response.data.content;
+                        })
+                        .catch((reject) => {
+                            console.log(reject);
+                        });
+                } else {
+                    axios
+                        .get(`http://localhost:8080/api/v1/products?size=${1000}&search=${searchText}`)
+                        .then((response) => {
+                            me.listProduct = response.data.content;
+                        })
+                        .catch((reject) => {
+                            console.log(reject);
+                        });
+                }
+            }
+
+        },
+
     },
 }
 </script>
