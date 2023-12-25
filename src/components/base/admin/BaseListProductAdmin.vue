@@ -2,9 +2,28 @@
     <div id="base-list-product-admin" style="height: 600px; overflow: scroll;">
         <!-- Container -->
         <div id="product-admin-container">
-            <div class="btn-add-new-product">
-                <router-link to="/add-new-product" class="add-new-page" >Add New</router-link>
+            <div class="function-area">
+                <div class="t-flex" style="margin-left: 16px; margin-top: 16px;">
+                    <div class="admin-search-product">
+                        <input type="text" name="searchText" class="search-text">
+                    </div>
+
+                    <div class="admin-filter-product">
+                        <select name="admin-filter" id="admin-filter">
+                            <option 
+                                v-for="(category, index) in categories" 
+                                :key="index" 
+                                :value="category.id"
+                            >{{ category.name }}</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="btn-add-new-product">
+                    <router-link to="/add-new-product" class="add-new-page" >Add New</router-link>
+                </div>
             </div>
+            
             <base-admin-product-row
                 v-for="(product, index) in listProduct"
                 :key="index"
@@ -25,6 +44,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import BaseAdminProductRow from './BaseAdminProductRow.vue';
 
 export default {
@@ -38,6 +58,29 @@ export default {
             default: new Array()
         },
     },
+    data() {
+        return {
+            // list of category:
+            categories: [],
+        }
+    },
+    beforeCreate() {
+        // Get all category
+        let me = this;
+
+        // Get all category
+        axios
+            .get("http://localhost:8080/api/v1/category")
+            .then((response) => {
+                console.log('Get all category success!');
+                me.categories = response.data;
+            })
+            .catch((reject) => {
+                console.log(reject);
+            });
+        // End get all category
+
+    },
     methods: {
         reloadPage(e) {
             this.$emit("reloadPage", e);
@@ -47,9 +90,47 @@ export default {
 </script>
 
 <style scoped>
-.btn-add-new-product {
+
+#product-admin-container {
+    position: relative;
+}
+
+.function-area {
+    position: sticky;
+    top: 0;
+    right: 0;
+    left: 0;
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
+    background: rgb(246, 249, 252);
+    padding-bottom: 16px;
+}
+
+.admin-search-product {
+}
+
+.admin-search-product input {
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    padding: 4px 12px;
+    width: 250px;
+}
+
+.admin-filter-product {
+    margin-left: 16px;
+}
+
+.admin-filter-product select {
+    height: 36px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0 12px;
+}
+
+.btn-add-new-product {
+    margin-left: 16px;
 }
 
 .btn-add-new-product .add-new-page {
@@ -59,5 +140,6 @@ export default {
     border-radius: 8px;
     margin-right: 16px;
     margin-top: 16px;
+    display: block;
 }
 </style>
