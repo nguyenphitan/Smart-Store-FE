@@ -92,7 +92,7 @@
 
             <!-- Begin contact -->
             <div class="area-4" style="width: 25%; padding: 12px;">
-                <div style="font-size: 25px; font-weight: 600; margin-bottom: 20px;">Customer Care</div>
+                <div style="font-size: 25px; font-weight: 600; margin-bottom: 20px;">Contact Us</div>
                 <div class="t-color-gray" style="padding: 4.8px 0;">19/215 Trieu Khuc, Thanh Tri, Ha Noi</div>
                 <div class="t-color-gray" style="padding: 4.8px 0;">Email: phitan2001@gmail.com</div>
                 <div class="t-color-gray" style="padding: 4.8px 0; margin-bottom: 16px;">Phone: +84 34 236 6513</div>

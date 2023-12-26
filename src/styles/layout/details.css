@@ -100,3 +100,14 @@
 #the-detail .add-to-cart #button-container button {
     font-weight: 600;
 }
+
+
+/* active btn add */
+#the-detail .btn-not-active {
+    pointer-events: none;
+}
+
+#the-detail .btn-not-active button {
+    background-color: #a09d9d;
+    color: #fff;
+}

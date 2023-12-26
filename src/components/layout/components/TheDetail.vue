@@ -43,7 +43,10 @@
                 </div>
                 <div class="product-price">{{ formatPrice(productDetail.price) }}đ</div>
                 <!-- if product.quantity > 0 show: Stock Available else show: Non-Stock -->
-                <div class="product-inventory">Stock Available</div>
+                <div class="product-inventory">
+                    <span v-if="productDetail.quantity > 0">Stock Available: {{ productDetail.quantity }}</span>
+                    <span v-if="productDetail.quantity <= 0">Non-Stock Available</span>
+                </div>
 
                 <!-- Begin select quantity -->
                 <div class="quantity-selector d-flex flex-row">
@@ -62,7 +65,12 @@
                 </div>
                 <!-- End select quantity -->
 
-                <base-button @onClickEvent="addManyProductToCart" class="add-to-cart" :buttonName="'Add to Cart'"></base-button>
+                <base-button 
+                    @onClickEvent="addManyProductToCart" 
+                    class="add-to-cart" 
+                    :class="productDetail.quantity <= 0 ? 'btn-not-active' : ''"
+                    :buttonName="'Add to Cart'">
+                </base-button>
             </div>
         </div>
     </div>
@@ -113,6 +121,11 @@ export default {
 
             if(token == null) {
                 document.getElementById('the-login').style.display = 'block';
+                return;
+            }
+
+            if(quantity > this.productDetail.quantity) {
+                alert("Product quantity is not enough!");
                 return;
             }
 

@@ -100,6 +100,7 @@ export default {
             // console.log(e.target.id);
             if(e.target.id == 'the-login') {
                 e.target.style.display = 'none';
+                this.clearFormData();
             }
         },
 
