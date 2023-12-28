@@ -12,7 +12,7 @@
                 <div class="order-content order-icon-delete">
                     <i v-if="this.userRole == 'ADMIN' && status == 'processing'" @click="deliveredOrder($event, id)" style="cursor: pointer;" class="fa-regular fa-square-check"></i>
                     <i v-if="this.userRole == 'USER' && status == 'processing'" @click="cancelOrder($event, id)" class="t-pointer fa-solid fa-ban"></i>
-                    <i v-if="status == 'cancelled'" @click="deleteOrder($event, id)" class="t-pointer fa-regular fa-trash-can"></i>
+                    <!-- <i v-if="status == 'cancelled'" @click="deleteOrder($event, id)" class="t-pointer fa-regular fa-trash-can"></i> -->
                 </div>
             </div>
         </router-link>

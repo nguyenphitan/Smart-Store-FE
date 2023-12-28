@@ -56,7 +56,7 @@
                     </button>
 
                     <input id="form1" min="1" name="quantity" value="1" type="number"
-                      class="form-control form-control-sm" style="width: 50px;" />
+                      class="form-control form-control-sm" style="width: 70px" />
 
                     <button class="btn btn-link px-2"
                       onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
@@ -126,6 +126,11 @@ export default {
 
             if(quantity > this.productDetail.quantity) {
                 alert("Product quantity is not enough!");
+                return;
+            }
+
+            if(quantity == null || quantity == '') {
+                alert("Please, select quantity!");
                 return;
             }
 

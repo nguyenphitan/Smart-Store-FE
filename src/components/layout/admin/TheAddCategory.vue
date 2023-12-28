@@ -5,7 +5,7 @@
             style="flex-direction: column; height: 250px; width: 42%; max-width: 500px; background-color: #fff;
             border-radius: 8px;"
         >
-            <form>
+            <div>
                 <div class="add-category-title">New Category</div>
                 <div class="t-flex t-align-center t-justify-center" style="margin-bottom: 24px; margin-top: 32px;">
                     <input id="categoryName"
@@ -16,7 +16,7 @@
                     />
                     <button
                         type="submit"
-                        @click="addNewCategory" 
+                        @click="addNewCategory"
                         class="btn-add-category t-pointer" style="margin-left: 8px; border-radius: 8px; 
                         border: 1px solid #ccc; width: 80px; height: 40px;
                         line-height: 40px; text-align: center;"
@@ -28,7 +28,7 @@
                     <input type="file" name="categoryImg" id="categoryImg" required>
                 </div>
                 <i @click="closePopupAddCategory" class="exit-add-category fa-solid fa-xmark"></i>
-            </form>
+            </div>
         </div>
         <!-- End container -->
     </div>
@@ -65,7 +65,8 @@ export default {
                     window.location.reload();
                 })
                 .catch((reject) => {
-                    console.log(reject);
+                    console.log(reject.response.data);
+                    alert(reject.response.data);
                 });
         },
         // End add new category

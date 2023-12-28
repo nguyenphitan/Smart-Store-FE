@@ -61,7 +61,7 @@
                         </div>
 
                         <!-- Confirm Password -->
-                        <div class="enter-password-confirm">
+                        <!-- <div class="enter-password-confirm">
                             <label for="#">Confirm Password <span style="color: rgb(233, 69, 96);">*</span></label>
                             <base-input 
                                 class="password-confirm"
@@ -69,7 +69,7 @@
                                 :inputType="passwordType"
                                 :required="true"
                             ></base-input>
-                        </div>
+                        </div> -->
                         
                         <!-- register button -->
                         <base-button :buttonType="'submit'" @onClickEvent="registerNewAccount" class="btn-register" :buttonName="registerBtn"></base-button>
@@ -170,7 +170,7 @@ export default {
                 })
                 .catch((reject) => {
                     console.log(reject);
-                    alert("Register fail!");
+                    alert("Register fail! Email valid.");
                 });
         },
 
