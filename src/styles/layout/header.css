@@ -18,6 +18,28 @@
     display: block !important;
 }
 
+.t-logout {
+    /* height: 40px; */
+    display: flex;
+    justify-content: center;
+    padding: 8px 30px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    align-items: center;
+    background-color: #fff;
+    color: #000;
+    position: absolute;
+    display: none;
+    bottom: 16px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.t-logout:hover {
+    background-color: rgb(233, 69, 96);
+    color: #fff;
+}
+
 /* Top header */
 #top-header {
     display: flex;

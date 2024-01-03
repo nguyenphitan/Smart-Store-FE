@@ -13,12 +13,12 @@
 
                 <div style="line-height: 12px;">
                     <span style="font-weight: 600;">Price:</span>
-                    <input :class="'edit-product-' + id" class="input-field input-price" readonly type="text" :value="price">
+                    <input :class="'edit-product-' + id" class="input-field input-price" readonly type="number" min="1" :value="price">
                 </div>
 
                 <div style="line-height: 12px;">
                     <span style="font-weight: 600;">Inventory:</span>
-                    <input :class="'edit-product-' + id" class="input-field input-inventory" readonly type="text" :value="quantity">
+                    <input :class="'edit-product-' + id" class="input-field input-inventory" readonly type="number" min="0" :value="quantity">
                 </div>
 
                 <div style="line-height: 12px;">
@@ -40,7 +40,7 @@
 
                 <div style="line-height: 12px;">
                     <span style="font-weight: 600;">Discount:</span>
-                    <input :class="'edit-product-' + id" class="input-field input-discount" readonly type="text" :value="discount + '%'">
+                    <input :class="'edit-product-' + id" class="input-field input-discount" readonly type="text" min="0" :value="discount + '%'">
                 </div>
 
             </div>
@@ -234,6 +234,11 @@ export default {
             this.showCategory(id);
         },
 
+        // Validate only number:
+        isNumeric(value) {
+            return /^\d+$/.test(value);
+        },
+
         // Save update product:
         saveUpdate(e, id) {
             let me = this;
@@ -244,6 +249,13 @@ export default {
             let inputs = document.querySelectorAll(classNameQuery);
             let categoryIdUpdate = document.querySelector(selectcategoryQuery).value;
             console.log("category id: " + categoryIdUpdate);
+
+            // Validate:
+            if(inputs[1].value == '' || inputs[2].value == '' 
+                || inputs[4].value == '' || !this.isNumeric(inputs[4].value.split("%")[0])) {
+                alert("Wrong format number!");
+                return;
+            }
 
             // request
             let productDTO = {
@@ -263,6 +275,18 @@ export default {
                     console.log(response);
                     alert("Update success!");
                     // window.location.reload();
+                    // Hide save and cancel of another
+                    let saveAndCancels = document.querySelectorAll('.t-save-cancel');
+                    for(let icon of saveAndCancels) {
+                        icon.style.display = 'none';
+                    }
+
+                    // Show edit and delete of another
+                    let editAndDeletes = document.querySelectorAll('.t-edit-delete');
+                    for(let icon of editAndDeletes) {
+                        icon.style.display = 'block';
+                    }
+                    
                     me.disAbleAllInput();
                     me.hideAllCategory();
                     me.$emit("reloadPage", e);

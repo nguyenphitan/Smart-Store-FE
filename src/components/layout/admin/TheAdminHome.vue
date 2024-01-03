@@ -103,6 +103,9 @@ export default {
         // reloadProductPage
         reloadProductPage(e) {
             console.log(e.target);
+            // clear input search and select box
+            document.querySelector('#base-list-product-admin .search-text').value = '';
+            document.querySelector('#base-list-product-admin #admin-filter').selectedIndex = 0;
             this.getAllProduct();
         },
         
@@ -168,10 +171,10 @@ export default {
             let me = this;
 
             axios
-                .get("http://localhost:8080/api/v1/products")
+                .get(`http://localhost:8080/api/v1/products?size=${1000}`)
                 .then((response) => {
                     console.log('Get all product success!');
-                    me.listProduct = response.data;
+                    me.listProduct = response.data.content;
 
                     // open product list:
                     me.openProductManager();

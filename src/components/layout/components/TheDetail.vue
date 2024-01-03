@@ -43,7 +43,10 @@
                 </div>
                 <div class="product-price">{{ formatPrice(productDetail.price) }}đ</div>
                 <!-- if product.quantity > 0 show: Stock Available else show: Non-Stock -->
-                <div class="product-inventory">Stock Available</div>
+                <div class="product-inventory">
+                    <span v-if="productDetail.quantity > 0">Stock Available: {{ productDetail.quantity }}</span>
+                    <span v-if="productDetail.quantity <= 0">Non-Stock Available</span>
+                </div>
 
                 <!-- Begin select quantity -->
                 <div class="quantity-selector d-flex flex-row">
@@ -53,7 +56,7 @@
                     </button>
 
                     <input id="form1" min="1" name="quantity" value="1" type="number"
-                      class="form-control form-control-sm" style="width: 50px;" />
+                      class="form-control form-control-sm" style="width: 70px" />
 
                     <button class="btn btn-link px-2"
                       onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
@@ -62,7 +65,12 @@
                 </div>
                 <!-- End select quantity -->
 
-                <base-button @onClickEvent="addManyProductToCart" class="add-to-cart" :buttonName="'Add to Cart'"></base-button>
+                <base-button 
+                    @onClickEvent="addManyProductToCart" 
+                    class="add-to-cart" 
+                    :class="productDetail.quantity <= 0 ? 'btn-not-active' : ''"
+                    :buttonName="'Add to Cart'">
+                </base-button>
             </div>
         </div>
     </div>
@@ -81,11 +89,13 @@ export default {
     },
     beforeCreate() {
         // console.log('The id is: ' + this.$route.params.id);
+        let me = this;
+
         axios
-            .get(`http://localhost:8080/api/v1/products/${this.$route.params.id}`)
+            .get(`http://localhost:8080/api/v1/products/${me.$route.params.id}`)
             .then((response) => {
                 console.log("Get detail success!");
-                this.productDetail = response.data;
+                me.productDetail = response.data;
             })
             .catch((reject) => {
                 console.log(reject);
@@ -113,6 +123,16 @@ export default {
 
             if(token == null) {
                 document.getElementById('the-login').style.display = 'block';
+                return;
+            }
+
+            if(quantity > this.productDetail.quantity) {
+                alert("Product quantity is not enough!");
+                return;
+            }
+
+            if(quantity == null || quantity == '') {
+                alert("Please, select quantity!");
                 return;
             }
 

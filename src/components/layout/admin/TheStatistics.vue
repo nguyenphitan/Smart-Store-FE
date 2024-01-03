@@ -214,7 +214,7 @@ export default {
 
 /* Container */
 #statistics-container {
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -222,8 +222,9 @@ export default {
 
 /* List month */
 #list-month {
+    margin-top: 28px;
     width: 220px;
-    padding: 12px;
+    padding: 8px 12px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 26px;
     border-radius: 8px;
     height: fit-content;
@@ -231,7 +232,7 @@ export default {
 
 .t-month-common {
     width: 100%;
-    height: 40px;
+    height: 32px;
     margin: 8px 0;
     background-color: rgb(255, 225, 230);
     color: rgb(233, 69, 96);

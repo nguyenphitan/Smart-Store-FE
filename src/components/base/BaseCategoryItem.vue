@@ -7,7 +7,7 @@
             class="t-align-center t-pointer"
             style="background-color: #fff; box-shadow: rgba(3, 0, 71, 0.09) 0px 1px 3px; display: inline-flex; padding: 12px;
             border-radius: 8px; width: 180px; margin: 12px;">
-            <span><img :src="require('@/assets/imgs/' + imgSrc)" alt="category image" width="52px"></span>
+            <span><img :src="require('@/assets/imgs/' + imgSrc)" alt="category image" width="20px"></span>
             <div class="category-item-name" style="font-size: 14px; font-weight: 600; margin-left: 10px;">{{ name }}</div>
             <i @click="deleteCategory(id)" :class="'delete-category-' + id" class="delete-category fa-solid fa-xmark"></i>
         </div> 
