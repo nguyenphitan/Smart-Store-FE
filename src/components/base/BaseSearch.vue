@@ -6,7 +6,7 @@
             <input class="t-input-search" @keyup="searchProductByName" type="text" placeholder="Search and hit enter ...">
             <div class="category-search"> 
                 <span>All Categories </span> 
-                <i class="fa-solid fa-chevron-down"></i> 
+                <!-- <i class="fa-solid fa-chevron-down"></i>  -->
             </div>
             <base-list-header class="category-list" :data="data"></base-list-header>
             <div class="t-search-result">
