@@ -79,9 +79,10 @@ export default {
                 .then((response) => {
                     console.log("Add product to cart success!");
                     console.log(response.data);
-                    // window.location.reload();
+                    window.location.reload();
                 })
                 .catch((reject) => {
+                    alert("Add to cart fail!");
                     console.log(reject);
                 });
 
