@@ -21,7 +21,7 @@
             </div>
 
             <!-- Bottom -->
-            <form @submit="goToReview" class="cart-details-bottom">
+            <form @submit="paymentHandle" class="cart-details-bottom">
                 <!-- Left -->
                 <div class="shipping-address">
 
@@ -90,7 +90,7 @@
                         Voucher
                     </div>
 
-                    <button @click="paymentHandle" type="submit" class="btn-pay t-text-center t-color-red t-border-red">
+                    <button type="submit" class="btn-pay t-text-center t-color-red t-border-red">
                         Pay
                     </button>
                 </div>
@@ -174,6 +174,7 @@ export default {
         // Payment handle:
         paymentHandle() {
             console.log(this.productPaymentDTOs);
+            // let me = this;
 
             // Get info:
             let fullName = document.querySelector('input[name="fullName"]').value;
@@ -230,6 +231,7 @@ export default {
     
                     })
                     .catch((reject) => {
+                        alert("Pay fail!");
                         console.log(reject);
                     });
             }
@@ -237,9 +239,9 @@ export default {
         },
 
         // Go to review page:
-        goToReview() {
-            window.location.href = "#/orders-review";
-        }
+        // goToReview() {
+        //     window.location.href = "#/orders-review";
+        // }
 
     },
 
