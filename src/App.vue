@@ -3,7 +3,7 @@
     <the-header></the-header>
     <the-login :shopName="shopName"></the-login>
     <the-register :shopName="shopName"></the-register>
-    <router-view></router-view>
+    <router-view :key="$route.fullPath"></router-view>
     <the-footer></the-footer>
 
   </div>

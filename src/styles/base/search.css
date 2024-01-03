@@ -48,3 +48,28 @@
     width: 168px;
     display: none;
 }
+
+/* Search result */
+#search-container .t-search-result {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    z-index: 2;
+    box-shadow: rgba(3, 0, 71, 0.09) 0px 8px 45px;
+}
+
+#search-container .t-result-item {
+    width: 100%;
+    background-color: #fff;
+    height: 37px;
+    padding: 0.5rem 1rem;
+    display: block;
+}
+
+#search-container .t-result-item:hover {   
+    background-color: rgb(246, 249, 252);
+    color: rgb(233, 69, 96);
+    cursor: pointer;
+}

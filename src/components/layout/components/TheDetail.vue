@@ -89,11 +89,13 @@ export default {
     },
     beforeCreate() {
         // console.log('The id is: ' + this.$route.params.id);
+        let me = this;
+
         axios
-            .get(`http://localhost:8080/api/v1/products/${this.$route.params.id}`)
+            .get(`http://localhost:8080/api/v1/products/${me.$route.params.id}`)
             .then((response) => {
                 console.log("Get detail success!");
-                this.productDetail = response.data;
+                me.productDetail = response.data;
             })
             .catch((reject) => {
                 console.log(reject);
