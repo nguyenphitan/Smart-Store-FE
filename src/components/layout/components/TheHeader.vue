@@ -54,9 +54,9 @@
                             <router-link :to="{ name: 'flashDeals'}" class="t-title t-hover-red">Flash Deals</router-link>
                             <base-list-overlay @hideThis="hideThis" :data="pageList" class="sub-item sub-pages"></base-list-overlay>
                         </div>
-                        <div v-if="this.role != 'ADMIN'" class="track-order">
+                        <!-- <div v-if="this.role != 'ADMIN'" class="track-order">
                             <a href="#show-products" class="t-title t-hover-red">Products</a>
-                        </div>
+                        </div> -->
                         <div class="pages">
                             <router-link :to="{ name: 'profile'}" class="t-title t-hover-red">My Profile</router-link>
                             <base-list-overlay @hideThis="hideThis" :data="pageList" class="sub-item sub-pages"></base-list-overlay>
@@ -198,7 +198,7 @@ export default {
                         // hide logout
                         document.querySelector('#the-header .t-logout').style.display = 'none';
                         window.location.href = '/#/';
-                        // window.location.reload();
+                        window.location.reload();
                     })
                     .catch((reject) => {
                         alert("Logout fail!");
