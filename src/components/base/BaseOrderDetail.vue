@@ -11,7 +11,11 @@
                     <h2 style="font-size: 25px; font-weight: bold; margin-left: 8px;">Order Details</h2>
                 </div>
                 <div>
-                    <router-link :to="{ name: 'profile', params: { isOrderList: 1 }}">
+                    <router-link v-if="this.role != 'ADMIN'" :to="{ name: 'profile', params: { isOrderList: 1 }}">
+                        <base-button :buttonName="'Order List'"></base-button>
+                    </router-link>
+
+                    <router-link v-if="this.role == 'ADMIN'" :to="{ name: 'adminHone', params: { isOrderList: 1 }}">
                         <base-button :buttonName="'Order List'"></base-button>
                     </router-link>
                 </div>
@@ -137,6 +141,8 @@ export default {
 
             // List product in order
             orderProducts: [],
+
+            role: localStorage.getItem("role"),
         }
     },
     methods: {

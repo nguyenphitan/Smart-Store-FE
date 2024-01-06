@@ -19,10 +19,14 @@
                     </div>
                     <div @click="logoutAccount" class="t-logout">Logout</div>
                     <div class="cart-info">
-                        <router-link to="/cart" >
+                        <router-link v-if="this.role != 'ADMIN'" to="/cart" >
                             <div class="cart-size">{{ cartSize }}</div>
                             <i class="fa-solid fa-cart-shopping"></i>
                         </router-link>
+
+                        <div v-if="this.role == 'ADMIN'">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -42,19 +46,19 @@
 
                     <!-- Right -->
                     <div class="bot-right">
-                        <div class="home t-title" @mouseleave="hideSubItem">
-                            <a href="/" class="t-hover-red" @mouseenter="showSubItem">Home</a>
+                        <div class="home t-title">
+                            <a href="/" class="t-hover-red">Home</a>
                             <base-list-overlay @hideThis="hideThis" :data="homeList" class="sub-item sub-home"></base-list-overlay>
                         </div>
-                        <div class="pages" @mouseleave="hideSubItem">
-                            <router-link :to="{ name: 'flashDeals'}" class="t-title t-hover-red" @mouseenter="showSubItem">Flash Deals</router-link>
+                        <div v-if="this.role != 'ADMIN'" class="pages">
+                            <router-link :to="{ name: 'flashDeals'}" class="t-title t-hover-red">Flash Deals</router-link>
                             <base-list-overlay @hideThis="hideThis" :data="pageList" class="sub-item sub-pages"></base-list-overlay>
                         </div>
-                        <div class="track-order">
+                        <!-- <div v-if="this.role != 'ADMIN'" class="track-order">
                             <a href="#show-products" class="t-title t-hover-red">Products</a>
-                        </div>
-                        <div class="pages" @mouseleave="hideSubItem">
-                            <router-link :to="{ name: 'profile'}" class="t-title t-hover-red" @mouseenter="showSubItem">My Profile</router-link>
+                        </div> -->
+                        <div class="pages">
+                            <router-link :to="{ name: 'profile'}" class="t-title t-hover-red">My Profile</router-link>
                             <base-list-overlay @hideThis="hideThis" :data="pageList" class="sub-item sub-pages"></base-list-overlay>
                         </div>
                         <!-- <div class="add-new-product">
@@ -126,6 +130,7 @@ export default {
             cardName: 'Categories',
             homeList: ['Supper Store', 'Grocery', 'Niche Market'],
             pageList: ['Sale page', 'Vendor', 'Shop'],
+            role: localStorage.getItem("role"),
         }
     },
     methods: {
@@ -134,14 +139,14 @@ export default {
         showLogout(e) {
             e.preventDefault();
             console.log(e.target);
-            if(this.userProfile.avatarUrl != null) {
+            if(this.userProfile.avatarUrl != null && this.userProfile.id != null) {
                 document.querySelector('#the-header .t-logout').style.display = 'flex';
             }
         },
 
         // Hide logout:
         hideLogout() {
-            if(this.userProfile.avatarUrl != null) {
+            if(this.userProfile.avatarUrl != null || this.userProfile.id != null) {
                 document.querySelector('#the-header .t-logout').style.display = 'none';
             }
         },
@@ -167,14 +172,18 @@ export default {
 
         // Open login form
         openLoginForm() {
-            if(this.userProfile.avatarUrl == null) {
+            if(this.userProfile.id == null) {
                 document.getElementById('the-login').style.display = 'block';
+            } else {
+                // show logout
+                document.querySelector('#the-header .t-logout').style.display = 'flex';
             }
         },
 
         // Handle logout:
         logoutAccount() {
-            if(this.userProfile.avatarUrl != null) {
+            let me = this;
+            if(this.userProfile.avatarUrl != null || this.userProfile.id != null) {
                 // clear storage:
                 localStorage.clear();
                 sessionStorage.clear();
@@ -184,9 +193,15 @@ export default {
                     .get("http://localhost:8080/api/v1/auth/logout")
                     .then((response) => {
                         console.log(response.data);
+                        me.userProfile = {};
+                        me.cartSize = 0;
+                        // hide logout
+                        document.querySelector('#the-header .t-logout').style.display = 'none';
+                        window.location.href = '/#/';
                         window.location.reload();
                     })
                     .catch((reject) => {
+                        alert("Logout fail!");
                         console.log(reject);
                     });
             }

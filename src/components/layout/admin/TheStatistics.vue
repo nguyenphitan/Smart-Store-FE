@@ -7,7 +7,21 @@
         <!-- Container -->
         <div id="statistics-container">
             <div id="list-month">
-                <div @click="statisticsOfYear($event, currentYear)" class="t-month-common month-0 t-active">{{ currentYear }}</div>
+                <select 
+                    @change="statisticsOfYear" 
+                    class="t-month-common month-0 t-active year-selected"
+                >
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option selected value="2024">2024</option>
+                </select>
                 <div @click="statisticsOfMonth" tan="1" class="t-month-common month-1">January</div>
                 <div @click="statisticsOfMonth" tan="2" class="t-month-common month-2">February</div>
                 <div @click="statisticsOfMonth" tan="3" class="t-month-common month-3">March</div>
@@ -39,8 +53,15 @@ export default {
     name: 'the-statistics',
     components: {
     },
+    beforeCreate() {
+        let role = localStorage.getItem("role");
+        if(role != "ADMIN") {
+            window.location.href = "/#/";
+            return;
+        }
+    },
     created() {
-        let year = 2023;
+        let year = 2024;
         let me = this;
         const token = localStorage.getItem('token');
         // header
@@ -110,7 +131,11 @@ export default {
         },
 
         // Get statistics of the year
-        statisticsOfYear(e, year) {
+        statisticsOfYear(e) {
+            console.log(e.target.value);
+
+            let year = e.target.value;
+
             let me = this;
             me.activeElement(e);
             const token = localStorage.getItem('token');
@@ -145,7 +170,7 @@ export default {
         statisticsOfMonth(e) {
             let me = this;
             me.activeElement(e);
-            let year = 2023;
+            let year = Number(document.querySelector('#statistics-container .year-selected').value);
             let month = Number(e.target.getAttribute('tan'));
             console.log(month);
 
@@ -221,6 +246,12 @@ export default {
 }
 
 /* List month */
+.year-selected {
+    text-align: center;
+    border: none;
+    outline: none;
+}
+
 #list-month {
     margin-top: 28px;
     width: 220px;

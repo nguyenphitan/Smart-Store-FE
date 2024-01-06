@@ -44,6 +44,12 @@ import axios from 'axios';
 export default {
     name: 'add-new-product',
     beforeCreate() {
+        let role = localStorage.getItem("role");
+        if(role != "ADMIN") {
+            window.location.href = "/#/";
+            return;
+        }
+        
         let me = this;
         // Get all category
         axios

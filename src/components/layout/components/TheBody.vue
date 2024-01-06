@@ -151,7 +151,7 @@
                 <!-- Begin show all product -->
                 <div id="show-products">
                     <!-- Left -->
-                    <div id="product-category">
+                    <div id="product-category" style="position: sticky; top: 124px; left: 0; z-index: 2;">
                         <div class="category-container">
                             <div class="phone-nav" style="padding: 0 16px;">
                                 <base-category-card
@@ -293,6 +293,13 @@ export default {
     },
 
     beforeCreate() {
+        let role = localStorage.getItem('role');
+        if(role == "ADMIN") {
+            window.location.href = '/#/admin';
+            return;
+        }
+
+
         let me = this;
 
         // Get all product discount

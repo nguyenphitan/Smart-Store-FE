@@ -1,8 +1,8 @@
 <template>
-    <div @enter="enterEvent" id="base-input">
+    <div v-on:keyup.enter="enterEvent" id="base-input">
         <!-- Base input -->
         <div id="input-container">
-            <input :required="required" :type="inputType" :placeholder="inputPlaceholder">
+            <input @focus="resetBorderColor" :required="required" :type="inputType" :placeholder="inputPlaceholder">
             <div v-if="iconClass">
                 <i :class="iconClass"></i>
             </div>
@@ -34,6 +34,11 @@ export default {
     methods: {
         enterEvent() {
             this.$emit("enterEvent");
+        },
+
+        // reset border color:
+        resetBorderColor(e) {
+            e.target.style.border = '1px solid rgb(218, 225, 231)';
         }
     }
 }

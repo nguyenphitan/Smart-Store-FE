@@ -24,6 +24,7 @@
                 :status="getStatus(order.status)"
                 :class="getClassWithStatus(order.status)"
                 :total="order.total"
+                @reloadPage="reloadAllOrder"
             ></base-order-reivew>
         </div>
         <!-- End container -->
@@ -103,6 +104,29 @@ export default {
                 return 't-color-cancelled';
             }
         },
+        reloadAllOrder(e) {
+            console.log(e.target);
+            // Token
+            const token = localStorage.getItem('token');
+
+            // header
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+
+            let me = this;
+
+            // Call API
+            axios
+                .get('http://localhost:8080/api/v1/order', { headers })
+                .then((response) => {
+                    console.log(response.data);
+                    me.listOrders = response.data;
+                })
+                .catch((reject) => {
+                    console.log(reject);
+                });
+            }
     },
 
 

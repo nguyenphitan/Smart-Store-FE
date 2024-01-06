@@ -21,7 +21,7 @@
             </div>
 
             <!-- Bottom -->
-            <form @submit="paymentHandle" class="cart-details-bottom">
+            <div class="cart-details-bottom">
                 <!-- Left -->
                 <div class="shipping-address">
 
@@ -32,19 +32,19 @@
                         <div class="shipping-address-left">
                             <div class="shipping-item">
                                 <p class="address-title">Full Name <span class="t-color-red">*</span> </p>
-                                <input name="fullName" type="text" required/>
+                                <input name="fullName" type="text" @focus="resetWarningInput" required/>
                             </div>
                             <div class="shipping-item">
                                 <p class="address-title">Phone Number <span class="t-color-red">*</span></p>
-                                <input name="phone" type="text" required/>
+                                <input name="phone" type="text" @focus="resetWarningInput" required/>
                             </div>
                             <div class="shipping-item">
                                 <p class="address-title">Zip Code <span class="t-color-red">*</span></p>
-                                <input name="zip" type="text" required/>
+                                <input name="zip" type="text" @focus="resetWarningInput" required/>
                             </div>
                             <div class="shipping-item">
                                 <p class="address-title">District <span class="t-color-red">*</span></p>
-                                <input name="district" type="text" required/>
+                                <input name="district" type="text" @focus="resetWarningInput" required/>
                             </div>
                         </div>
 
@@ -52,19 +52,19 @@
                         <div class="shipping-address-right">
                             <div class="shipping-item">
                                 <p class="address-title">Email Address <span class="t-color-red">*</span></p>
-                                <input name="email" type="email" required/>
+                                <input name="email" type="email" @focus="resetWarningInput" required/>
                             </div>
                             <div class="shipping-item">
                                 <p class="address-title">Company <span class="t-color-red">*</span></p>
-                                <input name="company" type="text" required/>
+                                <input name="company" type="text" @focus="resetWarningInput" required/>
                             </div>
                             <div class="shipping-item">
                                 <p class="address-title">City <span class="t-color-red">*</span></p>
-                                <input name="city" type="text" required/>
+                                <input name="city" type="text" @focus="resetWarningInput" required/>
                             </div>
                             <div class="shipping-item">
                                 <p class="address-title">Detailed Address <span class="t-color-red">*</span></p>
-                                <input name="detailAddress" type="text" required/>
+                                <input name="detailAddress" type="text" @focus="resetWarningInput" required/>
                             </div>
                         </div>
                     </div>
@@ -90,12 +90,12 @@
                         Voucher
                     </div>
 
-                    <button type="submit" class="btn-pay t-text-center t-color-red t-border-red">
+                    <button @click="paymentHandle" class="btn-pay t-text-center t-color-red t-border-red">
                         Pay
                     </button>
                 </div>
 
-            </form>
+            </div>
             <!-- End bottom -->
 
         </div>
@@ -171,8 +171,39 @@ export default {
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
         },
 
+        // Validate input:
+        validateInput() {
+            // Get info:
+            let fullName = document.querySelector('input[name="fullName"]');
+            let phone = document.querySelector('input[name="phone"]');
+            let zip = document.querySelector('input[name="zip"]');
+            let district = document.querySelector('input[name="district"]');
+            let email = document.querySelector('input[name="email"]');
+            let company = document.querySelector('input[name="company"]');
+            let city = document.querySelector('input[name="city"]');
+            let detailAddress = document.querySelector('input[name="detailAddress"]');
+
+            let inputs = [fullName, phone, zip, district, email, company, city, detailAddress];
+
+            for(let input of inputs) {
+                if(input.value.trim() == '') {
+                    input.style.borderColor = "red";
+                    return;
+                }
+            }
+        },
+
+        // Reset warning input:
+        resetWarningInput(e) {
+            e.target.style.border = "1px solid rgb(218, 225, 231)";
+        },
+
         // Payment handle:
         paymentHandle() {
+            if(this.amount <= 0) {
+                alert("Payment fail!");
+                return;
+            }
             console.log(this.productPaymentDTOs);
             // let me = this;
 
@@ -185,6 +216,8 @@ export default {
             let company = document.querySelector('input[name="company"]').value;
             let city = document.querySelector('input[name="city"]').value;
             let detailAddress = document.querySelector('input[name="detailAddress"]').value;
+
+            this.validateInput();
 
             // Payment if list product item not empty and info not empty
             if(this.productPaymentDTOs.length != 0 
@@ -228,6 +261,7 @@ export default {
     
                         // Go to review page
                         window.location.href = "#/orders-review";
+                        window.location.reload();
     
                     })
                     .catch((reject) => {
