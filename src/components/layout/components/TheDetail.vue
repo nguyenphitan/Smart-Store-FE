@@ -68,7 +68,7 @@
                 <base-button 
                     @onClickEvent="addManyProductToCart" 
                     class="add-to-cart" 
-                    :class="productDetail.quantity <= 0 ? 'btn-not-active' : ''"
+                    :class="(productDetail.quantity <= 0 || this.role == 'ADMIN') ? 'btn-not-active' : ''"
                     :buttonName="'Add to Cart'">
                 </base-button>
             </div>
@@ -105,6 +105,7 @@ export default {
         return {
             // Product detail
             productDetail: {},
+            role: localStorage.getItem("role"),
         }
     },
     methods: {

@@ -65,21 +65,48 @@ export default {
     },
 
     beforeCreate() {
-        // Get all category
-        let me = this;
+        // back to orderList when click Order List button from order detail
+        let isOrderListClick = this.$route.params.isOrderList;
+        if(isOrderListClick == 1) {
+            let me = this;
+            // Token
+            const token = localStorage.getItem('token');
+            // header
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+            // Call API
+            axios
+                .get('http://localhost:8080/api/v1/admin/order', { headers })
+                .then((response) => {
+                    console.log(response.data);
+                    me.listOrders = response.data;
 
-        // Get all category
-        axios
-            .get("http://localhost:8080/api/v1/category")
-            .then((response) => {
-                console.log('Get all category success!');
-                me.listCategory = response.data;
-                me.openCategoryManager();
-            })
-            .catch((reject) => {
-                console.log(reject);
-            });
-        // End get all category
+                    // open order manager
+                    me.openOrderManager();
+                })
+                .catch((reject) => {
+                    console.log(reject);
+                });
+                
+        } else {
+            // Get all category
+            let me = this;
+    
+            // Get all category
+            axios
+                .get("http://localhost:8080/api/v1/category")
+                .then((response) => {
+                    console.log('Get all category success!');
+                    me.listCategory = response.data;
+                    me.openCategoryManager();
+                })
+                .catch((reject) => {
+                    console.log(reject);
+                });
+            // End get all category
+        }
+
     },
     
     data() {

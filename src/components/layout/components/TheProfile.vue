@@ -9,7 +9,7 @@
             <!-- End Profile -->
 
             <!-- Orders -->
-            <div @click="getUserOrders" class="user-order">
+            <div v-if="this.role != 'ADMIN'" @click="getUserOrders" class="user-order">
                 <h5>My Orders</h5>
             </div>
             <!-- End Orders -->
@@ -96,6 +96,8 @@ export default {
 
             // User orders
             userOrders: [],
+
+            role: localStorage.getItem("role"),
         }
     },
     methods: {

@@ -12,7 +12,7 @@
 
                 <!-- Begin body -->
                 <div id="login-body">
-                    <form @submit="checkLogin">
+                    <div>
                         <!-- Email -->
                         <div class="enter-email">
                             <label for="#">Enter your email <span style="color: rgb(233, 69, 96);">*</span></label>
@@ -21,6 +21,7 @@
                                 :required="true"
                                 :inputPlaceholder="emailPlaceholder"
                                 :inputType="emailType"
+                                @enterEvent="checkLogin"
                             >
                             </base-input>
                         </div>
@@ -33,12 +34,13 @@
                                 :required="true"
                                 :iconClass="iconClass"
                                 :inputType="passwordType"
+                                @enterEvent="checkLogin"
                             ></base-input>
                         </div>
                         
                         <!-- Login button -->
-                        <base-button :buttonType="'submit'" class="btn-login" :buttonName="loginBtn"></base-button>
-                    </form>
+                        <base-button @onClickEvent="checkLogin" :buttonType="'submit'" class="btn-login" :buttonName="loginBtn"></base-button>
+                    </div>
                     <div class="login-on">on</div>
                     <base-button class="login-on-facebook" :buttonName="faceBookName" :iconClass="facebookIcon"></base-button>
                     <base-button class="login-on-google" :buttonName="googleName" :iconClass="googleIcon"></base-button>
@@ -113,11 +115,13 @@ export default {
             let loginInputs = document.querySelectorAll("#the-login input");
             for(let input of loginInputs) {
                 input.value = "";
+                input.style.border = "1px solid rgb(218, 225, 231)";
             }
 
             let registerInputs = document.querySelectorAll("#the-register input");
             for(let input of registerInputs) {
                 input.value = "";
+                input.style.border = "1px solid rgb(218, 225, 231)";
             }
         },
 
@@ -130,19 +134,41 @@ export default {
 
         // Check login
         checkLogin() {
+            // let me = this;
             let email = document.querySelector('#the-login .email-login input').value;
             let password = document.querySelector('#the-login .password-login input').value;
-            if(email == "" || password == "") {
+            if(email == "") {
+                document.querySelector('#the-login .email-login input').style.borderColor = 'red';
                 return;
             }
+
+            if(password == "") {
+                document.querySelector('#the-login .password-login input').style.borderColor = 'red';
+                return;
+            }
+            
             axios
                 .post(`http://localhost:8080/api/v1/auth/login?username=${email}&password=${password}`)
                 .then((response) => {
                     console.log(response.data);
+                    if(response.data.token == null) {
+                        alert("Login fail!");
+                        return;
+                    }
+
                     localStorage.setItem('token', response.data.token); 
                     localStorage.setItem('role', response.data.role);
                     console.log(response.data.role);
                     window.location.reload();
+                    // if(response.data.role == "ADMIN") {
+                    //     me.clearFormData()
+                    //     me.hideLogin();
+                    //     window.location.href = '/#/admin';
+                    //     return;
+                    // } else {
+                    //     window.location.reload();
+                    //     return;
+                    // }
                 })
                 .catch((reject) => {
                     console.log(reject);

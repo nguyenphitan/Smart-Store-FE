@@ -75,7 +75,7 @@ export default {
         },
         inventory: {
             type: Number,
-            default: 9
+            default: 0
         },
         imgURL: {
             type: String,
@@ -109,6 +109,10 @@ export default {
 
         // Add product to cart:
         addToCard(e) {
+            if(this.inventory < 0) {
+                alert("Product quantity is not enough!");
+                return;
+            }
             this.$emit('addToCart', e);
             e.preventDefault();
         },
