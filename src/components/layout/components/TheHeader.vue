@@ -194,6 +194,7 @@ export default {
                     .then((response) => {
                         console.log(response.data);
                         me.userProfile = {};
+                        me.cartSize = 0;
                         // hide logout
                         document.querySelector('#the-header .t-logout').style.display = 'none';
                         window.location.href = '/#/';

@@ -261,6 +261,7 @@ export default {
     
                         // Go to review page
                         window.location.href = "#/orders-review";
+                        window.location.reload();
     
                     })
                     .catch((reject) => {
