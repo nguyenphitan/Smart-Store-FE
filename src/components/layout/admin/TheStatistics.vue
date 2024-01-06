@@ -53,6 +53,13 @@ export default {
     name: 'the-statistics',
     components: {
     },
+    beforeCreate() {
+        let role = localStorage.getItem("role");
+        if(role != "ADMIN") {
+            window.location.href = "/#/";
+            return;
+        }
+    },
     created() {
         let year = 2024;
         let me = this;

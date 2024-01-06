@@ -65,6 +65,12 @@ export default {
     },
 
     beforeCreate() {
+        let role = localStorage.getItem("role");
+        if(role != "ADMIN") {
+            window.location.href = "/#/";
+            return;
+        }
+
         // back to orderList when click Order List button from order detail
         let isOrderListClick = this.$route.params.isOrderList;
         if(isOrderListClick == 1) {
