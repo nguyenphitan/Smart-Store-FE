@@ -101,7 +101,7 @@
                                         <!-- End cart left -->
 
                                         <div class="col-lg-5">
-                                            <div class="card text-white rounded-3" style="background-color: rgb(233, 69, 96);">
+                                            <div class="card text-white rounded-3" style="background-color: rgb(233, 69, 96); position: sticky; top: 124px; right: 0; z-index: 2;">
                                                 <div class="card-body">
                                                     <div for="payment-by-card"  
                                                         class="pay-card payment-by-card t-flex t-pointer"
@@ -125,11 +125,11 @@
                                                     </a>
 
                                                     <form class="mt-4">
-                                                        <div class="form-outline form-white mb-4">
+                                                        <!-- <div class="form-outline form-white mb-4">
                                                             <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
                                                             placeholder="Cardholder's Name" />
                                                             <label class="form-label" for="typeName">Cardholder's Name</label>
-                                                        </div>
+                                                        </div> -->
 
                                                         <div class="form-outline form-white mb-4">
                                                             <input type="text" id="typeText" class="form-control form-control-lg" siez="17"

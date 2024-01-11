@@ -35,14 +35,12 @@
     width: 64px;
     height: 64px;
     border-radius: 64px;
-    color: #fff;
-    background-color: rgb(233, 69, 96);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.t-delivery {
+.t-order-color-common {
     background-color: rgb(227, 233, 239);
     color: rgb(233, 69, 96);
 }
@@ -51,14 +49,16 @@
     flex: 1 1 0px;
     width: 50px;
     height: 4px;
-    background-color: rgb(233, 69, 96);
 }
 
 .t-line-2 {
     flex: 1 1 0px;
     width: 50px;
     height: 4px;
-    background-color: rgb(227, 233, 239);
+}
+
+.t-color-order-status {
+    background-color: rgb(233, 69, 96);
 }
 
 /* Area 3 */
