@@ -81,6 +81,7 @@ export default {
                 .then((response) => {
                     console.log("Add product to cart success!");
                     console.log(response.data);
+                    alert("Add to cart success!");
                     EventBus.$emit("reloadCartSize");
                     // window.location.reload();
                 })

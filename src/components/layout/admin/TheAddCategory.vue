@@ -13,6 +13,7 @@
                         border: 1px solid #ccc; outline: none; padding: 8px 16px;" 
                         type="text" placeholder="Enter category name" 
                         required
+                        @focus="clearInput"
                     />
                     <button
                         type="submit"
@@ -40,13 +41,24 @@ import axios from 'axios'
 export default {
     name: 'the-add-category',
     methods: {
+        // clear input:
+        clearInput() {
+            document.getElementById("categoryName").style.border = '1px solid rgb(218, 225, 231)';
+        },
+
         // Add new category
         addNewCategory() {
             let categoryName = document.getElementById("categoryName").value;
             let imgFile = document.getElementById("categoryImg").files[0];
             let valueImgSrc = document.getElementById("categoryImg").value;
 
-            if(categoryName == '' || valueImgSrc == '') {
+            if(categoryName == '') {
+                document.getElementById("categoryName").style.borderColor = 'red';
+                return;
+            }
+
+            if(valueImgSrc == '') {
+                alert("Please select image for category!");
                 return;
             }
 

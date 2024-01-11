@@ -12,7 +12,7 @@
 
                 <!-- Begin body -->
                 <div id="register-body">
-                    <form>
+                    <div>
                         <!-- Fullname -->
                         <div class="enter-firstname">
                             <label for="#">Fisrt Name <span style="color: rgb(233, 69, 96);">*</span></label>
@@ -74,7 +74,7 @@
                         <!-- register button -->
                         <base-button :buttonType="'submit'" @onClickEvent="registerNewAccount" class="btn-register" :buttonName="registerBtn"></base-button>
                         
-                    </form>
+                    </div>
                 </div>
                 <!-- End body -->
             </div>
@@ -158,7 +158,31 @@ export default {
             let email = document.querySelector('#the-register .email-register input').value;
             let password = document.querySelector('#the-register .password-register input').value;
 
-            if(email == "" || password == "" || firstName == "" || lastName == "") {
+            if(firstName == "") {
+                document.querySelector('#the-register .firstname-register input').style.borderColor = 'red';
+                return;
+            }
+
+            if(lastName == "") {
+                document.querySelector('#the-register .lastname-register input').style.borderColor = 'red';
+                return;
+            }
+
+            if(email == "") {
+                document.querySelector('#the-register .email-register input').style.borderColor = 'red';
+                return;
+            }
+
+            if(password == "") {
+                document.querySelector('#the-register .password-register input').style.borderColor = 'red';
+                return;
+            }
+
+            let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if(!emailRegex.test(email)) {
+                alert("Email invalid!");
+                document.querySelector('#the-register .email-register input').style.borderColor = 'red';
                 return;
             }
 
@@ -166,6 +190,7 @@ export default {
                 .post(`http://localhost:8080/api/v1/auth/register?firstName=${firstName}&lastName=${lastName}&username=${email}&password=${password}`)
                 .then((response) => {
                     console.log(response);
+                    alert("Register success!");
                     window.location.reload();
                 })
                 .catch((reject) => {
