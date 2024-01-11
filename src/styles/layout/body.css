@@ -203,3 +203,7 @@
     outline: none;
 }
 
+.rating-content #base-mini-card .card {
+    pointer-events: none;
+}
+

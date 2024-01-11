@@ -160,6 +160,7 @@ export default {
                     window.location.reload();
                 })
                 .catch((reject) => {
+                    alert("Email existed!");
                     console.log(reject);
                 });
 
