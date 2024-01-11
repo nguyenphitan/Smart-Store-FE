@@ -4,7 +4,7 @@
         <div id="flash-deals-container">
             <h2 class="flash-deal-title">
                 <span class="t-color-red">Flash Deals, </span> 
-                <span style="color: rgb(125, 135, 156);">Enjoy Upto 80% discounts</span>
+                <span style="color: rgb(125, 135, 156);">Enjoy Upto 80% Discounts</span>
             </h2>
             <!-- Show list product discount -->
             <div id="show-products">
@@ -99,6 +99,9 @@ export default {
         listProducts: {
             deep: true
         }
+    },
+    mounted () {
+        window.scrollTo(0, 0)
     },
     data() {
         return {

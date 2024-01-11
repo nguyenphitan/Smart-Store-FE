@@ -29,6 +29,7 @@
 
 #the-body .body-top-wrapper {
     display: flex;
+    justify-content: space-evenly;
 }
 
 /* Center */
@@ -201,5 +202,9 @@
     border: 1px solid rgb(233, 69, 96);
     background-color: #fff;
     outline: none;
+}
+
+.rating-content #base-mini-card .card {
+    pointer-events: none;
 }
 

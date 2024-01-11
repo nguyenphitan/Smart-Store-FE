@@ -2,10 +2,11 @@
     <div id="base-products">
         <!-- Begin container -->
         <div id="list-product-container">
+            <h3 style="font-weight: bold; color: #929090; text-align: center; font-size: 24px;" v-if="this.products.length == 0">No Products</h3>
             <div class="render-product">
                 <base-card
                     v-for="(product, index) in products" 
-                    :key="index"
+                    :key="index"    
                     :categoryName="product.category.name"
                     :imgURL="require('@/assets/imgs/' + product.photos)"
                     :price="product.price"
@@ -17,7 +18,7 @@
                 >
                 </base-card>
             </div>
-            <div style="display: flex; justify-content: right;">
+            <div v-if="this.products.length > 0" style="display: flex; justify-content: right;">
                 <!-- Paging -->
                 <t-paginate
                     :page-count="totalPage"

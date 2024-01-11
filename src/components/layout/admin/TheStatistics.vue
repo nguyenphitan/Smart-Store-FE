@@ -6,7 +6,7 @@
         </h2>
         <!-- Container -->
         <div id="statistics-container">
-            <div id="list-month">
+            <div id="list-month" style="position: sticky; top: 124px; left: 0;">
                 <select 
                     @change="statisticsOfYear" 
                     class="t-month-common month-0 t-active year-selected"
@@ -35,12 +35,18 @@
                 <div @click="statisticsOfMonth" tan="11" class="t-month-common month-11">November</div>
                 <div @click="statisticsOfMonth" tan="12" class="t-month-common month-12">December</div>
             </div>
-            <apex-chart id="my-chart-id" 
-                type="area" 
-                :options="chartOptions" 
-                :series="series"
-            >
-            </apex-chart>
+            <div style="width: 80%;">
+                <p style="text-align: left; margin-top: 40px; margin-left: 16px; padding: 0; margin-bottom: -10px;">
+                    <span style="font-weight: bold;">Total: </span> 
+                    <span style="font-weight: bold;" class="t-color-red">{{ formatPrice(this.totalRevenue) }} VND</span>
+                </p>
+                <apex-chart id="my-chart-id" 
+                    type="area" 
+                    :options="chartOptions" 
+                    :series="series"
+                >
+                </apex-chart>
+            </div>
         </div>
         <!-- End Container -->
     </div>
@@ -76,6 +82,7 @@ export default {
                 let result = [];
                 for(let dto of response.data) {
                     result.push(dto.total);
+                    me.totalRevenue += dto.total;
                 }
                 // console.log(result);
 
@@ -90,10 +97,16 @@ export default {
                 console.log(reject);
             });
     },
+    mounted () {
+        window.scrollTo(0, 0)
+    },
     data() {
         return {
             // current year
             currentYear: 2023,
+
+            // total revenue
+            totalRevenue: 0,
             
             // chart data
             chartOptions: {
@@ -137,6 +150,7 @@ export default {
             let year = e.target.value;
 
             let me = this;
+            me.totalRevenue = 0;
             me.activeElement(e);
             const token = localStorage.getItem('token');
             // header
@@ -151,6 +165,7 @@ export default {
                     let result = [];
                     for(let dto of response.data) {
                         result.push(dto.total);
+                        me.totalRevenue += dto.total;
                     }
                     // console.log(result);
 
@@ -169,6 +184,7 @@ export default {
         // Get statistics of month:
         statisticsOfMonth(e) {
             let me = this;
+            me.totalRevenue = 0;
             me.activeElement(e);
             let year = Number(document.querySelector('#statistics-container .year-selected').value);
             let month = Number(e.target.getAttribute('tan'));
@@ -184,6 +200,7 @@ export default {
                     for(let dto of response.data) {
                         listDate.push(dto.date);
                         result.push(dto.total);
+                        me.totalRevenue += dto.total;
                     }
                     // console.log(result);
 
@@ -282,7 +299,7 @@ export default {
 
 /* Chart */
 #my-chart-id {
-    width: 80% !important;
-    margin-top: 40px;
+    width: 100% !important;
+    /* margin-top: 16px; */
 }
 </style>

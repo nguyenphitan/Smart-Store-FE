@@ -19,8 +19,8 @@
                             <p class="carousel-description"> {{carouselDescription}} </p>
                             <base-button class="carousel-btn" :buttonName="buttonName"></base-button>
                         </div>
-                        <div class="col-md-4 t-max-256">
-                            <img class="d-block img-fluid" v-bind:src="item" alt="banner image">
+                        <div class="col-md-4">
+                            <img style="height: 390.4px;" class="d-block img-fluid" v-bind:src="item" alt="banner image">
                         </div>
                     </div>
                 </div>

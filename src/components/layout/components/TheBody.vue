@@ -224,7 +224,9 @@ export default {
         BaseListProduct,
         BaseCarouselDiscount,
     },
-
+    mounted () {
+        window.scrollTo(0, 0)
+    },
     data() {
         return {
             // List all product
@@ -241,8 +243,8 @@ export default {
 
             // Banner data
             carouselData: [require('@/assets/imgs/carousel.png'), 
-                            require('@/assets/imgs/carousel.png'), 
-                            require('@/assets/imgs/carousel.png')],
+                            require('@/assets/imgs/11.Netgear2020.png'), 
+                            require('@/assets/imgs/10.SonyPS4.png')],
             
             // Show carousel product card
             productCard: 'product-card',
@@ -261,11 +263,11 @@ export default {
 
             // Top category data
             topCategoryData: [
-                {categoryName: 'Headphone', imgURL: require('@/assets/imgs/top-category-3.webp')},
-                {categoryName: 'Headphone', imgURL: require('@/assets/imgs/top-category-2.webp')},
+                {categoryName: 'Glass', imgURL: require('@/assets/imgs/top-category-3.webp')},
+                {categoryName: 'Watch', imgURL: require('@/assets/imgs/top-category-2.webp')},
                 {categoryName: 'Headphone', imgURL: require('@/assets/imgs/top-category-1.webp')},
-                {categoryName: 'Headphone', imgURL: require('@/assets/imgs/top-category-3.webp')},
-                {categoryName: 'Headphone', imgURL: require('@/assets/imgs/top-category-2.webp')},
+                {categoryName: 'Glass', imgURL: require('@/assets/imgs/top-category-3.webp')},
+                {categoryName: 'Watch', imgURL: require('@/assets/imgs/top-category-2.webp')},
                 {categoryName: 'Headphone', imgURL: require('@/assets/imgs/top-category-1.webp')}
             ],
             topCategorySetting: { // Setting for carousel
