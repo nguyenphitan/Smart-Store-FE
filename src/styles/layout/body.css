@@ -29,6 +29,7 @@
 
 #the-body .body-top-wrapper {
     display: flex;
+    justify-content: space-evenly;
 }
 
 /* Center */

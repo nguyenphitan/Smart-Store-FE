@@ -243,8 +243,8 @@ export default {
 
             // Banner data
             carouselData: [require('@/assets/imgs/carousel.png'), 
-                            require('@/assets/imgs/carousel.png'), 
-                            require('@/assets/imgs/carousel.png')],
+                            require('@/assets/imgs/11.Netgear2020.png'), 
+                            require('@/assets/imgs/10.SonyPS4.png')],
             
             // Show carousel product card
             productCard: 'product-card',
