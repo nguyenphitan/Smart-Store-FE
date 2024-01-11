@@ -134,6 +134,9 @@ export default {
                 alert("Fail load product list in order!");
             });
     },
+    mounted () {
+        window.scrollTo(0, 0)
+    },
     data() {
         return {
             // Order

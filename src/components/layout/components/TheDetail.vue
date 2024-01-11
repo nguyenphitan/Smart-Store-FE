@@ -87,6 +87,9 @@ export default {
     },
     props: {
     },
+    mounted () {
+        window.scrollTo(0, 0)
+    },
     beforeCreate() {
         // console.log('The id is: ' + this.$route.params.id);
         let me = this;

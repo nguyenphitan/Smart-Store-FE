@@ -62,6 +62,9 @@ export default {
                 console.log(reject);
             });
     },
+    mounted () {
+        window.scrollTo(0, 0)
+    },
 
     data() {
         return {

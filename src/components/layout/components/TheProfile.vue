@@ -89,6 +89,9 @@ export default {
             });
         // End load user info
     },
+    mounted () {
+        window.scrollTo(0, 0)
+    },
     data() {
         return {
             // User profile

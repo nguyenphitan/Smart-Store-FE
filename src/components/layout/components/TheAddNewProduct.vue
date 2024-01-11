@@ -63,6 +63,9 @@ export default {
             });
         // End get all category
     },
+    mounted () {
+        window.scrollTo(0, 0)
+    },
     data() {
         return {
             // List of category

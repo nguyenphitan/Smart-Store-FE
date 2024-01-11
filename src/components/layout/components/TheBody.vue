@@ -224,7 +224,9 @@ export default {
         BaseListProduct,
         BaseCarouselDiscount,
     },
-
+    mounted () {
+        window.scrollTo(0, 0)
+    },
     data() {
         return {
             // List all product
