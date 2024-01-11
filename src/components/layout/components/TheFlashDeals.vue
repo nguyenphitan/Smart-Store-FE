@@ -9,7 +9,7 @@
             <!-- Show list product discount -->
             <div id="show-products">
                 <!-- Left -->
-                <div id="product-category">
+                <div id="product-category" style="position: sticky; top: 124px; left: 0;">
                     <div class="category-container">
                         <div class="phone-nav" style="padding: 0 8px;">
                             <base-category-card
@@ -140,6 +140,12 @@ export default {
             }
         },
 
+        // scroll to list product top:
+        scrollToListProduct() {
+            let productDiv = document.querySelector("#the-flash-deals #list-product");
+            productDiv.scrollIntoView({behavior: 'smooth'});
+        },
+
         // Filter by category:
         filterByCategory(e, categoryId) {
             console.log(e.target);
@@ -157,6 +163,7 @@ export default {
                     .then((response) => {
                         me.productPageable = response.data;
                         me.listProducts = response.data.content;
+                        me.scrollToListProduct();
                     })
                     .catch((reject) => {
                         console.log(reject);
@@ -169,6 +176,7 @@ export default {
                     .then((response) => {
                         me.productPageable = response.data;
                         me.listProducts = response.data.content;
+                        me.scrollToListProduct();
                     })
                     .catch((reject) => {
                         console.log(reject);
@@ -194,6 +202,7 @@ export default {
                         .then((response) => {
                             me.productPageable = response.data;
                             me.listProducts = response.data.content;
+                            me.scrollToListProduct();
                         })
                         .catch((reject) => {
                             console.log(reject);
@@ -206,6 +215,7 @@ export default {
                         .then((response) => {
                             me.productPageable = response.data;
                             me.listProducts = response.data.content;
+                            me.scrollToListProduct();
                         })
                         .catch((reject) => {
                             console.log(reject);
@@ -223,6 +233,7 @@ export default {
                         .then((response) => {
                             me.productPageable = response.data;
                             me.listProducts = response.data.content;
+                            me.scrollToListProduct();
                         })
                         .catch((reject) => {
                             console.log(reject);
@@ -234,6 +245,7 @@ export default {
                         .then((response) => {
                             me.productPageable = response.data;
                             me.listProducts = response.data.content;
+                            me.scrollToListProduct();
                         })
                         .catch((reject) => {
                             console.log(reject);
@@ -260,6 +272,7 @@ export default {
                         .then((response) => {
                             me.productPageable = response.data;
                             me.listProducts = response.data.content;
+                            me.scrollToListProduct();
                         })
                         .catch((reject) => {
                             console.log(reject);
@@ -271,6 +284,7 @@ export default {
                     .then((response) => {
                         me.productPageable = response.data;
                         me.listProducts = response.data.content;
+                        me.scrollToListProduct();
                     })
                     .catch((reject) => {
                         console.log(reject);
@@ -285,6 +299,7 @@ export default {
                     .then((response) => {
                         me.productPageable = response.data;
                         me.listProducts = response.data.content;
+                        me.scrollToListProduct();
                     })
                     .catch((reject) => {
                         console.log(reject);
@@ -296,6 +311,7 @@ export default {
                     .then((response) => {
                         me.productPageable = response.data;
                         me.listProducts = response.data.content;
+                        me.scrollToListProduct();
                     })
                     .catch((reject) => {
                         console.log(reject);

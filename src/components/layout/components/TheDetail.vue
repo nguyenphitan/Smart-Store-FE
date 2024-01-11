@@ -79,6 +79,7 @@
 <script>
 import BaseButton from '@/components/base/BaseButton.vue';
 import axios from 'axios';
+import { EventBus } from '@/eventBus';
 
 export default {
     name: "the-detail",
@@ -157,7 +158,8 @@ export default {
                 .then((response) => {
                     console.log("Get detail product success!");
                     console.log(response.data);
-                    window.location.reload();
+                    EventBus.$emit("reloadCartSize");
+                    // window.location.reload();
                 })
                 .catch((reject) => {
                     console.log(reject);
