@@ -250,9 +250,22 @@ export default {
             let categoryIdUpdate = document.querySelector(selectcategoryQuery).value;
             console.log("category id: " + categoryIdUpdate);
 
+            if(inputs[0].value == '') {
+                alert("Product name is require!");
+                return;
+            }
+
             // Validate:
             if(inputs[1].value == '' || inputs[2].value == '' 
                 || inputs[4].value == '' || !this.isNumeric(inputs[4].value.split("%")[0])) {
+                alert("Wrong format number!");
+                return;
+            }
+
+            if(Number(inputs[1].value) < 0 || Number(inputs[2].value) < 0 
+                || Number(inputs[4].value.split("%")[0]) < 0 
+                || Number(inputs[4].value.split("%")[0]) > 100 ) 
+            {
                 alert("Wrong format number!");
                 return;
             }

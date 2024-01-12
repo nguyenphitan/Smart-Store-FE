@@ -302,6 +302,7 @@ export default {
         // reload product in cart:
         reloadProductInCart() {
             let me = this;
+            me.totalPrice = 0;
             // Token
             const token = localStorage.getItem('token');
             console.log(token);

@@ -3,7 +3,7 @@
         <!-- Begin container -->
         <div id="admin-container">
             <!-- Begin Navbar left -->
-            <div class="admin-nav">
+            <div class="admin-nav" style="position: sticky; top: 124px; left: 0;">
                 <!-- Category -->
                 <div @click="getAllCategory" class="manager-category">
                     <h5><i class="fa-solid fa-list" style="margin-right: 8px;"></i> Categories</h5>
