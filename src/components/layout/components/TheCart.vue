@@ -210,6 +210,7 @@
 
 <script>
 import axios from 'axios';
+import { EventBus } from '@/eventBus';
 
 export default {
     name: "the-cart",
@@ -298,10 +299,53 @@ export default {
             }
         },
 
+        // reload product in cart:
+        reloadProductInCart() {
+            let me = this;
+            // Token
+            const token = localStorage.getItem('token');
+            console.log(token);
+
+            // header
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+
+            // Call API
+            axios
+                .get('http://localhost:8080/api/v1/cart', { headers })
+                .then((response) => {
+                    console.log("Get cart detail success!");
+                    console.log(response.data);
+                    this.cartData = response.data;
+
+                    for(let cartResponse of response.data) {
+                        let productPrice = cartResponse.product.price;
+                        let discount = cartResponse.product.discount;
+                        let realPrice = productPrice - productPrice * discount / 100;
+
+                        this.totalPrice += (realPrice * cartResponse.quantity);
+
+                        // build productItem to payment
+                        let productItem = {
+                            productId: cartResponse.product.id,
+                            quanitySelected: cartResponse.quantity
+                        };
+
+                        me.productPaymentDTOs.push(productItem);
+                    }
+
+                })
+                .catch((reject) => {
+                    console.log(reject);
+                });
+        },
+
         // Delete product out to cart:
         deleteProduct(e, productId) {
             e.preventDefault();
-            console.log(productId);
+
+            let me = this;
             const token = localStorage.getItem('token');
 
             // header
@@ -314,7 +358,9 @@ export default {
                 .then((response) => {
                     console.log(response);
                     console.log('Delete product success!');
-                    window.location.reload();
+                    EventBus.$emit("reloadCartSize");
+                    me.reloadProductInCart();
+                    // window.location.reload();
                 })
                 .catch((reject) => {
                     console.log(reject);

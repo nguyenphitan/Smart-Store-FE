@@ -407,6 +407,7 @@ export default {
                     .then((response) => {
                         me.productPageable = response.data;
                         me.listProducts = response.data.content;
+                        me.scrollToListProduct();
                     })
                     .catch((reject) => {
                         console.log(reject);
@@ -419,6 +420,7 @@ export default {
                     .then((response) => {
                         me.productPageable = response.data;
                         me.listProducts = response.data.content;
+                        me.scrollToListProduct();
                     })
                     .catch((reject) => {
                         console.log(reject);
@@ -444,6 +446,7 @@ export default {
                         .then((response) => {
                             me.productPageable = response.data;
                             me.listProducts = response.data.content;
+                            me.scrollToListProduct();
                         })
                         .catch((reject) => {
                             console.log(reject);
@@ -456,6 +459,7 @@ export default {
                         .then((response) => {
                             me.productPageable = response.data;
                             me.listProducts = response.data.content;
+                            me.scrollToListProduct();
                         })
                         .catch((reject) => {
                             console.log(reject);
@@ -473,6 +477,7 @@ export default {
                         .then((response) => {
                             me.productPageable = response.data;
                             me.listProducts = response.data.content;
+                            me.scrollToListProduct();
                         })
                         .catch((reject) => {
                             console.log(reject);
@@ -484,6 +489,7 @@ export default {
                         .then((response) => {
                             me.productPageable = response.data;
                             me.listProducts = response.data.content;
+                            me.scrollToListProduct();
                         })
                         .catch((reject) => {
                             console.log(reject);
@@ -491,6 +497,12 @@ export default {
                 }
             }
 
+        },
+
+        // scroll to list product top:
+        scrollToListProduct() {
+            let productDiv = document.querySelector("#the-body #list-product");
+            productDiv.scrollIntoView({behavior: 'smooth'});
         },
 
         // Go to page:
@@ -510,6 +522,7 @@ export default {
                         .then((response) => {
                             me.productPageable = response.data;
                             me.listProducts = response.data.content;
+                            me.scrollToListProduct();
                         })
                         .catch((reject) => {
                             console.log(reject);
@@ -521,6 +534,7 @@ export default {
                     .then((response) => {
                         me.productPageable = response.data;
                         me.listProducts = response.data.content;
+                        me.scrollToListProduct();
                     })
                     .catch((reject) => {
                         console.log(reject);
@@ -535,6 +549,7 @@ export default {
                     .then((response) => {
                         me.productPageable = response.data;
                         me.listProducts = response.data.content;
+                        me.scrollToListProduct();
                     })
                     .catch((reject) => {
                         console.log(reject);
@@ -546,6 +561,7 @@ export default {
                     .then((response) => {
                         me.productPageable = response.data;
                         me.listProducts = response.data.content;
+                        me.scrollToListProduct();
                     })
                     .catch((reject) => {
                         console.log(reject);

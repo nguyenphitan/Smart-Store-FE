@@ -34,6 +34,7 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 // optional style for arrows & dots
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 import axios from 'axios'
+import { EventBus } from '@/eventBus'
 
 export default {
     name: 'base-carousel-discount',
@@ -85,7 +86,9 @@ export default {
                 .then((response) => {
                     console.log("Add product to cart success!");
                     console.log(response.data);
-                    window.location.reload();
+                    alert("Add to cart success!");
+                    EventBus.$emit("reloadCartSize");
+                    // window.location.reload();
                 })
                 .catch((reject) => {
                     alert("Add to cart fail!");

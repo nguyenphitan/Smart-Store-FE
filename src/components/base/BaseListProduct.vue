@@ -36,6 +36,7 @@
 <script>
 import axios from 'axios';
 import BaseCard from './BaseCard.vue'
+import { EventBus } from '@/eventBus';
 
 export default {
     name: 'base-list-product',
@@ -80,7 +81,9 @@ export default {
                 .then((response) => {
                     console.log("Add product to cart success!");
                     console.log(response.data);
-                    window.location.reload();
+                    alert("Add to cart success!");
+                    EventBus.$emit("reloadCartSize");
+                    // window.location.reload();
                 })
                 .catch((reject) => {
                     alert("Add to cart fail!");

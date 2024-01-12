@@ -77,6 +77,7 @@ import BaseSearch from '../../base/BaseSearch.vue'
 // import BaseCategoryCard from '../../base/BaseCategoryCard.vue'
 import BaseListOverlay from '../../base/BaseListOverlay.vue'
 import axios from 'axios'
+import { EventBus } from '@/eventBus'
 
 export default {
     name: 'the-header',
@@ -117,6 +118,28 @@ export default {
                 console.log(reject);
             });
         // End load user info
+    },
+    mounted() {
+        EventBus.$on("reloadCartSize", () => {
+            let me = this;
+            const token = localStorage.getItem('token');
+            // header
+            const headers = {
+                Authorization: `Bearer ${token}`,
+            };
+
+            // Load cart size
+            axios
+                .get("http://localhost:8080/api/v1/cart/size", {headers})
+                .then((response) => {
+                    console.log(response.data);
+                    me.cartSize = response.data;
+                })
+                .catch((reject) => {
+                    console.log(reject);
+                });
+            // End load cart size
+        });
     },
     data() {
         return {
