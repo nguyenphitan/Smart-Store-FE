@@ -309,9 +309,9 @@ export default {
         },
 
         // Filter by category:
-        filterByCategory(e, categoryId) {
+        filterByCategory(e) {
             console.log(e.target);
-            this.activeCategoryFilter(e, categoryId);
+            let categoryId = e.target.value;
 
             // clear input search:
             document.querySelector("#show-products #search-product").value = '';
