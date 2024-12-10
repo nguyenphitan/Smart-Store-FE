@@ -234,7 +234,7 @@ export default {
 
 .btn-add-new-product .add-new-page {
     padding: 8px 12px;
-    background-color: #e94560;
+    background-color: #4a4d51;
     color: white;
     border-radius: 8px;
     margin-right: 16px;

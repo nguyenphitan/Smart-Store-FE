@@ -61,6 +61,10 @@
                             <router-link :to="{ name: 'profile'}" class="t-title t-hover-red">My Profile</router-link>
                             <base-list-overlay @hideThis="hideThis" :data="pageList" class="sub-item sub-pages"></base-list-overlay>
                         </div>
+                        <div class="pages">
+                            <router-link :to="{ name: 'aboutUs'}" class="t-title t-hover-red">About Us</router-link>
+                            <base-list-overlay @hideThis="hideThis" :data="pageList" class="sub-item sub-pages"></base-list-overlay>
+                        </div>
                         <!-- <div class="add-new-product">
                             <router-link to="/add-new-product" >Add New Product</router-link>
                         </div> -->
@@ -152,7 +156,7 @@ export default {
             downIcon: 'fa-solid fa-chevron-down',
             cardName: 'Categories',
             homeList: ['Supper Store', 'Grocery', 'Niche Market'],
-            pageList: ['Sale page', 'Vendor', 'Shop'],
+            pageList: ['Sale page', 'Vendor', 'Shop', 'About us'],
             role: localStorage.getItem("role"),
         }
     },

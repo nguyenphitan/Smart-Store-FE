@@ -343,7 +343,7 @@ export default {
 }
 
 #base-product-row i.t-pointer:hover {
-    color: #e94560;
+    color: #4a4d51;
 }
 
 #base-product-row input, .t-readOnly {

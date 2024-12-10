@@ -15,7 +15,7 @@
                     <div>
                         <!-- Fullname -->
                         <div class="enter-firstname">
-                            <label for="#">Fisrt Name <span style="color: #e94560;">*</span></label>
+                            <label for="#">Fisrt Name <span style="color: #4a4d51;">*</span></label>
                             <base-input
                                 class="firstname-register"
                                 :inputPlaceholder="'Nguyen'"
@@ -27,7 +27,7 @@
 
                         <!-- Fullname -->
                         <div class="enter-lastname">
-                            <label for="#">Last Name <span style="color: #e94560;">*</span></label>
+                            <label for="#">Last Name <span style="color: #4a4d51;">*</span></label>
                             <base-input
                                 class="lastname-register"
                                 :inputPlaceholder="'Huyen'"
@@ -39,7 +39,7 @@
 
                         <!-- Email -->
                         <div class="enter-email">
-                            <label for="#">Enter your email <span style="color: #e94560;">*</span></label>
+                            <label for="#">Enter your email <span style="color: #4a4d51;">*</span></label>
                             <base-input
                                 class="email-register"
                                 :inputPlaceholder="emailPlaceholder"
@@ -51,7 +51,7 @@
 
                         <!-- Password -->
                         <div class="enter-password">
-                            <label for="#">Password <span style="color: #e94560;">*</span></label>
+                            <label for="#">Password <span style="color: #4a4d51;">*</span></label>
                             <base-input 
                                 class="password-register"
                                 :iconClass="iconClass"
@@ -62,7 +62,7 @@
 
                         <!-- Confirm Password -->
                         <!-- <div class="enter-password-confirm">
-                            <label for="#">Confirm Password <span style="color: #e94560;">*</span></label>
+                            <label for="#">Confirm Password <span style="color: #4a4d51;">*</span></label>
                             <base-input 
                                 class="password-confirm"
                                 :iconClass="iconClass"

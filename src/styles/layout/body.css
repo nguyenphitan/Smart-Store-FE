@@ -10,7 +10,7 @@
 
 #the-body .t-active {
     background-color: rgb(255, 225, 230);
-    color: #e94560;
+    color: #4a4d51;
 }
 
 #the-body .t-flex {
@@ -24,7 +24,7 @@
 /* Top */
 #the-body #body-top {
     background-color: #fff;
-    padding-bottom: 56px;
+    /* padding-bottom: 56px; */
 }
 
 #the-body .body-top-wrapper {
@@ -35,7 +35,7 @@
 /* Center */
 #body-center {
     background-color: rgb(246, 249, 252);
-    margin-top: 40px;
+    margin-top: 30px;
     position: relative;
 }
 
@@ -43,13 +43,13 @@
     font-size: 25px;
     font-weight: 700;
     padding-top: 50px;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
     display: flex;
     align-items: center;
 }
 
 #body-center .flash-deal-title {
-    padding-top: 20px;
+    padding-top: 8px;
 }
 
 #body-center .center-title svg {
@@ -89,6 +89,10 @@
 /* Top ratings */
 #body-center .top-rating .fa-medal {
     color: #f9b910;
+}
+
+.t-select-filter-category:hover, .t-select-filter-category:active, .t-select-filter-category:focus {
+    outline: none;
 }
 
 #body-center .top-rating .rating-content {
@@ -149,7 +153,7 @@
 /* Show all product */
 #the-body #show-products {
     width: 80%;
-    margin: 80px auto 0;
+    margin: 20px auto 0;
     display: flex;
 }
 
@@ -199,7 +203,7 @@
 }
 
 #the-body #search-product:focus {
-    border: 1px solid #e94560;
+    border: 1px solid #4a4d51;
     background-color: #fff;
     outline: none;
 }
@@ -208,3 +212,74 @@
     pointer-events: none;
 }
 
+/* About us */
+#t-about-us {
+    margin-top: 40px;
+    background: #ebebeb;
+}
+
+#t-about-us .t-about-1 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#t-about-us .t-about1-left {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.t-left-child {
+    width: 60%;
+}
+
+#t-about-us .t-about1-right {
+    width: 50%;
+    height: 506px;
+    background-image: url('../../assets/imgs/about1.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Inspiration */
+#t-inspiration {
+    /* width: 80%; */
+    padding: 30px 10%;
+    margin: 20px auto;
+    background: #ebebeb;
+}
+
+.t-inspiration-1 {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 16px;
+}
+
+.t-inspiration1-left, .t-inspiration1-right {
+    width: 48%;
+}
+
+.t-bg-img-left {
+    width: 100%;
+    height: 300px;
+    background-image: url('../../assets/imgs/goccamhung1.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.t-bg-img-right {
+    width: 100%;
+    height: 300px;
+    background-image: url('../../assets/imgs/goccamhung2.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.t-top-16 {
+    margin-top: 16px;
+}

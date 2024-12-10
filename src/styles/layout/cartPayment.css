@@ -21,7 +21,7 @@
     font-weight: 600;
     padding: 8px 24px;
     background-color: rgb(255, 225, 230);
-    color: #e94560;
+    color: #4a4d51;
     border-radius: 300px;
     cursor: pointer;
 }
@@ -30,7 +30,7 @@
 #the-cart-payment .order-step .step-detail,
 #the-cart-payment .order-step .step-payment {
     padding: 8px 24px;
-    background-color: #e94560;
+    background-color: #4a4d51;
     color: #fff;
     border-radius: 300px;
 }
@@ -45,7 +45,7 @@
 #the-cart-payment .order-step .step-line-2 {
     width: 50px;
     height: 4px;
-    background-color: #e94560;
+    background-color: #4a4d51;
 }
 
 /* Bottom */
@@ -111,7 +111,7 @@
 
 .back-to-details:hover {
     color: #fff;
-    background-color: #e94560;
+    background-color: #4a4d51;
 }
 
 .btn-payment {

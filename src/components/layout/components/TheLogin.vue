@@ -15,7 +15,7 @@
                     <div>
                         <!-- Email -->
                         <div class="enter-email">
-                            <label for="#">Enter your email <span style="color: #e94560;">*</span></label>
+                            <label for="#">Enter your email <span style="color: #4a4d51;">*</span></label>
                             <base-input
                                 class="email-login"
                                 :required="true"
@@ -28,7 +28,7 @@
 
                         <!-- Password -->
                         <div class="enter-password">
-                            <label for="#">Password <span style="color: #e94560;">*</span></label>
+                            <label for="#">Password <span style="color: #4a4d51;">*</span></label>
                             <base-input 
                                 class="password-login"
                                 :required="true"

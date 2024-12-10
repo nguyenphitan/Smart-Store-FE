@@ -1,5 +1,8 @@
 <template>
     <div id="the-flash-deals">
+        <!-- Begin carousel -->
+        <base-carousel :data="carouselData"></base-carousel>
+        <!-- End carousel -->
         <!-- Container -->
         <div id="flash-deals-container">
             <h2 class="flash-deal-title">
@@ -7,38 +10,21 @@
                 <span style="color: rgb(125, 135, 156);">Enjoy Upto 80% Discounts</span>
             </h2>
             <!-- Show list product discount -->
+            <div id="t-product-category" style="top: 124px; left: 0; display: flex; justify-content: center;">
+                <input @change="searchProductByName" style="width: 50%;" id="search-product" type="text" name="search-product" placeholder="Enter name..."/>
+                <select @change="filterByCategory" class="t-select-filter-category" name="category" id="" style="width: 266px; height: 40px; padding: 0.35rem 8px; margin: 1rem 0.1rem; border-radius: 8px; border: 1px solid #dfdede; background-color: rgb(246, 249, 252);">
+                    <option value="0">All</option>
+                    <option 
+                        class="t-category-option"
+                        v-for="(item, index) in listCategory" 
+                        :key="index"
+                        :value="item.id"
+                    >{{ item.name }}</option>
+                </select>
+            </div>
             <div id="show-products">
-                <!-- Left -->
-                <div id="product-category" style="position: sticky; top: 124px; left: 0;">
-                    <div class="category-container">
-                        <div class="phone-nav" style="padding: 0 8px;">
-                            <base-category-card
-                                @filterByCategory="filterByCategory"
-                                :cardName="'All'"
-                                :extendIcon="false"
-                                :categoryId="0"
-                            ></base-category-card>
-                            <base-category-card
-                                @filterByCategory="filterByCategory"
-                                v-for="(item, key) in listCategory"
-                                :key="key"
-                                :cardName="item.name"
-                                :iconClassLeft="item.iconClassLeft"
-                                :extendIcon="false"
-                                :categoryId="item.id"
-                                :imgSrc="item.imgSrc"
-                            ></base-category-card>
-                            <div>
-                                <input @change="searchProductByName" id="search-product" type="text" name="search-product" placeholder="Enter name..."/>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
                 <!-- Right -->
                 <div id="list-product">
-                    <h3 style="font-weight: bold;">Products</h3>
                     <!-- Begin render list product -->
                     <base-list-product
                         :products="listProducts"
@@ -56,15 +42,17 @@
 </template>
 
 <script>
+import BaseCarousel from '../../base/BaseCarousel.vue'
 import BaseListProduct from '@/components/base/BaseListProduct.vue';
-import BaseCategoryCard from '@/components/base/BaseCategoryCard.vue'
+// import BaseCategoryCard from '@/components/base/BaseCategoryCard.vue'
 import axios from 'axios';
 
 export default {
     name: 'the-flash-deals',
     components: {
         BaseListProduct,
-        BaseCategoryCard,
+        // BaseCategoryCard,
+        BaseCarousel,
     },
     beforeCreate() {
         let me = this;
@@ -113,6 +101,11 @@ export default {
 
             // List of category
             listCategory: [],
+
+            // Banner data
+            carouselData: [require('@/assets/imgs/banner3.jpg'), 
+                            require('@/assets/imgs/banner1.jpg'), 
+                            require('@/assets/imgs/banner2.jpg')],
         }
     },
     methods: {
@@ -147,12 +140,12 @@ export default {
         },
 
         // Filter by category:
-        filterByCategory(e, categoryId) {
-            console.log(e.target);
-            this.activeCategoryFilter(e, categoryId);
+        filterByCategory(e) {
+            let categoryId = e.target.value
+            // this.activeCategoryFilter(e, categoryId);
 
             // clear input search:
-            document.querySelector("#show-products #search-product").value = '';
+            document.querySelector("#search-product").value = '';
 
             let me = this;
 
@@ -163,7 +156,7 @@ export default {
                     .then((response) => {
                         me.productPageable = response.data;
                         me.listProducts = response.data.content;
-                        me.scrollToListProduct();
+                        // me.scrollToListProduct();
                     })
                     .catch((reject) => {
                         console.log(reject);
@@ -176,7 +169,7 @@ export default {
                     .then((response) => {
                         me.productPageable = response.data;
                         me.listProducts = response.data.content;
-                        me.scrollToListProduct();
+                        // me.scrollToListProduct();
                     })
                     .catch((reject) => {
                         console.log(reject);

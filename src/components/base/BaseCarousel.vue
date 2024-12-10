@@ -14,13 +14,14 @@
                 <div :class="key == 0 ? 'carousel-item active' : 'carousel-item'" 
                     v-for="(item, key) in data" :key="key">
                     <div class="row align-items-center t-between">
-                        <div class="col-md-8 py-2 sale-info">
+                        <!-- <div class="col-md-8 py-2 sale-info">
                             <h1 class="carousel-title">50% Off For Your First Shopping</h1>
                             <p class="carousel-description"> {{carouselDescription}} </p>
                             <base-button class="carousel-btn" :buttonName="buttonName"></base-button>
-                        </div>
-                        <div class="col-md-4">
-                            <img style="height: 390.4px;" class="d-block img-fluid" v-bind:src="item" alt="banner image">
+                        </div> -->
+                        <!-- class="col-md-4" -->
+                        <div>
+                            <img style="width: 100%;" class="d-block img-fluid" v-bind:src="item" alt="banner image">
                         </div>
                     </div>
                 </div>
@@ -42,7 +43,7 @@
 </template>
 
 <script>
-import BaseButton from './BaseButton.vue'
+// import BaseButton from './BaseButton.vue'
 
 export default {
     name: 'base-carousel',
@@ -57,7 +58,7 @@ export default {
         }
     },
     components: {
-        BaseButton,
+        // BaseButton,
     },
     data() {
         return {

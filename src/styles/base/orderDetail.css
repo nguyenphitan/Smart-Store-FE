@@ -13,7 +13,7 @@
 }
 
 #base-order-detail #base-button button {
-    color: #e94560 !important;
+    color: #4a4d51 !important;
     font-weight: 600;
 }
 
@@ -42,7 +42,7 @@
 
 .t-order-color-common {
     background-color: rgb(227, 233, 239);
-    color: #e94560;
+    color: #4a4d51;
 }
 
 .t-line-1 {
@@ -58,7 +58,7 @@
 }
 
 .t-color-order-status {
-    background-color: #e94560;
+    background-color: #4a4d51;
 }
 
 /* Area 3 */

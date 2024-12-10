@@ -15,7 +15,7 @@
 }
 
 #base-search input:focus {
-    border: 1px solid #e94560;
+    border: 1px solid #4a4d51;
 }
 
 #base-search .search-icon {
@@ -70,6 +70,6 @@
 
 #search-container .t-result-item:hover {   
     background-color: rgb(246, 249, 252);
-    color: #e94560;
+    color: #4a4d51;
     cursor: pointer;
 }

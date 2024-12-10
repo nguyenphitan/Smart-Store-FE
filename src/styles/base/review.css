@@ -33,7 +33,7 @@
 }
 
 .order-icon-delete i:hover {
-    color: #e94560;
+    color: #4a4d51;
 }
 
 .fa-square-check {
@@ -57,5 +57,5 @@
 
 .t-color-cancelled .order-status {
     background-color: rgb(255, 225, 230);
-    color: #e94560;
+    color: #4a4d51;
 }

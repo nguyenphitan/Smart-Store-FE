@@ -31,11 +31,11 @@
                     <!-- col left -->
                     <div class="profile-info-left">
                         <div class="profile-item">
-                            <p class="profile-title">First Name <span style="color: #e94560;">*</span></p>
+                            <p class="profile-title">First Name <span style="color: #4a4d51;">*</span></p>
                             <input name="firstName" type="text" :value="userProfile.firstName" readonly required/>
                         </div>
                         <div class="profile-item">
-                            <p class="profile-title">Email <span style="color: #e94560;">*</span> </p>
+                            <p class="profile-title">Email <span style="color: #4a4d51;">*</span> </p>
                             <input name="email" type="email" :value="userProfile.username" readonly required/>
                         </div>
                         <div class="profile-item">
@@ -52,7 +52,7 @@
                     <!-- col right -->
                     <div class="profile-info-right">
                         <div class="profile-item">
-                            <p class="profile-title">Last Name <span style="color: #e94560;">*</span></p>
+                            <p class="profile-title">Last Name <span style="color: #4a4d51;">*</span></p>
                             <input name="lastName" type="text" :value="userProfile.lastName" readonly required/>
                         </div>
                         <div class="profile-item">

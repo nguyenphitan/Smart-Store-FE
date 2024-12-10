@@ -6,7 +6,7 @@
 
 /* appearance for checked radiobutton */
 /* input[type="radio"] {
-    accent-color: #e94560;
+    accent-color: #4a4d51;
 } */
 #the-cart-container {
     width: 80%;
@@ -34,14 +34,14 @@
     font-weight: 600;
     padding: 8px 24px;
     background-color: rgb(255, 225, 230);
-    color: #e94560;
+    color: #4a4d51;
     border-radius: 300px;
     cursor: pointer;
 }
 
 #the-cart .order-step .step-add {
     padding: 8px 24px;
-    background-color: #e94560;
+    background-color: #4a4d51;
     color: #fff;
     border-radius: 300px;
 }

@@ -283,7 +283,7 @@ export default {
     height: 32px;
     margin: 8px 0;
     background-color: rgb(255, 225, 230);
-    color: #e94560;
+    color: #4a4d51;
     font-weight: 600;
     display: flex;
     justify-content: center;
@@ -293,7 +293,7 @@ export default {
 }
 
 #list-month .t-active {
-    background-color: #e94560;
+    background-color: #4a4d51;
     color: #fff;
 }
 

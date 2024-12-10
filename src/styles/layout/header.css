@@ -11,7 +11,7 @@
 }
 
 #the-header .t-hover-red:hover {
-    color: #e94560;
+    color: #4a4d51;
 }
 
 .t-block {
@@ -36,7 +36,7 @@
 }
 
 .t-logout:hover {
-    background-color: #e94560;
+    background-color: #4a4d51;
     color: #fff;
 }
 
@@ -53,7 +53,7 @@
     font-size: 40px;
     font-family: 'Alkalami', serif;
     font-style: italic;
-    color: #e94560;
+    color: #4a4d51;
     text-decoration: none;
 }
 
@@ -90,7 +90,7 @@
 }
 
 .cart-size {
-    background-color: #e94560;
+    background-color: #4a4d51;
     color: #fff;
     width: 20px;
     height: 20px;
