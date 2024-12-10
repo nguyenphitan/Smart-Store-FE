@@ -22,18 +22,18 @@
                     <option value="2023">2023</option>
                     <option selected value="2024">2024</option>
                 </select>
-                <div @click="statisticsOfMonth" tan="1" class="t-month-common month-1">January</div>
-                <div @click="statisticsOfMonth" tan="2" class="t-month-common month-2">February</div>
-                <div @click="statisticsOfMonth" tan="3" class="t-month-common month-3">March</div>
-                <div @click="statisticsOfMonth" tan="4" class="t-month-common month-4">April</div>
-                <div @click="statisticsOfMonth" tan="5" class="t-month-common month-5">May</div>
-                <div @click="statisticsOfMonth" tan="6" class="t-month-common month-6">June</div>
-                <div @click="statisticsOfMonth" tan="7" class="t-month-common month-7">July</div>
-                <div @click="statisticsOfMonth" tan="8" class="t-month-common month-8">August</div>
-                <div @click="statisticsOfMonth" tan="9" class="t-month-common month-9">September</div>
-                <div @click="statisticsOfMonth" tan="10" class="t-month-common month-10">October</div>
-                <div @click="statisticsOfMonth" tan="11" class="t-month-common month-11">November</div>
-                <div @click="statisticsOfMonth" tan="12" class="t-month-common month-12">December</div>
+                <div @click="statisticsOfMonth" huyen="1" class="t-month-common month-1">January</div>
+                <div @click="statisticsOfMonth" huyen="2" class="t-month-common month-2">February</div>
+                <div @click="statisticsOfMonth" huyen="3" class="t-month-common month-3">March</div>
+                <div @click="statisticsOfMonth" huyen="4" class="t-month-common month-4">April</div>
+                <div @click="statisticsOfMonth" huyen="5" class="t-month-common month-5">May</div>
+                <div @click="statisticsOfMonth" huyen="6" class="t-month-common month-6">June</div>
+                <div @click="statisticsOfMonth" huyen="7" class="t-month-common month-7">July</div>
+                <div @click="statisticsOfMonth" huyen="8" class="t-month-common month-8">August</div>
+                <div @click="statisticsOfMonth" huyen="9" class="t-month-common month-9">September</div>
+                <div @click="statisticsOfMonth" huyen="10" class="t-month-common month-10">October</div>
+                <div @click="statisticsOfMonth" huyen="11" class="t-month-common month-11">November</div>
+                <div @click="statisticsOfMonth" huyen="12" class="t-month-common month-12">December</div>
             </div>
             <div style="width: 80%;">
                 <p style="text-align: left; margin-top: 40px; margin-left: 16px; padding: 0; margin-bottom: -10px;">
@@ -187,7 +187,7 @@ export default {
             me.totalRevenue = 0;
             me.activeElement(e);
             let year = Number(document.querySelector('#statistics-container .year-selected').value);
-            let month = Number(e.target.getAttribute('tan'));
+            let month = Number(e.target.getAttribute('huyen'));
             console.log(month);
 
             // Call API
@@ -283,7 +283,7 @@ export default {
     height: 32px;
     margin: 8px 0;
     background-color: rgb(255, 225, 230);
-    color: rgb(233, 69, 96);
+    color: #e94560;
     font-weight: 600;
     display: flex;
     justify-content: center;
@@ -293,7 +293,7 @@ export default {
 }
 
 #list-month .t-active {
-    background-color: rgb(233, 69, 96);
+    background-color: #e94560;
     color: #fff;
 }
 

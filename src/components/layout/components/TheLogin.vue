@@ -15,7 +15,7 @@
                     <div>
                         <!-- Email -->
                         <div class="enter-email">
-                            <label for="#">Enter your email <span style="color: rgb(233, 69, 96);">*</span></label>
+                            <label for="#">Enter your email <span style="color: #e94560;">*</span></label>
                             <base-input
                                 class="email-login"
                                 :required="true"
@@ -28,7 +28,7 @@
 
                         <!-- Password -->
                         <div class="enter-password">
-                            <label for="#">Password <span style="color: rgb(233, 69, 96);">*</span></label>
+                            <label for="#">Password <span style="color: #e94560;">*</span></label>
                             <base-input 
                                 class="password-login"
                                 :required="true"
@@ -75,7 +75,7 @@ export default {
     props: {
         shopName: {
             type: String,
-            default: "T.A.N"
+            default: "Furniture"
         }
     },
     components: {
@@ -86,7 +86,7 @@ export default {
         return {
             iconClass: 'fa-regular fa-eye',
             loginBtn: 'Login',
-            emailPlaceholder: 'phitan@gmail.com',
+            emailPlaceholder: 'dnh@gmail.com',
             emailType: 'email',
             passwordType: 'password',
             faceBookName: 'Continue with FaceBook',

@@ -17,11 +17,11 @@
 
 #the-add-new-product input {
     border: 1px solid #ccc;
-    outline: rgb(233, 69, 96);
+    outline: #e94560;
 }
 
 #the-add-new-product input:focus {
-    border-color: rgb(233, 69, 96);
+    border-color: #e94560;
 }
 
 /* Left */
@@ -92,7 +92,7 @@
     width: 200px;
     border: 1px solid #ccc;
     cursor: pointer;
-    background-color: rgb(233, 69, 96);
+    background-color: #e94560;
     color: white;
     outline: none;
 }

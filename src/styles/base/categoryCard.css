@@ -13,12 +13,12 @@
 }
 
 #base-category-card .category-active {
-    color: rgb(233, 69, 96);
+    color: #e94560;
 }
 
 /* #base-category-card #category-card-container:hover {
     background-color: #ffe1e6;
-    color: rgb(233, 69, 96);
+    color: #e94560;
 } */
 
 #base-category-card .category-summary {

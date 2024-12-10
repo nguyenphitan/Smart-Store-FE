@@ -5,7 +5,7 @@
             <!-- Begin top header -->
             <div id="top-header">
                 <div class="logo">
-                    <router-link to="/">T.A.N</router-link>
+                    <router-link to="/">Furniture</router-link>
                 </div>
                 <base-search></base-search>
                 <div class="d-flex" @mouseleave="hideLogout">

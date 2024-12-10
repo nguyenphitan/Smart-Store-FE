@@ -28,7 +28,7 @@
 }
 
 .t-paging li.active a {
-    background-color: rgb(233, 69, 96);
+    background-color: #e94560;
     color: #fff;
 }
 

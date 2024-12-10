@@ -17,13 +17,13 @@
     font-weight: 600;
     padding: 8px 24px;
     background-color: rgb(255, 225, 230);
-    color: rgb(233, 69, 96);
+    color: #e94560;
     border-radius: 300px;
 }
 
 #the-detail .order-step div.step:nth-child(1) {
     padding: 8px 24px;
-    background-color: rgb(233, 69, 96);
+    background-color: #e94560;
     color: #fff;
     border-radius: 300px;
 }
@@ -77,7 +77,7 @@
     font-weight: 600;
     margin-bottom: 4px;
     font-size: 25px;
-    color: rgb(233, 69, 96);
+    color: #e94560;
 }
 
 #the-detail .product-inventory {
@@ -94,7 +94,7 @@
 }
 
 #the-detail .quantity-selector i {
-    color: rgb(233, 69, 96);
+    color: #e94560;
 }
 
 #the-detail .add-to-cart #button-container button {

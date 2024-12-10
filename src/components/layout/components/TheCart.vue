@@ -101,7 +101,7 @@
                                         <!-- End cart left -->
 
                                         <div class="col-lg-5">
-                                            <div class="card text-white rounded-3" style="background-color: rgb(233, 69, 96); position: sticky; top: 124px; right: 0; z-index: 2;">
+                                            <div class="card text-white rounded-3" style="background-color: #e94560; position: sticky; top: 124px; right: 0; z-index: 2;">
                                                 <div class="card-body">
                                                     <div for="payment-by-card"  
                                                         class="pay-card payment-by-card t-flex t-pointer"

@@ -9,7 +9,7 @@
 
 #admin-container .t-active {
     background-color: rgb(255, 225, 230);
-    color: rgb(233, 69, 96);
+    color: #e94560;
 }
 
 /* Navbar */
@@ -69,7 +69,7 @@
 .manager-product:hover,
 .manager-order:hover,
 .manager-statistics:hover {
-    background-color: rgb(233, 69, 96);
+    background-color: #e94560;
     color: #fff;
 }
 
@@ -100,7 +100,7 @@
 
 .btn-add-category {
     color: #fff;
-    background-color: rgb(233, 69, 96);
+    background-color: #e94560;
 }
 
 .btn-add-category:hover {

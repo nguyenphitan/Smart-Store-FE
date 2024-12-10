@@ -1,7 +1,7 @@
 @import url('../assets/icons/fontawesome-free-6.1.2-web/css/all.min.css');
 
 #app {
-    --primary-color: rgb(233, 69, 96);
+    --primary-color: #e94560;
     --primary-color-text: rgb(43, 52, 69);
     position: relative;
     background-color: rgb(246, 249, 252);
@@ -38,11 +38,11 @@ a {
 }
 
 .t-border-red {
-    border: 1px solid rgb(233, 69, 96);
+    border: 1px solid #e94560;
 }
 
 .t-color-red {
-    color: rgb(233, 69, 96);
+    color: #e94560;
 }
 
 .t-w-100 {
@@ -54,7 +54,7 @@ a {
 }
 
 .t-bg-red {
-    background-color: rgb(233, 69, 96);
+    background-color: #e94560;
 }
 
 .t-color-white {

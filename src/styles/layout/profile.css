@@ -45,13 +45,13 @@ h5 {
 
 .user-order:hover,
 .user-profile:hover {
-    background-color: rgb(233, 69, 96);
+    background-color: #e94560;
     color: #fff;
 }
 
 #the-profile .t-active {
     background-color: rgb(255, 225, 230);
-    color: rgb(233, 69, 96);
+    color: #e94560;
 }
 
 
@@ -88,7 +88,7 @@ h5 {
 .profile-account i {
     font-size: 20px;
     margin-right: 12px;
-    color: rgb(233, 69, 96);
+    color: #e94560;
 }
 
 /* Cover image */
@@ -98,7 +98,7 @@ h5 {
 
 .change-cover {
     background-color: rgb(255, 225, 230);
-    color: rgb(233, 69, 96);
+    color: #e94560;
     width: 36px;
     height: 36px;
     position: absolute;
@@ -187,7 +187,7 @@ h5 {
 
 .profile-info-left input:focus,
 .profile-info-right input:focus {
-    border: 1px solid rgb(233, 69, 96);
+    border: 1px solid #e94560;
 }
 
 /* Button */

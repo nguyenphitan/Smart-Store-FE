@@ -10,7 +10,7 @@
 
 #the-body .t-active {
     background-color: rgb(255, 225, 230);
-    color: rgb(233, 69, 96);
+    color: #e94560;
 }
 
 #the-body .t-flex {
@@ -199,7 +199,7 @@
 }
 
 #the-body #search-product:focus {
-    border: 1px solid rgb(233, 69, 96);
+    border: 1px solid #e94560;
     background-color: #fff;
     outline: none;
 }

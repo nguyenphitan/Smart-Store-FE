@@ -107,7 +107,7 @@ export default {
 }
 
 #base-order-product-row i.t-pointer:hover {
-    color: rgb(233, 69, 96);
+    color: #e94560;
 }
 
 #base-order-product-row input, .t-readOnly {

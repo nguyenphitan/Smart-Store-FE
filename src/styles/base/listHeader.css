@@ -7,7 +7,7 @@
 }
 
 #list-header .list-header-item:hover {
-    color: rgb(233, 69, 96);
+    color: #e94560;
     background-color: rgb(246, 249, 252);
     cursor: pointer;
 }
