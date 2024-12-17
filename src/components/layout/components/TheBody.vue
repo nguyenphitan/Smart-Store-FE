@@ -33,7 +33,10 @@
                                         Sở hữu đội ngũ chuyên nghiệp và hệ thống 10 cửa hàng, 
                                         Furniture là lựa chọn cho không gian tinh tế và hiện đại.
                                     </p>
-                                    <base-button :buttonName="'Xem thêm'"></base-button>
+                                    <router-link :to="{ name: 'aboutUs'}" class="t-title t-hover-red">
+                                        <base-button :buttonName="'Xem thêm'"></base-button>
+                                    </router-link>
+                                    
                                 </div>
                             </div>
                             <div class="t-about1-right">
